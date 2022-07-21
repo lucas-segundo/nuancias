@@ -1,0 +1,5 @@
+{
+  "root": true,
+  "extends": ["eslint:recommended", "plugin:cypress/recommended"],
+  "env": { "cypress/globals": true }
+}

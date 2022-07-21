@@ -1,0 +1,12 @@
+overwrite: true
+schema: 'http://localhost:1337/graphql'
+documents: 'src/infra/http/apollo-client/operations/**/*.ts'
+generates:
+  src/data/protocols/http/graphql/types.ts:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+    config:
+      avoidOptionals: true
+      maybeValue: T | null | undefined
+      inputMaybeValue: T | null | undefined
