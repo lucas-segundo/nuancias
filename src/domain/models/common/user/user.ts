@@ -5,5 +5,5 @@ export type UserModel = {
   name: string
   bio: string
   username: string
-  avatar?: ImageModel
+  avatar: ImageModel
 }

@@ -14,7 +14,7 @@ const UserCard = ({ userData }: UserCardProps) => {
         <figure className="flex mr-4">
           <Image
             className="rounded-full"
-            src={userData.avatar?.src || '/images/avatar-placeholder.jpg'}
+            src={userData.avatar.src}
             width={40}
             height={40}
             objectFit="cover"

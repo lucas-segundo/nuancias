@@ -34,7 +34,7 @@ const PostCard = ({ post }: PostCardProps) => {
       </Link>
       <div className="flex items-center my-2">
         <Image
-          src={post.image.src}
+          src={post.writer.avatar.src}
           width={20}
           height={20}
           className="rounded-full"
