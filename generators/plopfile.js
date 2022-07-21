@@ -5,13 +5,13 @@ module.exports = (plop) => {
     prompts: [
       {
         type: 'input',
-        name: 'path',
-        message: 'What is the folder path?',
+        name: 'name',
+        message: 'What is your component name?',
       },
       {
         type: 'input',
-        name: 'name',
-        message: 'What is your component name?',
+        name: 'path',
+        message: 'What is the folder path?',
       },
     ],
     actions: [
