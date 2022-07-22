@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import InputField from './input-field'
+import { InputField } from './input-field'
 
 describe('<InputField />', () => {
   it('should render the element', () => {

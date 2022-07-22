@@ -5,7 +5,7 @@ export type InputFieldProps = {
   isBorderOnlyBottom?: boolean
 } & InputHTMLAttributes<HTMLInputElement>
 
-const InputField = ({
+export const InputField = ({
   label = 'Input Field',
   isBorderOnlyBottom,
   ...props
@@ -29,5 +29,3 @@ const InputField = ({
     </div>
   )
 }
-
-export default InputField
