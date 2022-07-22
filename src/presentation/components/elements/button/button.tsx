@@ -6,7 +6,7 @@ export type ButtonProps = {
   text?: string
 } & ButtonHTMLAttributes<HTMLButtonElement>
 
-const Button = ({
+export const Button = ({
   isLoading,
   isOutline,
   text = 'Button',
@@ -34,5 +34,3 @@ const Button = ({
     </button>
   )
 }
-
-export default Button
