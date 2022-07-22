@@ -1,4 +1,3 @@
-export { default as Navbar } from './navbar/navbar'
 export * from './navbar/navbar'
 
 export { default as SignInForm } from './sign-in-form/sign-in-form'

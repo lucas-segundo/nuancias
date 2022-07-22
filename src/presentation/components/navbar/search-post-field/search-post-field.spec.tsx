@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event'
 import { makeSearchedPostMock } from 'domain/models/post/mock'
 
 import { SearchPosts } from 'domain/use-cases'
-import SearchPostsField from './search-post-field'
+import { SearchPostsField } from './search-post-field'
 
 const searchPostsMocked: jest.Mocked<SearchPosts> = {
   getAllByText: jest.fn(),

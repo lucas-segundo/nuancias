@@ -11,7 +11,7 @@ export type SearchPostsFieldProps = {
   searchPosts: SearchPosts
 }
 
-const SearchPostsField = ({ searchPosts }: SearchPostsFieldProps) => {
+export const SearchPostsField = ({ searchPosts }: SearchPostsFieldProps) => {
   const [textToSearch, setTextToSearch] = useState('')
   const [posts, setPosts] = useState<SearchedPost.Model[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -75,5 +75,3 @@ const SearchPostsField = ({ searchPosts }: SearchPostsFieldProps) => {
     </div>
   )
 }
-
-export default SearchPostsField

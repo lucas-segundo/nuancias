@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { Story, Meta } from '@storybook/react'
-import PostItem, { PostItemProps } from './post-item'
+import { PostItem, PostItemProps } from './post-item'
 
 export default {
   title: 'components/PostItem',

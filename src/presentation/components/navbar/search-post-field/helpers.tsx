@@ -1,13 +1,13 @@
 import { SearchedPost } from 'domain/models'
 import { ReactNode } from 'react'
-import PostsItem from './post-item/post-item'
+import { PostItem } from './post-item/post-item'
 
 export const renderPostItems = (posts: SearchedPost.Model[] | undefined) => {
   if (posts?.length)
     return (
       <div className="overflow-y-auto">
         {posts?.map((post) => (
-          <PostsItem key={post.id} post={post} />
+          <PostItem key={post.id} post={post} />
         ))}
       </div>
     )
@@ -24,7 +24,7 @@ export const renderLoadingPostItems = () => {
   return (
     <div>
       {skeletonQuantity.map((key) => (
-        <PostsItem key={key} isLoading={true} />
+        <PostItem key={key} isLoading={true} />
       ))}
     </div>
   )

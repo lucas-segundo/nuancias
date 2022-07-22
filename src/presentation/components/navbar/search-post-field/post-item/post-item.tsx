@@ -7,7 +7,7 @@ export type PostItemProps = {
   isLoading?: boolean
 }
 
-const PostsItem = ({ post, isLoading }: PostItemProps) => {
+export const PostItem = ({ post, isLoading }: PostItemProps) => {
   return (
     <article
       className="p-3 text-sm border-b border-cyan-200"
@@ -28,5 +28,3 @@ const PostsItem = ({ post, isLoading }: PostItemProps) => {
     </article>
   )
 }
-
-export default PostsItem
