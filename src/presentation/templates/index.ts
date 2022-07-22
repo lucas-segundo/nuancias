@@ -1,5 +1,5 @@
 export { default as SignIn } from './sign-in/sign-in'
-export { default as Home } from './home/home'
+export * from './home/home'
 export { default as Post } from './post/post'
 export * from './error-404/error-404'
 export * from './error-500/error-500'

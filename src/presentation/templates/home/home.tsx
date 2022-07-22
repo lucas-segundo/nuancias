@@ -9,7 +9,7 @@ import { Base } from 'presentation/layouts'
 
 export type HomeProps = NavbarProps & LastPostsProps
 
-const Home = (props: HomeProps) => {
+export const Home = (props: HomeProps) => {
   return (
     <>
       <Meta
@@ -23,5 +23,3 @@ const Home = (props: HomeProps) => {
     </>
   )
 }
-
-export default Home

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import Home, { HomeProps } from './home'
+import { Home, HomeProps } from './home'
 
 export default {
   title: 'templates/Home',
