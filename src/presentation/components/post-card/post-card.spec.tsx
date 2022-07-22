@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { makePostCardsMock } from 'domain/models/post/mock'
 import { makePostLink } from 'presentation/routers/helpers'
 import { makePtBRDate } from './helpers'
-import PostCard from './post-card'
+import { PostCard } from './post-card'
 
 const makeSut = (postCards = makePostCardsMock()[0]) => {
   render(<PostCard post={postCards} />)

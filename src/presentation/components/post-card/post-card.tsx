@@ -9,7 +9,7 @@ export type PostCardProps = {
   post: PostCardModel.Model
 }
 
-const PostCard = ({ post }: PostCardProps) => {
+export const PostCard = ({ post }: PostCardProps) => {
   const tagsList = renderPostTagsToListItems({
     tags: post.tags,
     cssClassName: 'm-1',
@@ -58,5 +58,3 @@ const PostCard = ({ post }: PostCardProps) => {
     </article>
   )
 }
-
-export default PostCard

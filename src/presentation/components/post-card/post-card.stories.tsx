@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import { makePostCardsMock } from 'domain/models/post/mock'
-import PostCard, { PostCardProps } from './post-card'
+import { PostCard, PostCardProps } from './post-card'
 
 export default {
   title: 'components/PostCard',

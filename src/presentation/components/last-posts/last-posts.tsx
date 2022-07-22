@@ -1,5 +1,5 @@
 import { PostCardModel } from 'domain/models'
-import PostCard from '../post-card/post-card'
+import { PostCard } from '../post-card/post-card'
 
 export type LastPostsProps = {
   posts?: PostCardModel.Model[]
