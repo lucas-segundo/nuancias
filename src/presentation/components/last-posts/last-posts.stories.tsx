@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import LastPosts from './last-posts'
+import { LastPosts } from './last-posts'
 
 export default {
   title: 'components/LastPosts',

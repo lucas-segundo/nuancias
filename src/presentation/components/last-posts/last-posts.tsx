@@ -9,7 +9,7 @@ const renderPostCards = (posts: PostCardModel.Model[]) => {
   return posts.map((post) => <PostCard key={post.id} post={post} />)
 }
 
-const LastPosts = ({ posts }: LastPostsProps) => {
+export const LastPosts = ({ posts }: LastPostsProps) => {
   return (
     <section className="default-screen-margin mb-24">
       <div className="my-7">
@@ -29,5 +29,3 @@ const LastPosts = ({ posts }: LastPostsProps) => {
     </section>
   )
 }
-
-export default LastPosts

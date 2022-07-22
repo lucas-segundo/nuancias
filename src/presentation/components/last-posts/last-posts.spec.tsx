@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { makePostCardsMock } from 'domain/models/post/mock'
-import LastPosts from './last-posts'
+import { LastPosts } from './last-posts'
 
 const makeSut = (postCards = makePostCardsMock()) => {
   render(<LastPosts posts={postCards} />)
