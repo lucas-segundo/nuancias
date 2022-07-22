@@ -1,5 +1,5 @@
 import { TagModel } from 'domain/models'
-import PostTag from './post-tag'
+import { PostTag } from './post-tag'
 
 type Params = {
   tags: TagModel[]
