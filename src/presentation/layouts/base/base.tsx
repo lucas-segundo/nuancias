@@ -1,4 +1,4 @@
-import { Navbar } from 'presentation/components'
+import { Navbar, PrivacyPolicy } from 'presentation/components'
 import { NavbarProps } from 'presentation/components'
 
 export type BaseProps = {
@@ -10,6 +10,7 @@ export const Base = (props: BaseProps) => {
     <>
       <Navbar searchPosts={props.searchPosts} />
       {props.children}
+      <PrivacyPolicy />
     </>
   )
 }
