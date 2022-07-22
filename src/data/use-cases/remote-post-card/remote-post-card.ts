@@ -41,6 +41,7 @@ export class RemotePostCard
       },
       config: {
         authToken: this._authToken,
+        cachePolicy: 'no-cache',
       },
     })
 

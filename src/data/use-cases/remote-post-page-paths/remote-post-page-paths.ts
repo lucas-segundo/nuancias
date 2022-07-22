@@ -32,6 +32,7 @@ export class RemotePostPagePaths
       },
       config: {
         authToken: this._authToken,
+        cachePolicy: 'no-cache',
       },
     })
 
