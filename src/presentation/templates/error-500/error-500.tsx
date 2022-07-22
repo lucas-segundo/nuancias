@@ -6,7 +6,7 @@ import { PagesRoutersEnum } from 'presentation/routers/pages'
 
 export type Error500Props = NavbarProps
 
-const Error500 = (props: Error500Props) => {
+export const Error500 = (props: Error500Props) => {
   return (
     <Base searchPosts={props.searchPosts}>
       <section className="w-full mt-40 max-w-3xl mx-auto flex flex-col justify-center border rounded shadow">
@@ -27,5 +27,3 @@ const Error500 = (props: Error500Props) => {
     </Base>
   )
 }
-
-export default Error500

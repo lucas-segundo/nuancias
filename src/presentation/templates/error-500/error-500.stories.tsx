@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import Error500, { Error500Props } from './error-500'
+import { Error500, Error500Props } from './error-500'
 
 export default {
   title: 'templates/Error500',
