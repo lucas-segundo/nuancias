@@ -10,7 +10,7 @@ export type MetaProps = {
   noIndex?: boolean
 }
 
-const Meta = ({ title, description, noIndex }: MetaProps) => {
+export const Meta = ({ title, description, noIndex }: MetaProps) => {
   return (
     <>
       <Head>
@@ -131,5 +131,3 @@ const Meta = ({ title, description, noIndex }: MetaProps) => {
     </>
   )
 }
-
-export default Meta
