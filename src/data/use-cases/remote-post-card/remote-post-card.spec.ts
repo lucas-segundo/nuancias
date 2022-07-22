@@ -53,6 +53,7 @@ describe('RemotePostCard', () => {
       variables,
       config: {
         authToken: fakeAuthToken,
+        cachePolicy: 'no-cache',
       },
     }
 

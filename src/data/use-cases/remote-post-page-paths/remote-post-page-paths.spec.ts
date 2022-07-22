@@ -49,6 +49,7 @@ describe('RemotePostPagePath', () => {
       },
       config: {
         authToken: fakeAuthToken,
+        cachePolicy: 'no-cache',
       },
     }
 
