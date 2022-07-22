@@ -13,4 +13,17 @@ describe('Home page', () => {
     findSearchInput().clear().type('lo').clear()
     getSeachedPosts().should('not.exist')
   })
+
+  it('should load the articles', () => {
+    cy.visit('/')
+
+    cy.findAllByRole('article').should('have.length.above', 3)
+  })
+
+  it('should go to article page', () => {
+    cy.visit('/')
+
+    cy.findAllByRole('article').contains('lorem').click()
+    cy.url().should('include', '@')
+  })
 })
