@@ -1,7 +1,7 @@
 import { Story, Meta } from '@storybook/react'
 import { makeUserCommonMock } from 'domain/models/common/user/mock'
 import { makePostPageMock } from 'domain/models/post/mock'
-import Post, { PostProps } from './post'
+import { Post, PostProps } from './post'
 
 export default {
   title: 'templates/Post',

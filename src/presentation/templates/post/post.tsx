@@ -10,7 +10,7 @@ import { Base } from 'presentation/layouts'
 
 export type PostProps = NavbarProps & UserCardProps & PostContentProps
 
-const Post = (props: PostProps) => {
+export const Post = (props: PostProps) => {
   return (
     <>
       <Meta
@@ -26,5 +26,3 @@ const Post = (props: PostProps) => {
     </>
   )
 }
-
-export default Post
