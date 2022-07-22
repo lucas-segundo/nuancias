@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import Base, { BaseProps } from './base'
+import { Base, BaseProps } from './base'
 
 export default {
   title: 'layouts/Base',

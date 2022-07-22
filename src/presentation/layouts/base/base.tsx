@@ -5,7 +5,7 @@ export type BaseProps = {
   children: React.ReactNode
 } & NavbarProps
 
-const Base = (props: BaseProps) => {
+export const Base = (props: BaseProps) => {
   return (
     <>
       <Navbar searchPosts={props.searchPosts} />
@@ -13,5 +13,3 @@ const Base = (props: BaseProps) => {
     </>
   )
 }
-
-export default Base
