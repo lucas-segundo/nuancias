@@ -10,7 +10,7 @@ export type SignInFormProps = {
   authentication: Authentication
 }
 
-const SignInForm = ({ validation, authentication }: SignInFormProps) => {
+export const SignInForm = ({ validation, authentication }: SignInFormProps) => {
   const router = useRouter()
   const [values, setValues] = useState({
     email: '',
@@ -80,5 +80,3 @@ const SignInForm = ({ validation, authentication }: SignInFormProps) => {
     </form>
   )
 }
-
-export default SignInForm

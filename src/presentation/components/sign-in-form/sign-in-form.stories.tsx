@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import SignInForm, { SignInFormProps } from './sign-in-form'
+import { SignInForm, SignInFormProps } from './sign-in-form'
 
 export default {
   title: 'components/SignInForm',

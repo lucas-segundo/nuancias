@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
-import SignInForm from './sign-in-form'
+import { SignInForm } from './sign-in-form'
 import { faker } from '@faker-js/faker'
 import { fillSignInForm, makeMockForSignInFormProps } from './mocks'
 import { useRouter } from 'next/router'

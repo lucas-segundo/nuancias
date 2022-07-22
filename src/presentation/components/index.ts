@@ -1,6 +1,5 @@
 export * from './navbar/navbar'
-
-export { default as SignInForm } from './sign-in-form/sign-in-form'
+export * from './sign-in-form/sign-in-form'
 export * from './post-content/post-content'
 export * from './hero/hero'
 export * from './last-posts/last-posts'
