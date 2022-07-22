@@ -7,7 +7,6 @@ import {
 import { faker } from '@faker-js/faker'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { ApolloGraphqlClient } from './apollo-graphql-client'
-import client from './client'
 import { mockQueryDocumentNode } from './mock'
 
 jest.mock('@apollo/client')
@@ -16,7 +15,7 @@ jest.mock('@apollo/client/link/context', () => ({
 }))
 
 const makeSut = () => {
-  const sut = new ApolloGraphqlClient()
+  const sut = new ApolloGraphqlClient(faker.internet.url())
   const fakeVariables = {
     [faker.database.column()]: faker.random.word(),
   }
@@ -26,13 +25,13 @@ const makeSut = () => {
   }
 
   const fakeQueryDocumentNode = mockQueryDocumentNode()
-  const gqlClientMocked = client as jest.Mocked<typeof client>
+  const apolloQueryMocked = jest.spyOn(sut.apolloClient, 'query')
 
   return {
     sut,
     fakeVariables,
     fakeQueryDocumentNode,
-    gqlClientMocked,
+    apolloQueryMocked,
     fakeConfig,
   }
 }
@@ -43,7 +42,7 @@ describe('ApolloGraphqlClient', () => {
       sut,
       fakeVariables,
       fakeQueryDocumentNode,
-      gqlClientMocked,
+      apolloQueryMocked,
       fakeConfig,
     } = makeSut()
 
@@ -52,7 +51,7 @@ describe('ApolloGraphqlClient', () => {
       loading: false,
       networkStatus: NetworkStatus.ready,
     }
-    gqlClientMocked.query.mockResolvedValueOnce(resolvedValue)
+    apolloQueryMocked.mockResolvedValueOnce(resolvedValue)
 
     await sut.query({
       queryDocument: fakeQueryDocumentNode,
@@ -60,7 +59,7 @@ describe('ApolloGraphqlClient', () => {
       config: fakeConfig,
     })
 
-    expect(client.query).toBeCalledWith({
+    expect(apolloQueryMocked).toBeCalledWith({
       query: fakeQueryDocumentNode,
       variables: fakeVariables,
       context: { authToken: fakeConfig.authToken },
@@ -72,7 +71,7 @@ describe('ApolloGraphqlClient', () => {
       sut,
       fakeQueryDocumentNode,
       fakeVariables,
-      gqlClientMocked,
+      apolloQueryMocked,
       fakeConfig,
     } = makeSut()
 
@@ -82,7 +81,7 @@ describe('ApolloGraphqlClient', () => {
       loading: false,
       networkStatus: NetworkStatus.ready,
     }
-    gqlClientMocked.query.mockResolvedValueOnce(resolvedValue)
+    apolloQueryMocked.mockResolvedValueOnce(resolvedValue)
 
     const response = await sut.query({
       queryDocument: fakeQueryDocumentNode,
@@ -103,7 +102,7 @@ describe('ApolloGraphqlClient', () => {
       sut,
       fakeQueryDocumentNode,
       fakeVariables,
-      gqlClientMocked,
+      apolloQueryMocked,
       fakeConfig,
     } = makeSut()
 
@@ -119,7 +118,7 @@ describe('ApolloGraphqlClient', () => {
       },
     }
 
-    gqlClientMocked.query.mockRejectedValueOnce(errorResponse)
+    apolloQueryMocked.mockRejectedValueOnce(errorResponse)
 
     const response = await sut.query({
       queryDocument: fakeQueryDocumentNode,
