@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import Hero from './hero'
+import { Hero } from './hero'
 
 describe('<Hero />', () => {
   it('should render the heading', () => {

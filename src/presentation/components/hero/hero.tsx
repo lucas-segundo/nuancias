@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-const Hero = () => {
+export const Hero = () => {
   return (
     <section>
       <div className="relative h-72 md:h-96">
@@ -25,5 +25,3 @@ const Hero = () => {
     </section>
   )
 }
-
-export default Hero
