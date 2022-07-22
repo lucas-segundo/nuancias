@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { makePostPageMock } from 'domain/models/post/mock'
 import { makePtBRDate } from '../post-card/helpers'
 
-import PostContent from './post-content'
+import { PostContent } from './post-content'
 
 const makeSut = (postData = makePostPageMock()) => {
   render(<PostContent postData={postData} />)

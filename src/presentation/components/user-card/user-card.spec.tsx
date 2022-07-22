@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { makeUserCommonMock } from 'domain/models/common/user/mock'
 import { makeUserLink } from 'presentation/routers/helpers'
 
-import UserCard from './user-card'
+import { UserCard } from './user-card'
 
 const makeSut = (userData = makeUserCommonMock()) => {
   render(<UserCard userData={userData} />)

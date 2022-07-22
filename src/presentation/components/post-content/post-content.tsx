@@ -7,7 +7,7 @@ export type PostContentProps = {
   postData: PostPageModel.Model
 }
 
-const PostContent = ({ postData }: PostContentProps) => {
+export const PostContent = ({ postData }: PostContentProps) => {
   const tagsList = renderPostTagsToListItems({
     tags: postData.tags,
     cssClassName: 'm-1',
@@ -38,5 +38,3 @@ const PostContent = ({ postData }: PostContentProps) => {
     </article>
   )
 }
-
-export default PostContent

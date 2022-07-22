@@ -7,7 +7,7 @@ export type UserCardProps = {
   userData: Pick<UserModel, 'username' | 'name' | 'bio' | 'avatar'>
 }
 
-const UserCard = ({ userData }: UserCardProps) => {
+export const UserCard = ({ userData }: UserCardProps) => {
   return (
     <Link href={makeUserLink(userData.username)}>
       <a className="flex cursor-pointer">
@@ -29,5 +29,3 @@ const UserCard = ({ userData }: UserCardProps) => {
     </Link>
   )
 }
-
-export default UserCard

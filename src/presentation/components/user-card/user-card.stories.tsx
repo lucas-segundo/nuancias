@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import { makeUserCommonMock } from 'domain/models/common/user/mock'
-import UserCard, { UserCardProps } from './user-card'
+import { UserCard, UserCardProps } from './user-card'
 
 export default {
   title: 'components/UserCard',

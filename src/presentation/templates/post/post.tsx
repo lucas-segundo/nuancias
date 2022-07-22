@@ -1,11 +1,11 @@
 import { Meta } from 'presentation/components/elements'
-import { NavbarProps } from 'presentation/components'
-import PostContent, {
+import {
+  NavbarProps,
+  PostContent,
   PostContentProps,
-} from 'presentation/components/post-content/post-content'
-import UserCard, {
+  UserCard,
   UserCardProps,
-} from 'presentation/components/user-card/user-card'
+} from 'presentation/components'
 import { Base } from 'presentation/layouts'
 
 export type PostProps = NavbarProps & UserCardProps & PostContentProps
