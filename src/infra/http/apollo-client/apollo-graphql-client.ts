@@ -1,14 +1,24 @@
 import { DocumentNode } from 'graphql'
-import { ApolloError, OperationVariables } from '@apollo/client'
+import {
+  ApolloClient,
+  ApolloError,
+  NormalizedCacheObject,
+  OperationVariables,
+} from '@apollo/client'
 
 import { GraphqlClient } from 'data/protocols/http'
-import client from './client'
+import { getApolloClient } from './client'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 
 type CustomNetworkError = {
   statusCode?: number
 }
 export class ApolloGraphqlClient implements GraphqlClient.Client {
+  readonly apolloClient: ApolloClient<NormalizedCacheObject>
+  constructor(private readonly url: string) {
+    this.apolloClient = getApolloClient(this.url)
+  }
+
   async query<VariablesType, ResponseType>({
     queryDocument,
     variables,
@@ -16,7 +26,7 @@ export class ApolloGraphqlClient implements GraphqlClient.Client {
   }: GraphqlClient.Params<VariablesType>): Promise<HttpResponse<ResponseType>> {
     const authToken = config?.authToken
     try {
-      const apolloResponse = await client.query<ResponseType>({
+      const apolloResponse = await this.apolloClient.query<ResponseType>({
         query: queryDocument as DocumentNode,
         variables: variables as OperationVariables,
         context: { authToken },
