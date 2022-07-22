@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import LoadingPage from './loading-page'
+import { LoadingPage } from './loading-page'
 
 export default {
   title: 'components/LoadingPage',

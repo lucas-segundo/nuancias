@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 
-import LoadingPage from './loading-page'
+import { LoadingPage } from './loading-page'
 
 describe('<LoadingPage />', () => {
   it('should render the heading', () => {

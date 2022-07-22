@@ -4,7 +4,7 @@ export type LoadingPageProps = {
   //isLoading: boolean
 }
 
-const LoadingPage = () => {
+export const LoadingPage = () => {
   return (
     <section className="flex flex-col space-y-2 justify-center items-center h-screen bg-gray-100">
       <Image
@@ -17,5 +17,3 @@ const LoadingPage = () => {
     </section>
   )
 }
-
-export default LoadingPage
