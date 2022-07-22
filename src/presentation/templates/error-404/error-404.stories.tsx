@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import Error404, { Error404Props } from './error-404'
+import { Error404, Error404Props } from './error-404'
 
 export default {
   title: 'templates/Error404',
