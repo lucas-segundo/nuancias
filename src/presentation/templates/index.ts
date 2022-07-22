@@ -1,4 +1,4 @@
-export { default as SignIn } from './sign-in/sign-in'
+export * from './sign-in/sign-in'
 export * from './home/home'
 export * from './post/post'
 export * from './error-404/error-404'

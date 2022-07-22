@@ -4,7 +4,7 @@ import { SignInFormProps } from 'presentation/components/sign-in-form/sign-in-fo
 
 export type SignInProps = SignInFormProps
 
-const SignIn = (props: SignInProps) => {
+export const SignIn = (props: SignInProps) => {
   return (
     <section className="flex flex-col justify-center items-center h-screen bg-gray-100">
       <div className="md:w-96 mx-5">
@@ -28,5 +28,3 @@ const SignIn = (props: SignInProps) => {
     </section>
   )
 }
-
-export default SignIn

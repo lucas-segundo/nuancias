@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import SignIn, { SignInProps } from './sign-in'
+import { SignIn, SignInProps } from './sign-in'
 
 export default {
   title: 'templates/SignIn',
