@@ -40,3 +40,7 @@ Cypress.Commands.add(
     cy.findByText(/entrar/i).click()
   }
 )
+
+Cypress.Commands.add('getByDataCy', (selector, ...args) => {
+  cy.get(`[data-cy="${selector}"]`, ...args)
+})

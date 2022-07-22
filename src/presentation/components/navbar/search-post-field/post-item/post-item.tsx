@@ -10,6 +10,7 @@ export type PostItemProps = {
 export const PostItem = ({ post, isLoading }: PostItemProps) => {
   return (
     <article
+      data-cy="searched-article"
       className="p-3 text-sm border-b border-cyan-200"
       aria-busy={isLoading}
     >

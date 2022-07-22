@@ -5,13 +5,12 @@ describe('Home page', () => {
     cy.visit('/')
 
     const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
-    const findFirstSeachedPost = () =>
-      cy.get(':nth-child(1) > a > .font-medium')
+    const getSeachedPosts = () => cy.getByDataCy('searched-article')
 
     findSearchInput().type('lorem')
-    findFirstSeachedPost().should('exist')
+    getSeachedPosts().should('have.length.above', 1)
 
-    findSearchInput().clear()
-    findFirstSeachedPost().should('not.exist')
+    findSearchInput().clear().type('lo').clear()
+    getSeachedPosts().should('not.exist')
   })
 })
