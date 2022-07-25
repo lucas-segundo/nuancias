@@ -9,3 +9,7 @@ export default {
 export const Default: Story<InputFieldProps> = (args) => (
   <InputField {...args} />
 )
+
+Default.args = {
+  label: 'Input Field',
+}

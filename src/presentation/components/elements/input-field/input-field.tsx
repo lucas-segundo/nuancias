@@ -6,7 +6,7 @@ export type InputFieldProps = {
 } & InputHTMLAttributes<HTMLInputElement>
 
 export const InputField = ({
-  label = 'Input Field',
+  label,
   isBorderOnlyBottom,
   ...props
 }: InputFieldProps) => {
