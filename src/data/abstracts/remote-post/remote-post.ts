@@ -1,6 +1,6 @@
 import { RemoteTag } from 'data/models'
 import { TagModel } from 'domain/models/common'
-import { AbstractAuthToken } from '../auth-token'
+import { AbstractAuthToken } from '../auth-token/auth-token'
 
 export abstract class AbstractRemotePost extends AbstractAuthToken {
   static mapTags(tags?: RemoteTag.Model[] | null): TagModel[] | [] {
