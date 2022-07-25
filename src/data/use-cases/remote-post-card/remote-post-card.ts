@@ -70,7 +70,7 @@ export class RemotePostCard
     return posts.map((post) => {
       if (!post.id) return null
 
-      const tags = RemotePostCard.mapTags(post.attributes?.tags)
+      const tags = RemotePostCard.mapTags(post.attributes?.tags?.data)
       if (tags.length === 0 || !post.attributes) return null
 
       const { medium: postImageMedium, small: postImageSmall } = post.attributes

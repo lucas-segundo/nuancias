@@ -60,7 +60,7 @@ export class RemotePostPage
   ): PostPageModel.Model | null {
     if (!post.id) return null
 
-    const tags = RemotePostPage.mapTags(post.attributes?.tags)
+    const tags = RemotePostPage.mapTags(post.attributes?.tags?.data)
     if (tags.length === 0 || !post.attributes) return null
 
     const userAttr = post.attributes.user?.data?.attributes
