@@ -20,6 +20,7 @@ const customJestConfig = {
     '!<rootDir>/src/**/index.ts',
     '!**/*.d.ts',
     '!**/types.ts',
+    '!<rootDir>/src/**/*.stories.tsx',
   ],
 }
 
