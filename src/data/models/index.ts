@@ -8,3 +8,5 @@ export * as RemoteSearchPostsModel from './remote-search-posts'
 export * as RemotePostPageModel from './remote-post-page'
 
 export * as RemotePostPagePathsModel from './remote-post-page-paths'
+
+export * as RemoteTag from './remote-tag/remote-tag'
