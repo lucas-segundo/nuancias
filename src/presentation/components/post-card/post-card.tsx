@@ -16,7 +16,7 @@ export const PostCard = ({ post }: PostCardProps) => {
   })
 
   return (
-    <article className="cursor-pointer">
+    <article data-cy="last-post" className="cursor-pointer">
       <Link href={makePostLink(post.writer.username, post.slug)}>
         <a role="link-to-post">
           <figure>

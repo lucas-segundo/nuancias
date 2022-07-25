@@ -1,29 +1,52 @@
 /// <reference path="../support/index.d.ts" />
 
-describe('Home page', () => {
-  it('should search posts and remove after erase the search input', () => {
-    cy.visit('/')
+const makeSut = () => {
+  const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
+  const getSeachedPosts = () => cy.getByDataCy('searched-article')
 
-    const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
-    const getSeachedPosts = () => cy.getByDataCy('searched-article')
+  return {
+    findSearchInput,
+    getSeachedPosts,
+  }
+}
+
+describe('Home page', () => {
+  beforeEach(() => {
+    cy.visit('/')
+  })
+
+  it('should show loading on search posts', () => {
+    const { findSearchInput, getSeachedPosts } = makeSut()
 
     findSearchInput().type('lorem')
-    getSeachedPosts().should('have.length.above', 1)
+    getSeachedPosts().first().should('have.attr', 'aria-busy')
+  })
 
-    findSearchInput().clear().type('lo').clear()
-    getSeachedPosts().should('not.exist')
+  it('should search posts', () => {
+    const { findSearchInput, getSeachedPosts } = makeSut()
+    cy.intercept('/graphql').as('fetchSearchPosts')
+
+    findSearchInput().type('lorem')
+    cy.wait('@fetchSearchPosts')
+
+    getSeachedPosts().first().should('not.have.attr', 'aria-busy')
+    getSeachedPosts().should('have.length.above', 1)
   })
 
   it('should load the articles', () => {
-    cy.visit('/')
-
-    cy.findAllByRole('article').should('have.length.above', 3)
+    cy.getByDataCy('last-post').should('have.length.above', 3)
   })
 
   it('should go to article page', () => {
-    cy.visit('/')
-
-    cy.findAllByRole('article').contains('lorem').click()
+    cy.getByDataCy('last-post').first().click()
     cy.url().should('include', '@')
+  })
+
+  it.only('should privacy policy modal be hidden after clicking ok', () => {
+    cy.findByLabelText(/Botão Privacidade/i).click()
+    cy.findByLabelText(/Política de Privacidade/i).should(
+      'have.attr',
+      'aria-hidden'
+    )
   })
 })
