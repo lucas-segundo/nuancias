@@ -9,7 +9,7 @@ export type ButtonProps = {
 export const Button = ({
   isLoading,
   isOutline,
-  text = 'Button',
+  text,
   ...props
 }: ButtonProps) => {
   const css = []

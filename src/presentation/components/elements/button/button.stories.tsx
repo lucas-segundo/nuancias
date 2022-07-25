@@ -7,3 +7,7 @@ export default {
 } as Meta
 
 export const Default: Story<ButtonProps> = (args) => <Button {...args} />
+
+Default.args = {
+  text: 'Button',
+}
