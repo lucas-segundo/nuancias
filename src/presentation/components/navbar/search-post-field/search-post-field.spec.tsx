@@ -86,7 +86,7 @@ describe('<SearchPosts />', () => {
     await user.type(searchInput, faker.random.words())
 
     const articles = await screen.findAllByRole('article', undefined, {
-      interval: 500,
+      interval: 600,
     })
     expect(articles.length).toBeGreaterThan(0)
 
