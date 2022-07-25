@@ -22,7 +22,7 @@ export const PostItem = ({ post, isLoading }: PostItemProps) => {
         </Link>
       ) : (
         <>
-          <Skeleton />
+          <Skeleton containerTestId="loading-skeleton" />
           <Skeleton count={2} />
         </>
       )}
