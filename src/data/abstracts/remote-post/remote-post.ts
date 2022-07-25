@@ -1,6 +1,6 @@
 import { RemotePostCardModel } from 'data/models'
 import { TagModel } from 'domain/models/common'
-import { AbstractAuthToken } from './auth-token'
+import { AbstractAuthToken } from '../auth-token'
 
 type Tags = RemotePostCardModel.Tags
 

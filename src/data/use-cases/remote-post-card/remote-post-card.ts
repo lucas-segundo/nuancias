@@ -1,4 +1,4 @@
-import { AbstractRemotePost } from 'data/abstracts/remote-post'
+import { AbstractRemotePost } from 'data/abstracts'
 import { getCharactersFromHTML } from 'data/helpers/get-characters-from-html'
 import {
   PostCardSortVar,
