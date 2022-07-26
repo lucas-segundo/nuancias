@@ -1,7 +1,5 @@
 import { AbstractRemotePost } from 'data/abstracts'
-import { getCharactersFromHTML } from 'data/helpers'
 import { RemotePostPageModel } from 'data/models'
-import { ImageFormats } from 'data/models/common'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -58,46 +56,38 @@ export class RemotePostPage
   private static mapPost(
     post: RemotePostPageModel.PostData
   ): PostPageModel.Model | null {
-    if (!post.id) return null
+    const postAttr = post.attributes
+    if (!post.id || !postAttr) return null
 
-    const tags = RemotePostPage.mapTags(post.attributes?.tags?.data)
-    if (tags.length === 0 || !post.attributes) return null
+    const tags = RemotePostPage.mapTags(postAttr.tags?.data)
+    if (tags.length === 0) return null
 
-    const userAttr = post.attributes.user?.data?.attributes
+    const userAttr = postAttr.user?.data?.attributes
     if (!userAttr) return null
 
-    const { medium: postImageMedium, small: postImageSmall } = post.attributes
-      .image.data?.attributes?.formats as ImageFormats
+    const postUrl = RemotePostPage.getPostUrl(
+      postAttr.image.data?.attributes?.formats
+    )
+    const avatarUrl = RemotePostPage.getAvatarUrl(
+      userAttr.avatar.data?.attributes?.formats
+    )
+    const preview = RemotePostPage.makePreview(postAttr.content)
 
-    const { small: avatarSmall, thumbnail: avatarThumb } = userAttr.avatar.data
-      ?.attributes?.formats as ImageFormats
-
-    const postUrl =
-      postImageMedium?.url ||
-      postImageSmall?.url ||
-      '/images/post-placeholder.png'
-    const avatarUrl =
-      avatarSmall?.url || avatarThumb?.url || 'avatar-placeholder.png'
-
-    const preview =
-      getCharactersFromHTML({
-        html: post.attributes.content,
-        characterCount: 150,
-      }) + '...'
-
+    const { title, content, publishedAt } = postAttr
+    const { name, username, biography } = userAttr
     return {
       id: post.id,
-      title: post.attributes.title,
+      title,
       preview,
-      content: post.attributes.content,
-      publishedAt: post.attributes.publishedAt,
+      content,
+      publishedAt,
       image: {
         src: postUrl,
       },
       writer: {
-        name: userAttr.name,
-        bio: userAttr.biography,
-        username: userAttr.username,
+        name,
+        bio: biography,
+        username,
         avatar: {
           src: avatarUrl,
         },
