@@ -1,4 +1,6 @@
+import { getCharactersFromHTML } from 'data/helpers'
 import { RemoteTag } from 'data/models'
+import { ImageFormats } from 'data/models/common'
 import { TagModel } from 'domain/models/common'
 import { AbstractAuthToken } from '../auth-token/auth-token'
 
@@ -18,5 +20,26 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
     const tagsChecked = tagsMapped?.filter((tag): tag is TagModel => !!tag)
 
     return tagsChecked || []
+  }
+
+  static getPostUrl(imageFormats: ImageFormats) {
+    const { medium, small } = imageFormats
+
+    return medium?.url || small?.url || '/images/post-placeholder.png'
+  }
+
+  static getAvatarUrl(imageFormats: ImageFormats) {
+    const { medium, small } = imageFormats
+
+    return medium?.url || small?.url || 'avatar-placeholder.png'
+  }
+
+  static makePreview(htmlContent: string) {
+    return (
+      getCharactersFromHTML({
+        html: htmlContent,
+        characterCount: 150,
+      }) + '...'
+    )
   }
 }
