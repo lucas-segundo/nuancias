@@ -1,5 +1,5 @@
 import { AbstractRemotePost } from 'data/abstracts'
-import { getCharactersFromHTML } from 'data/helpers/get-characters-from-html'
+import { getCharactersFromHTML } from 'data/helpers'
 import {
   PostCardSortVar,
   PostCardVariables,
@@ -55,6 +55,10 @@ export class RemotePostCard
     }
   }
 
+  static makeSortBy(sort: PostCardSortVar) {
+    return `${sort.by}:${sort.order}`
+  }
+
   static adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
@@ -68,32 +72,17 @@ export class RemotePostCard
     posts: RemotePostCardModel.PostsData
   ): (PostCardModel.Model | null)[] {
     return posts.map((post) => {
-      if (!post.id) return null
+      if (!post.id || !post.attributes) return null
 
-      const tags = RemotePostCard.mapTags(post.attributes?.tags?.data)
-      if (tags.length === 0 || !post.attributes) return null
-
-      const { medium: postImageMedium, small: postImageSmall } = post.attributes
-        .image.data?.attributes?.formats as ImageFormats
+      const tags = RemotePostCard.mapTags(post.attributes.tags?.data)
+      if (tags.length === 0) return null
 
       const userAttr = post.attributes.user?.data?.attributes
       if (!userAttr) return null
 
-      const { small: avatarSmall, thumbnail: avatarThumb } = userAttr.avatar
-        .data?.attributes?.formats as ImageFormats
-
-      const postUrl =
-        postImageMedium?.url ||
-        postImageSmall?.url ||
-        '/images/post-placeholder.png'
-      const avatarUrl =
-        avatarSmall?.url || avatarThumb?.url || 'avatar-placeholder.png'
-
-      const preview =
-        getCharactersFromHTML({
-          html: post.attributes.content,
-          characterCount: 150,
-        }) + '...'
+      const postUrl = RemotePostCard.getPostUrl(post)
+      const avatarUrl = RemotePostCard.getAvatarUrl(post)
+      const preview = RemotePostCard.makePreview(post.attributes.content)
 
       return {
         id: post.id,
@@ -116,7 +105,26 @@ export class RemotePostCard
     })
   }
 
-  static makeSortBy(sort: PostCardSortVar) {
-    return `${sort.by}:${sort.order}`
+  private static getPostUrl(post: RemotePostCardModel.PostsData[0]) {
+    const { medium, small } = post?.attributes?.image.data?.attributes
+      ?.formats as ImageFormats
+
+    return medium?.url || small?.url || '/images/post-placeholder.png'
+  }
+
+  private static getAvatarUrl(post: RemotePostCardModel.PostsData[0]) {
+    const { medium, small } = post?.attributes?.user?.data?.attributes?.avatar
+      .data?.attributes?.formats as ImageFormats
+
+    return medium?.url || small?.url || 'avatar-placeholder.png'
+  }
+
+  private static makePreview(htmlContent: string) {
+    return (
+      getCharactersFromHTML({
+        html: htmlContent,
+        characterCount: 150,
+      }) + '...'
+    )
   }
 }
