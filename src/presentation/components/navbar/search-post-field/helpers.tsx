@@ -1,5 +1,4 @@
 import { SearchedPost } from 'domain/models'
-import { ReactNode } from 'react'
 import { PostItem } from './post-item/post-item'
 
 export const renderPostItems = (posts: SearchedPost.Model[] | undefined) => {
@@ -29,15 +28,3 @@ export const renderLoadingPostItems = () => {
     </div>
   )
 }
-
-type PostsItemDropdownProps = {
-  children: ReactNode
-}
-export const PostsItemDropdown = ({ children }: PostsItemDropdownProps) => (
-  <div
-    className="bg-white absolute w-full border rounded-b shadow overflow-y"
-    aria-busy={true}
-  >
-    {children}
-  </div>
-)

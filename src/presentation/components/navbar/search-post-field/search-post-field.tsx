@@ -1,11 +1,7 @@
-import { SearchedPost } from 'domain/models'
 import { SearchPosts } from 'domain/use-cases'
-import { useCallback, useEffect, useState } from 'react'
-import {
-  PostsItemDropdown,
-  renderLoadingPostItems,
-  renderPostItems,
-} from './helpers'
+import { useGetPostsByText } from 'presentation/hooks'
+import { useEffect, useState } from 'react'
+import { renderLoadingPostItems, renderPostItems } from './helpers'
 
 export type SearchPostsFieldProps = {
   searchPosts: SearchPosts
@@ -13,51 +9,29 @@ export type SearchPostsFieldProps = {
 
 export const SearchPostsField = ({ searchPosts }: SearchPostsFieldProps) => {
   const [textToSearch, setTextToSearch] = useState('')
-  const [posts, setPosts] = useState<SearchedPost.Model[] | null>(null)
-  const [isLoading, setIsLoading] = useState(false)
-  const [errors, setErrors] = useState({
-    searchPostError: '',
-  })
-
-  const handleSearchForPosts = useCallback(async () => {
-    try {
-      const response = await searchPosts.getAllByText(textToSearch)
-      setPosts(response)
-    } catch (error) {
-      if (error instanceof Error) {
-        const errorMessage = error.message
-        setErrors((prev) => ({ ...prev, searchPostError: errorMessage }))
-      }
-    }
-  }, [searchPosts, textToSearch])
+  const { posts, isLoading, error, getPosts } = useGetPostsByText(searchPosts)
+  const isAllowToSearch = textToSearch.length > 4
 
   useEffect(() => {
-    setPosts(null)
-    if (textToSearch.length > 4) {
+    if (isAllowToSearch) {
       const timeOutId = setTimeout(async () => {
-        setIsLoading(true)
-        await handleSearchForPosts()
-        setIsLoading(false)
+        getPosts(textToSearch)
       }, 500)
 
       return () => clearTimeout(timeOutId)
     }
-  }, [textToSearch, handleSearchForPosts])
+  }, [getPosts, textToSearch, isAllowToSearch])
 
   const handleRenderPostItems = () => {
-    if (posts)
-      return <PostsItemDropdown>{renderPostItems(posts)}</PostsItemDropdown>
+    if (posts) return renderPostItems(posts)
 
-    if (isLoading)
-      return <PostsItemDropdown>{renderLoadingPostItems()}</PostsItemDropdown>
+    if (isLoading) return renderLoadingPostItems()
 
-    if (errors.searchPostError)
+    if (error)
       return (
-        <PostsItemDropdown>
-          <div className="text-sm px-2 py-1">
-            <span>{errors.searchPostError}</span>
-          </div>
-        </PostsItemDropdown>
+        <div className="text-sm px-2 py-1">
+          <span>{error}</span>
+        </div>
       )
   }
 
@@ -71,7 +45,15 @@ export const SearchPostsField = ({ searchPosts }: SearchPostsFieldProps) => {
           value={textToSearch}
         />
       </div>
-      {handleRenderPostItems()}
+      <div
+        className={`bg-white absolute w-full border rounded-b shadow overflow-y ${
+          isAllowToSearch ? '' : 'hidden'
+        }`}
+        aria-busy={isLoading}
+        aria-hidden={!isAllowToSearch}
+      >
+        {handleRenderPostItems()}
+      </div>
     </div>
   )
 }
