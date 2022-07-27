@@ -7,9 +7,10 @@ export type PostListItemProps = {
   post: PostCardModel.Model
 }
 
-const PostListItem = ({ post }: PostListItemProps) => {
+export const PostListItem = ({ post }: PostListItemProps) => {
   const tagsList = renderPostTagsToListItems({
     tags: post.tags,
+    cssClassName: 'mt-2 ml-1',
   })
 
   return (
@@ -27,15 +28,15 @@ const PostListItem = ({ post }: PostListItemProps) => {
           <span className="ml-2 text-xs font-semibold">{post.writer.name}</span>
         </a>
         <a>
-          <h4 className="font-bold text-sm md:text-base mb-2">{post.title}</h4>
+          <h4 className="font-bold text-sm md:text-base">{post.title}</h4>
         </a>
-        <ul className="flex space-x-1 mb-1">{tagsList}</ul>
+        <ul className="flex flex-wrap mb-1">{tagsList}</ul>
         <span className="text-xs text-gray-600">
           {makePtBRDate(post.publishedAt)}
         </span>
       </div>
-      <a className="flex items-center ml-4 min-w-80">
-        <figure className="w-28">
+      <a>
+        <figure className="flex items-center ml-4 w-24">
           <Image
             src={post.image.src}
             width={100}
@@ -48,5 +49,3 @@ const PostListItem = ({ post }: PostListItemProps) => {
     </article>
   )
 }
-
-export default PostListItem
