@@ -21,11 +21,11 @@ const makePostCardMock = (): PostCardModel.Model => ({
     name: faker.name.findName(),
     username: faker.internet.userName(),
     avatar: {
-      src: faker.internet.url(),
+      src: faker.image.avatar(),
     },
   },
   image: {
-    src: faker.internet.url(),
+    src: faker.image.city(),
   },
   tags: [
     {
