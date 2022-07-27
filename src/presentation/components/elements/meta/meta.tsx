@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import { NextSeo } from 'next-seo'
 import Head from 'next/head'
+import { Adsense } from '../adsense/adsense'
 import { GA_TRACKING_ID } from './gtag'
 
 export type MetaProps = {
@@ -14,6 +15,7 @@ export const Meta = ({ title, description, noIndex }: MetaProps) => {
   return (
     <>
       <Head>
+        <Adsense />
         <meta data-testid="meta-utf" charSet="UTF-8" key="charset" />
         <meta
           name="viewport"
