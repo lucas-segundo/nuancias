@@ -11,9 +11,15 @@ export const makeSearchedPostMock = (text?: string): SearchedPost.Model => ({
   },
 })
 
+const makeTag = () => ({
+  id: faker.datatype.uuid(),
+  slug: faker.random.word(),
+  title: faker.random.words(),
+})
+
 const makePostCardMock = (): PostCardModel.Model => ({
   id: faker.datatype.uuid(),
-  title: faker.random.words(),
+  title: faker.random.words(15),
   preview: faker.random.words(),
   slug: faker.random.word(),
   publishedAt: faker.datatype.datetime().toDateString(),
@@ -27,13 +33,7 @@ const makePostCardMock = (): PostCardModel.Model => ({
   image: {
     src: faker.image.city(),
   },
-  tags: [
-    {
-      id: faker.datatype.uuid(),
-      slug: faker.random.word(),
-      title: faker.random.words(),
-    },
-  ],
+  tags: [makeTag(), makeTag()],
 })
 
 export const makePostCardsMock = (): PostCardModel.Model[] => [
