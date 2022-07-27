@@ -50,14 +50,14 @@ export class RemotePostPagePaths
     const postsData = data.posts?.data
     if (!postsData) return []
 
-    const posts = this.mapPosts(postsData)
+    const posts = this.mapValidPosts(postsData)
 
     return (
       posts?.filter((post): post is PostPagePathModel.Model => !!post) || []
     )
   }
 
-  private mapPosts(
+  private mapValidPosts(
     posts: RemotePostPagePathsModel.PostsData
   ): (PostPagePathModel.Model | null)[] {
     return posts.map((post) => {

@@ -61,12 +61,12 @@ export class RemotePostCard
     const postsData = data.posts?.data
     if (!postsData) return []
 
-    const posts = this.mapPosts(postsData)
+    const posts = this.mapValidPosts(postsData)
 
     return posts?.filter((post): post is PostCardModel.Model => !!post) || []
   }
 
-  private mapPosts(
+  private mapValidPosts(
     posts: RemotePostCardModel.PostsData
   ): (PostCardModel.Model | null)[] {
     return posts.map((post) => {

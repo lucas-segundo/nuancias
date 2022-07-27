@@ -48,12 +48,12 @@ export class RemotePostPage
 
     if (!postData) return null
 
-    const post = this.mapPost(postData)
+    const post = this.mapValidPost(postData)
 
     return post
   }
 
-  private mapPost(
+  private mapValidPost(
     post: RemotePostPageModel.PostData
   ): PostPageModel.Model | null {
     const postAttr = post.attributes
