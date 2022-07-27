@@ -52,7 +52,7 @@ describe('RemoteSearchPosts', () => {
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
     const response = await sut.getAllByText(fakeText)
-    const fakeModel = RemoteSearchPosts.adaptResponseToModel(fakeResponse.data)
+    const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
     expect(response).toEqual(fakeModel)
   })

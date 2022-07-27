@@ -25,7 +25,7 @@ export class RemoteSearchPosts implements SearchPosts {
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        return RemoteSearchPosts.adaptResponseToModel(response.data) || []
+        return this.adaptResponseToModel(response.data) || []
       case StatusCodeEnum.NO_CONTENT:
         return []
       default:
@@ -33,7 +33,7 @@ export class RemoteSearchPosts implements SearchPosts {
     }
   }
 
-  static adaptResponseToModel(resData: RemoteSearchPostsModel.QueryResponse) {
+  adaptResponseToModel(resData: RemoteSearchPostsModel.QueryResponse) {
     const postsData = resData.posts?.data
     if (!postsData) return null
 
@@ -41,7 +41,7 @@ export class RemoteSearchPosts implements SearchPosts {
     return posts?.filter((post): post is SearchedPost.Model => !!post) || []
   }
 
-  static mapPosts(
+  private mapPosts(
     posts: RemoteSearchPostsModel.PostsData
   ): (SearchedPost.Model | null)[] {
     return posts.map((post) => {
