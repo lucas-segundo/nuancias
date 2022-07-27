@@ -1,5 +1,5 @@
-export type Maybe<T> = T | null | undefined
-export type InputMaybe<T> = T | null | undefined
+export type Maybe<T> = T | undefined
+export type InputMaybe<T> = T | undefined
 export type Exact<T extends { [key: string]: unknown }> = {
   [K in keyof T]: T[K]
 }
@@ -106,7 +106,6 @@ export type GenericMorph =
   | UsersPermissionsUser
 
 export type I18NLocale = {
-  __typename?: 'I18NLocale'
   code: Maybe<Scalars['String']>
   createdAt: Maybe<Scalars['DateTime']>
   name: Maybe<Scalars['String']>
@@ -114,18 +113,15 @@ export type I18NLocale = {
 }
 
 export type I18NLocaleEntity = {
-  __typename?: 'I18NLocaleEntity'
   attributes: Maybe<I18NLocale>
   id: Maybe<Scalars['ID']>
 }
 
 export type I18NLocaleEntityResponse = {
-  __typename?: 'I18NLocaleEntityResponse'
   data: Maybe<I18NLocaleEntity>
 }
 
 export type I18NLocaleEntityResponseCollection = {
-  __typename?: 'I18NLocaleEntityResponseCollection'
   data: Array<I18NLocaleEntity>
   meta: ResponseCollectionMeta
 }
@@ -211,7 +207,6 @@ export type JsonFilterInput = {
 }
 
 export type Mutation = {
-  __typename?: 'Mutation'
   createPost: Maybe<PostEntityResponse>
   createTag: Maybe<TagEntityResponse>
   createUploadFile: Maybe<UploadFileEntityResponse>
@@ -360,7 +355,6 @@ export type MutationUploadArgs = {
 }
 
 export type Pagination = {
-  __typename?: 'Pagination'
   page: Scalars['Int']
   pageCount: Scalars['Int']
   pageSize: Scalars['Int']
@@ -375,7 +369,6 @@ export type PaginationArg = {
 }
 
 export type Post = {
-  __typename?: 'Post'
   content: Scalars['String']
   createdAt: Maybe<Scalars['DateTime']>
   image: UploadFileEntityResponse
@@ -394,18 +387,15 @@ export type PostTagsArgs = {
 }
 
 export type PostEntity = {
-  __typename?: 'PostEntity'
   attributes: Maybe<Post>
   id: Maybe<Scalars['ID']>
 }
 
 export type PostEntityResponse = {
-  __typename?: 'PostEntityResponse'
   data: Maybe<PostEntity>
 }
 
 export type PostEntityResponseCollection = {
-  __typename?: 'PostEntityResponseCollection'
   data: Array<PostEntity>
   meta: ResponseCollectionMeta
 }
@@ -436,7 +426,6 @@ export type PostInput = {
 }
 
 export type PostRelationResponseCollection = {
-  __typename?: 'PostRelationResponseCollection'
   data: Array<PostEntity>
 }
 
@@ -446,7 +435,6 @@ export enum PublicationState {
 }
 
 export type Query = {
-  __typename?: 'Query'
   i18NLocale: Maybe<I18NLocaleEntityResponse>
   i18NLocales: Maybe<I18NLocaleEntityResponseCollection>
   me: Maybe<UsersPermissionsMe>
@@ -524,7 +512,6 @@ export type QueryUsersPermissionsUsersArgs = {
 }
 
 export type ResponseCollectionMeta = {
-  __typename?: 'ResponseCollectionMeta'
   pagination: Pagination
 }
 
@@ -552,7 +539,6 @@ export type StringFilterInput = {
 }
 
 export type Tag = {
-  __typename?: 'Tag'
   createdAt: Maybe<Scalars['DateTime']>
   posts: Maybe<PostRelationResponseCollection>
   slug: Scalars['String']
@@ -568,18 +554,15 @@ export type TagPostsArgs = {
 }
 
 export type TagEntity = {
-  __typename?: 'TagEntity'
   attributes: Maybe<Tag>
   id: Maybe<Scalars['ID']>
 }
 
 export type TagEntityResponse = {
-  __typename?: 'TagEntityResponse'
   data: Maybe<TagEntity>
 }
 
 export type TagEntityResponseCollection = {
-  __typename?: 'TagEntityResponseCollection'
   data: Array<TagEntity>
   meta: ResponseCollectionMeta
 }
@@ -603,12 +586,10 @@ export type TagInput = {
 }
 
 export type TagRelationResponseCollection = {
-  __typename?: 'TagRelationResponseCollection'
   data: Array<TagEntity>
 }
 
 export type UploadFile = {
-  __typename?: 'UploadFile'
   alternativeText: Maybe<Scalars['String']>
   caption: Maybe<Scalars['String']>
   createdAt: Maybe<Scalars['DateTime']>
@@ -629,18 +610,15 @@ export type UploadFile = {
 }
 
 export type UploadFileEntity = {
-  __typename?: 'UploadFileEntity'
   attributes: Maybe<UploadFile>
   id: Maybe<Scalars['ID']>
 }
 
 export type UploadFileEntityResponse = {
-  __typename?: 'UploadFileEntityResponse'
   data: Maybe<UploadFileEntity>
 }
 
 export type UploadFileEntityResponseCollection = {
-  __typename?: 'UploadFileEntityResponseCollection'
   data: Array<UploadFileEntity>
   meta: ResponseCollectionMeta
 }
@@ -686,12 +664,10 @@ export type UploadFileInput = {
 }
 
 export type UsersPermissionsCreateRolePayload = {
-  __typename?: 'UsersPermissionsCreateRolePayload'
   ok: Scalars['Boolean']
 }
 
 export type UsersPermissionsDeleteRolePayload = {
-  __typename?: 'UsersPermissionsDeleteRolePayload'
   ok: Scalars['Boolean']
 }
 
@@ -702,13 +678,11 @@ export type UsersPermissionsLoginInput = {
 }
 
 export type UsersPermissionsLoginPayload = {
-  __typename?: 'UsersPermissionsLoginPayload'
   jwt: Maybe<Scalars['String']>
   user: UsersPermissionsMe
 }
 
 export type UsersPermissionsMe = {
-  __typename?: 'UsersPermissionsMe'
   blocked: Maybe<Scalars['Boolean']>
   confirmed: Maybe<Scalars['Boolean']>
   email: Maybe<Scalars['String']>
@@ -718,7 +692,6 @@ export type UsersPermissionsMe = {
 }
 
 export type UsersPermissionsMeRole = {
-  __typename?: 'UsersPermissionsMeRole'
   description: Maybe<Scalars['String']>
   id: Scalars['ID']
   name: Scalars['String']
@@ -726,12 +699,10 @@ export type UsersPermissionsMeRole = {
 }
 
 export type UsersPermissionsPasswordPayload = {
-  __typename?: 'UsersPermissionsPasswordPayload'
   ok: Scalars['Boolean']
 }
 
 export type UsersPermissionsPermission = {
-  __typename?: 'UsersPermissionsPermission'
   action: Scalars['String']
   createdAt: Maybe<Scalars['DateTime']>
   role: Maybe<UsersPermissionsRoleEntityResponse>
@@ -739,7 +710,6 @@ export type UsersPermissionsPermission = {
 }
 
 export type UsersPermissionsPermissionEntity = {
-  __typename?: 'UsersPermissionsPermissionEntity'
   attributes: Maybe<UsersPermissionsPermission>
   id: Maybe<Scalars['ID']>
 }
@@ -756,7 +726,6 @@ export type UsersPermissionsPermissionFiltersInput = {
 }
 
 export type UsersPermissionsPermissionRelationResponseCollection = {
-  __typename?: 'UsersPermissionsPermissionRelationResponseCollection'
   data: Array<UsersPermissionsPermissionEntity>
 }
 
@@ -767,7 +736,6 @@ export type UsersPermissionsRegisterInput = {
 }
 
 export type UsersPermissionsRole = {
-  __typename?: 'UsersPermissionsRole'
   createdAt: Maybe<Scalars['DateTime']>
   description: Maybe<Scalars['String']>
   name: Scalars['String']
@@ -790,18 +758,15 @@ export type UsersPermissionsRoleUsersArgs = {
 }
 
 export type UsersPermissionsRoleEntity = {
-  __typename?: 'UsersPermissionsRoleEntity'
   attributes: Maybe<UsersPermissionsRole>
   id: Maybe<Scalars['ID']>
 }
 
 export type UsersPermissionsRoleEntityResponse = {
-  __typename?: 'UsersPermissionsRoleEntityResponse'
   data: Maybe<UsersPermissionsRoleEntity>
 }
 
 export type UsersPermissionsRoleEntityResponseCollection = {
-  __typename?: 'UsersPermissionsRoleEntityResponseCollection'
   data: Array<UsersPermissionsRoleEntity>
   meta: ResponseCollectionMeta
 }
@@ -829,12 +794,10 @@ export type UsersPermissionsRoleInput = {
 }
 
 export type UsersPermissionsUpdateRolePayload = {
-  __typename?: 'UsersPermissionsUpdateRolePayload'
   ok: Scalars['Boolean']
 }
 
 export type UsersPermissionsUser = {
-  __typename?: 'UsersPermissionsUser'
   avatar: UploadFileEntityResponse
   biography: Scalars['String']
   blocked: Maybe<Scalars['Boolean']>
@@ -857,18 +820,15 @@ export type UsersPermissionsUserPostsArgs = {
 }
 
 export type UsersPermissionsUserEntity = {
-  __typename?: 'UsersPermissionsUserEntity'
   attributes: Maybe<UsersPermissionsUser>
   id: Maybe<Scalars['ID']>
 }
 
 export type UsersPermissionsUserEntityResponse = {
-  __typename?: 'UsersPermissionsUserEntityResponse'
   data: Maybe<UsersPermissionsUserEntity>
 }
 
 export type UsersPermissionsUserEntityResponseCollection = {
-  __typename?: 'UsersPermissionsUserEntityResponseCollection'
   data: Array<UsersPermissionsUserEntity>
   meta: ResponseCollectionMeta
 }
@@ -911,71 +871,45 @@ export type UsersPermissionsUserInput = {
 }
 
 export type UsersPermissionsUserRelationResponseCollection = {
-  __typename?: 'UsersPermissionsUserRelationResponseCollection'
   data: Array<UsersPermissionsUserEntity>
 }
 
 export type ImageDataFragFragment = {
-  __typename?: 'UploadFileEntityResponse'
   data:
     | {
-        __typename?: 'UploadFileEntity'
-        id: string | null | undefined
-        attributes:
-          | { __typename?: 'UploadFile'; formats: any | null | undefined }
-          | null
-          | undefined
+        id: string | undefined
+        attributes: { formats: any | undefined } | undefined
       }
-    | null
     | undefined
 }
 
 export type TagDataFragFragment = {
-  __typename?: 'TagRelationResponseCollection'
   data: Array<{
-    __typename?: 'TagEntity'
-    id: string | null | undefined
-    attributes:
-      | { __typename?: 'Tag'; title: string; slug: string }
-      | null
-      | undefined
+    id: string | undefined
+    attributes: { title: string; slug: string } | undefined
   }>
 }
 
 export type UserDataFragFragment = {
-  __typename?: 'UsersPermissionsUserEntityResponse'
   data:
     | {
-        __typename?: 'UsersPermissionsUserEntity'
-        id: string | null | undefined
+        id: string | undefined
         attributes:
           | {
-              __typename?: 'UsersPermissionsUser'
               name: string
               username: string
               biography: string
               avatar: {
-                __typename?: 'UploadFileEntityResponse'
                 data:
                   | {
-                      __typename?: 'UploadFileEntity'
-                      id: string | null | undefined
-                      attributes:
-                        | {
-                            __typename?: 'UploadFile'
-                            formats: any | null | undefined
-                          }
-                        | null
-                        | undefined
+                      id: string | undefined
+                      attributes: { formats: any | undefined } | undefined
                     }
-                  | null
                   | undefined
               }
             }
-          | null
           | undefined
       }
-    | null
     | undefined
 }
 
@@ -984,95 +918,61 @@ export type GetPostBySlugQueryVariables = Exact<{
 }>
 
 export type GetPostBySlugQuery = {
-  __typename?: 'Query'
   posts:
     | {
-        __typename?: 'PostEntityResponseCollection'
         data: Array<{
-          __typename?: 'PostEntity'
-          id: string | null | undefined
+          id: string | undefined
           attributes:
             | {
-                __typename?: 'Post'
                 title: string
                 content: string
-                publishedAt: any | null | undefined
+                publishedAt: any | undefined
                 image: {
-                  __typename?: 'UploadFileEntityResponse'
                   data:
                     | {
-                        __typename?: 'UploadFileEntity'
-                        id: string | null | undefined
-                        attributes:
-                          | {
-                              __typename?: 'UploadFile'
-                              formats: any | null | undefined
-                            }
-                          | null
-                          | undefined
+                        id: string | undefined
+                        attributes: { formats: any | undefined } | undefined
                       }
-                    | null
                     | undefined
                 }
                 user:
                   | {
-                      __typename?: 'UsersPermissionsUserEntityResponse'
                       data:
                         | {
-                            __typename?: 'UsersPermissionsUserEntity'
-                            id: string | null | undefined
+                            id: string | undefined
                             attributes:
                               | {
-                                  __typename?: 'UsersPermissionsUser'
                                   name: string
                                   username: string
                                   biography: string
                                   avatar: {
-                                    __typename?: 'UploadFileEntityResponse'
                                     data:
                                       | {
-                                          __typename?: 'UploadFileEntity'
-                                          id: string | null | undefined
+                                          id: string | undefined
                                           attributes:
-                                            | {
-                                                __typename?: 'UploadFile'
-                                                formats: any | null | undefined
-                                              }
-                                            | null
+                                            | { formats: any | undefined }
                                             | undefined
                                         }
-                                      | null
                                       | undefined
                                   }
                                 }
-                              | null
                               | undefined
                           }
-                        | null
                         | undefined
                     }
-                  | null
                   | undefined
                 tags:
                   | {
-                      __typename?: 'TagRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'TagEntity'
-                        id: string | null | undefined
-                        attributes:
-                          | { __typename?: 'Tag'; title: string; slug: string }
-                          | null
-                          | undefined
+                        id: string | undefined
+                        attributes: { title: string; slug: string } | undefined
                       }>
                     }
-                  | null
                   | undefined
               }
-            | null
             | undefined
         }>
       }
-    | null
     | undefined
 }
 
@@ -1084,96 +984,62 @@ export type GetPostsByFilterQueryVariables = Exact<{
 }>
 
 export type GetPostsByFilterQuery = {
-  __typename?: 'Query'
   posts:
     | {
-        __typename?: 'PostEntityResponseCollection'
         data: Array<{
-          __typename?: 'PostEntity'
-          id: string | null | undefined
+          id: string | undefined
           attributes:
             | {
-                __typename?: 'Post'
                 title: string
                 content: string
                 slug: string
-                publishedAt: any | null | undefined
+                publishedAt: any | undefined
                 image: {
-                  __typename?: 'UploadFileEntityResponse'
                   data:
                     | {
-                        __typename?: 'UploadFileEntity'
-                        id: string | null | undefined
-                        attributes:
-                          | {
-                              __typename?: 'UploadFile'
-                              formats: any | null | undefined
-                            }
-                          | null
-                          | undefined
+                        id: string | undefined
+                        attributes: { formats: any | undefined } | undefined
                       }
-                    | null
                     | undefined
                 }
                 user:
                   | {
-                      __typename?: 'UsersPermissionsUserEntityResponse'
                       data:
                         | {
-                            __typename?: 'UsersPermissionsUserEntity'
-                            id: string | null | undefined
+                            id: string | undefined
                             attributes:
                               | {
-                                  __typename?: 'UsersPermissionsUser'
                                   name: string
                                   username: string
                                   biography: string
                                   avatar: {
-                                    __typename?: 'UploadFileEntityResponse'
                                     data:
                                       | {
-                                          __typename?: 'UploadFileEntity'
-                                          id: string | null | undefined
+                                          id: string | undefined
                                           attributes:
-                                            | {
-                                                __typename?: 'UploadFile'
-                                                formats: any | null | undefined
-                                              }
-                                            | null
+                                            | { formats: any | undefined }
                                             | undefined
                                         }
-                                      | null
                                       | undefined
                                   }
                                 }
-                              | null
                               | undefined
                           }
-                        | null
                         | undefined
                     }
-                  | null
                   | undefined
                 tags:
                   | {
-                      __typename?: 'TagRelationResponseCollection'
                       data: Array<{
-                        __typename?: 'TagEntity'
-                        id: string | null | undefined
-                        attributes:
-                          | { __typename?: 'Tag'; title: string; slug: string }
-                          | null
-                          | undefined
+                        id: string | undefined
+                        attributes: { title: string; slug: string } | undefined
                       }>
                     }
-                  | null
                   | undefined
               }
-            | null
             | undefined
         }>
       }
-    | null
     | undefined
 }
 
@@ -1186,43 +1052,25 @@ export type GetPostsByTextQueryVariables = Exact<{
 }>
 
 export type GetPostsByTextQuery = {
-  __typename?: 'Query'
   posts:
     | {
-        __typename?: 'PostEntityResponseCollection'
         data: Array<{
-          __typename?: 'PostEntity'
-          id: string | null | undefined
+          id: string | undefined
           attributes:
             | {
-                __typename?: 'Post'
                 title: string
                 slug: string
                 user:
                   | {
-                      __typename?: 'UsersPermissionsUserEntityResponse'
                       data:
-                        | {
-                            __typename?: 'UsersPermissionsUserEntity'
-                            attributes:
-                              | {
-                                  __typename?: 'UsersPermissionsUser'
-                                  username: string
-                                }
-                              | null
-                              | undefined
-                          }
-                        | null
+                        | { attributes: { username: string } | undefined }
                         | undefined
                     }
-                  | null
                   | undefined
               }
-            | null
             | undefined
         }>
       }
-    | null
     | undefined
 }
 
@@ -1231,42 +1079,26 @@ export type GetPostsSlugAndUsernameQueryVariables = Exact<{
 }>
 
 export type GetPostsSlugAndUsernameQuery = {
-  __typename?: 'Query'
   posts:
     | {
-        __typename?: 'PostEntityResponseCollection'
         data: Array<{
-          __typename?: 'PostEntity'
-          id: string | null | undefined
+          id: string | undefined
           attributes:
             | {
-                __typename?: 'Post'
                 slug: string
                 user:
                   | {
-                      __typename?: 'UsersPermissionsUserEntityResponse'
                       data:
                         | {
-                            __typename?: 'UsersPermissionsUserEntity'
-                            id: string | null | undefined
-                            attributes:
-                              | {
-                                  __typename?: 'UsersPermissionsUser'
-                                  username: string
-                                }
-                              | null
-                              | undefined
+                            id: string | undefined
+                            attributes: { username: string } | undefined
                           }
-                        | null
                         | undefined
                     }
-                  | null
                   | undefined
               }
-            | null
             | undefined
         }>
       }
-    | null
     | undefined
 }
