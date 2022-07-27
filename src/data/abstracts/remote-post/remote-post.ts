@@ -34,6 +34,7 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
     return (
       imageFormats?.medium?.url ||
       imageFormats?.small?.url ||
+      imageFormats?.thumbnail?.url ||
       '/images/avatar-placeholder.jpg'
     )
   }
