@@ -59,19 +59,17 @@ export class RemotePostPage
     const postAttr = post.attributes
     if (!post.id || !postAttr) return null
 
-    const tags = RemotePostPage.mapTags(postAttr.tags?.data)
+    const tags = this.mapTags(postAttr.tags?.data)
     if (tags.length === 0) return null
 
     const userAttr = postAttr.user?.data?.attributes
     if (!userAttr) return null
 
-    const postUrl = RemotePostPage.getPostUrl(
-      postAttr.image.data?.attributes?.formats
-    )
-    const avatarUrl = RemotePostPage.getAvatarUrl(
+    const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
+    const avatarUrl = this.getAvatarUrl(
       userAttr.avatar.data?.attributes?.formats
     )
-    const preview = RemotePostPage.makePreview(postAttr.content)
+    const preview = this.makePreview(postAttr.content)
 
     const { title, content, publishedAt } = postAttr
     const { name, username, biography } = userAttr

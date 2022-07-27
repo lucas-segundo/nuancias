@@ -73,19 +73,17 @@ export class RemotePostCard
       const postAttr = post.attributes
       if (!post.id || !postAttr) return null
 
-      const tags = RemotePostCard.mapTags(postAttr.tags?.data)
+      const tags = this.mapTags(postAttr.tags?.data)
       if (tags.length === 0) return null
 
       const userAttr = postAttr.user?.data?.attributes
       if (!userAttr) return null
 
-      const postUrl = RemotePostCard.getPostUrl(
-        postAttr.image.data?.attributes?.formats
-      )
-      const avatarUrl = RemotePostCard.getAvatarUrl(
+      const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
+      const avatarUrl = this.getAvatarUrl(
         userAttr.avatar.data?.attributes?.formats
       )
-      const preview = RemotePostCard.makePreview(postAttr.content)
+      const preview = this.makePreview(postAttr.content)
 
       const { title, slug, publishedAt } = postAttr
       const { name, username } = userAttr

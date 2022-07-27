@@ -3,10 +3,19 @@ import { AbstractRemotePost } from './remote-post'
 
 class Sut extends AbstractRemotePost {}
 
+const makeSut = () => {
+  const sut = new Sut()
+
+  return {
+    sut,
+  }
+}
+
 describe('AbstractRemotePost', () => {
   it('should return tag mapped', () => {
+    const { sut } = makeSut()
     const remoteTagMock = makeRemoteTagMock()
-    const tags = Sut.mapTags([remoteTagMock])
+    const tags = sut.mapTags([remoteTagMock])
 
     const remoteTagMapped = {
       id: remoteTagMock.id,
@@ -18,7 +27,8 @@ describe('AbstractRemotePost', () => {
   })
 
   it('should return empty tag array with receive nothing in params', () => {
-    const tags = Sut.mapTags()
+    const { sut } = makeSut()
+    const tags = sut.mapTags()
 
     expect(tags).toStrictEqual([])
   })
