@@ -45,13 +45,9 @@ export class RemoteSearchPosts implements SearchPosts {
     posts: RemoteSearchPostsModel.PostsData
   ): (SearchedPost.Model | null)[] {
     return posts.map((post) => {
-      if (!post.id) return null
-
       const postAttr = post.attributes
-      if (!postAttr) return null
-
-      const userAttr = postAttr.user?.data?.attributes
-      if (!userAttr) return null
+      const userAttr = postAttr?.user?.data?.attributes
+      if (!post.id || !postAttr || !userAttr) return null
 
       return {
         id: post.id,
