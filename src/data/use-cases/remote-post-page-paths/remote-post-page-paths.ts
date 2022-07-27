@@ -38,7 +38,7 @@ export class RemotePostPagePaths
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        return RemotePostPagePaths.adaptResponseToModel(response.data)
+        return this.adaptResponseToModel(response.data)
       case StatusCodeEnum.NO_CONTENT:
         return []
       default:
@@ -46,25 +46,29 @@ export class RemotePostPagePaths
     }
   }
 
-  static adaptResponseToModel(data: RemotePostPagePathsModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostPagePathsModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
 
-    const posts = RemotePostPagePaths.mapPosts(postsData)
+    const posts = this.mapValidPosts(postsData)
 
     return (
       posts?.filter((post): post is PostPagePathModel.Model => !!post) || []
     )
   }
 
-  private static mapPosts(
+  private mapValidPosts(
     posts: RemotePostPagePathsModel.PostsData
   ): (PostPagePathModel.Model | null)[] {
     return posts.map((post) => {
-      if (!post?.id || !post?.attributes) return null
-
       const userData = post.attributes?.user?.data
-      if (!userData?.id || !userData.attributes) return null
+      if (
+        !userData?.id ||
+        !userData.attributes ||
+        !post?.id ||
+        !post?.attributes
+      )
+        return null
 
       return {
         post: {

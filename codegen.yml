@@ -8,5 +8,7 @@ generates:
       - 'typescript-operations'
     config:
       avoidOptionals: true
-      maybeValue: T | null | undefined
-      inputMaybeValue: T | null | undefined
+      maybeValue: T | undefined
+      inputMaybeValue: T | undefined
+      skipTypename: true
+      skipTypeNameForRoot: true

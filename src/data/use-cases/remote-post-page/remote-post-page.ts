@@ -1,7 +1,5 @@
 import { AbstractRemotePost } from 'data/abstracts'
-import { getCharactersFromHTML } from 'data/helpers'
 import { RemotePostPageModel } from 'data/models'
-import { ImageFormats } from 'data/models/common'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -36,7 +34,7 @@ export class RemotePostPage
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        const postModel = RemotePostPage.adaptResponseToModel(response.data)
+        const postModel = this.adaptResponseToModel(response.data)
         return postModel
       case StatusCodeEnum.NO_CONTENT:
         return null
@@ -45,59 +43,46 @@ export class RemotePostPage
     }
   }
 
-  static adaptResponseToModel(data: RemotePostPageModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostPageModel.QueryResponse) {
     const postData = data.posts?.data[0]
 
     if (!postData) return null
 
-    const post = RemotePostPage.mapPost(postData)
+    const post = this.mapValidPost(postData)
 
     return post
   }
 
-  private static mapPost(
+  private mapValidPost(
     post: RemotePostPageModel.PostData
   ): PostPageModel.Model | null {
-    if (!post.id) return null
+    const postAttr = post.attributes
+    const tags = this.mapTags(postAttr?.tags?.data)
+    const userAttr = postAttr?.user?.data?.attributes
 
-    const tags = RemotePostPage.mapTags(post.attributes?.tags?.data)
-    if (tags.length === 0 || !post.attributes) return null
+    if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
 
-    const userAttr = post.attributes.user?.data?.attributes
-    if (!userAttr) return null
+    const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
+    const avatarUrl = this.getAvatarUrl(
+      userAttr.avatar.data?.attributes?.formats
+    )
+    const preview = this.makePreview(postAttr.content)
 
-    const { medium: postImageMedium, small: postImageSmall } = post.attributes
-      .image.data?.attributes?.formats as ImageFormats
-
-    const { small: avatarSmall, thumbnail: avatarThumb } = userAttr.avatar.data
-      ?.attributes?.formats as ImageFormats
-
-    const postUrl =
-      postImageMedium?.url ||
-      postImageSmall?.url ||
-      '/images/post-placeholder.png'
-    const avatarUrl =
-      avatarSmall?.url || avatarThumb?.url || 'avatar-placeholder.png'
-
-    const preview =
-      getCharactersFromHTML({
-        html: post.attributes.content,
-        characterCount: 150,
-      }) + '...'
-
+    const { title, content, publishedAt } = postAttr
+    const { name, username, biography } = userAttr
     return {
       id: post.id,
-      title: post.attributes.title,
+      title,
       preview,
-      content: post.attributes.content,
-      publishedAt: post.attributes.publishedAt,
+      content,
+      publishedAt,
       image: {
         src: postUrl,
       },
       writer: {
-        name: userAttr.name,
-        bio: userAttr.biography,
-        username: userAttr.username,
+        name,
+        bio: biography,
+        username,
         avatar: {
           src: avatarUrl,
         },

@@ -45,7 +45,7 @@ describe('RemotePostCard', () => {
     const { limit, sort } = fakeFilter
     const variables: RemotePostCardQueryVar = {
       limit,
-      sortBy: sort && RemotePostCard.makeSortBy(sort),
+      sortBy: sort && sut.makeSortBy(sort),
     }
 
     const graphqlParams: GraphqlClient.Params<unknown> = {
@@ -66,7 +66,7 @@ describe('RemotePostCard', () => {
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
     const response = await sut.getAll(fakeFilter)
-    const fakeModel = RemotePostCard.adaptResponseToModel(fakeResponse.data)
+    const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
     expect(response).toEqual(fakeModel)
   })

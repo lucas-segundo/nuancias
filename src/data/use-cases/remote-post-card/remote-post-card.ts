@@ -1,12 +1,10 @@
 import { AbstractRemotePost } from 'data/abstracts'
-import { getCharactersFromHTML } from 'data/helpers/get-characters-from-html'
 import {
   PostCardSortVar,
   PostCardVariables,
   RemotePostCardModel,
   RemotePostCardQueryVar,
 } from 'data/models'
-import { ImageFormats } from 'data/models/common'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -28,7 +26,7 @@ export class RemotePostCard
     limit,
     sort,
   }: PostCardVariables): Promise<PostCardModel.Model[] | []> {
-    const sortBy = sort && RemotePostCard.makeSortBy(sort)
+    const sortBy = sort && this.makeSortBy(sort)
 
     const response = await this.graphqlClient.query<
       RemotePostCardQueryVar,
@@ -47,7 +45,7 @@ export class RemotePostCard
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        return RemotePostCard.adaptResponseToModel(response.data) || []
+        return this.adaptResponseToModel(response.data) || []
       case StatusCodeEnum.NO_CONTENT:
         return []
       default:
@@ -55,58 +53,49 @@ export class RemotePostCard
     }
   }
 
-  static adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
+  makeSortBy(sort: PostCardSortVar) {
+    return `${sort.by}:${sort.order}`
+  }
+
+  adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
 
-    const posts = RemotePostCard.mapPosts(postsData)
+    const posts = this.mapValidPosts(postsData)
 
     return posts?.filter((post): post is PostCardModel.Model => !!post) || []
   }
 
-  private static mapPosts(
+  private mapValidPosts(
     posts: RemotePostCardModel.PostsData
   ): (PostCardModel.Model | null)[] {
     return posts.map((post) => {
-      if (!post.id) return null
+      const postAttr = post.attributes
+      const tags = this.mapTags(postAttr?.tags?.data)
+      const userAttr = postAttr?.user?.data?.attributes
 
-      const tags = RemotePostCard.mapTags(post.attributes?.tags?.data)
-      if (tags.length === 0 || !post.attributes) return null
+      if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
 
-      const { medium: postImageMedium, small: postImageSmall } = post.attributes
-        .image.data?.attributes?.formats as ImageFormats
+      const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
+      const avatarUrl = this.getAvatarUrl(
+        userAttr.avatar.data?.attributes?.formats
+      )
+      const preview = this.makePreview(postAttr.content)
 
-      const userAttr = post.attributes.user?.data?.attributes
-      if (!userAttr) return null
-
-      const { small: avatarSmall, thumbnail: avatarThumb } = userAttr.avatar
-        .data?.attributes?.formats as ImageFormats
-
-      const postUrl =
-        postImageMedium?.url ||
-        postImageSmall?.url ||
-        '/images/post-placeholder.png'
-      const avatarUrl =
-        avatarSmall?.url || avatarThumb?.url || 'avatar-placeholder.png'
-
-      const preview =
-        getCharactersFromHTML({
-          html: post.attributes.content,
-          characterCount: 150,
-        }) + '...'
-
+      const { title, slug, publishedAt } = postAttr
+      const { name, username } = userAttr
       return {
         id: post.id,
-        title: post.attributes.title,
+        title,
         preview,
-        slug: post.attributes.slug,
-        publishedAt: post.attributes.publishedAt,
+        slug,
+        publishedAt,
         image: {
           src: postUrl,
         },
         writer: {
-          name: userAttr.name,
-          username: userAttr.username,
+          name,
+          username,
           avatar: {
             src: avatarUrl,
           },
@@ -114,9 +103,5 @@ export class RemotePostCard
         tags,
       }
     })
-  }
-
-  static makeSortBy(sort: PostCardSortVar) {
-    return `${sort.by}:${sort.order}`
   }
 }

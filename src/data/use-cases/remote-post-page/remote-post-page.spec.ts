@@ -62,7 +62,7 @@ describe('RemotePostPage', () => {
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
     const response = await sut.getBySlug(fakeSlug)
-    const fakeModel = RemotePostPage.adaptResponseToModel(fakeResponse.data)
+    const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
     expect(response).toEqual(fakeModel)
   })
