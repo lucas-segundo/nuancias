@@ -61,10 +61,14 @@ export class RemotePostPagePaths
     posts: RemotePostPagePathsModel.PostsData
   ): (PostPagePathModel.Model | null)[] {
     return posts.map((post) => {
-      if (!post?.id || !post?.attributes) return null
-
       const userData = post.attributes?.user?.data
-      if (!userData?.id || !userData.attributes) return null
+      if (
+        !userData?.id ||
+        !userData.attributes ||
+        !post?.id ||
+        !post?.attributes
+      )
+        return null
 
       return {
         post: {
