@@ -62,9 +62,7 @@ describe('RemotePostPagePath', () => {
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
     const response = await sut.getAll(fakeFilter)
-    const fakeModel = RemotePostPagePaths.adaptResponseToModel(
-      fakeResponse.data
-    )
+    const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
     expect(response).not.toBeUndefined()
     expect(fakeModel).not.toBeUndefined()
