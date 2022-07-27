@@ -26,7 +26,7 @@ export class RemotePostCard
     limit,
     sort,
   }: PostCardVariables): Promise<PostCardModel.Model[] | []> {
-    const sortBy = sort && RemotePostCard.makeSortBy(sort)
+    const sortBy = sort && this.makeSortBy(sort)
 
     const response = await this.graphqlClient.query<
       RemotePostCardQueryVar,
@@ -45,7 +45,7 @@ export class RemotePostCard
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        return RemotePostCard.adaptResponseToModel(response.data) || []
+        return this.adaptResponseToModel(response.data) || []
       case StatusCodeEnum.NO_CONTENT:
         return []
       default:
@@ -53,20 +53,20 @@ export class RemotePostCard
     }
   }
 
-  static makeSortBy(sort: PostCardSortVar) {
+  makeSortBy(sort: PostCardSortVar) {
     return `${sort.by}:${sort.order}`
   }
 
-  static adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
 
-    const posts = RemotePostCard.mapPosts(postsData)
+    const posts = this.mapPosts(postsData)
 
     return posts?.filter((post): post is PostCardModel.Model => !!post) || []
   }
 
-  private static mapPosts(
+  private mapPosts(
     posts: RemotePostCardModel.PostsData
   ): (PostCardModel.Model | null)[] {
     return posts.map((post) => {
