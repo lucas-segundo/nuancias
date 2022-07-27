@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps<
   loadPostCards.setAuthToken(authToken)
 
   const posts = await loadPostCards.getAll({
-    limit: 6,
+    limit: 12,
     sort: {
       by: 'publishedAt',
       order: 'desc',
