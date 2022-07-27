@@ -3,7 +3,7 @@ import { PostTag } from './post-tag'
 
 type Params = {
   tags: TagModel[]
-  cssClassName: string
+  cssClassName?: string
 }
 
 export const renderPostTagsToListItems = ({ tags, cssClassName }: Params) =>
