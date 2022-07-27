@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react'
 import { makePostCardsMock } from 'domain/models/post/mock'
 import { makePtBRDate } from '../post-card/helpers'
 
-import PostListItem from './post-list-item'
+import { PostListItem } from './post-list-item'
 
 const makeSut = (fakePost = makePostCardsMock()[0]) => {
   render(<PostListItem post={fakePost} />)

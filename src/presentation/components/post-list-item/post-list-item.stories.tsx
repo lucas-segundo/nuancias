@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import { makePostCardsMock } from 'domain/models/post/mock'
-import PostListItem, { PostListItemProps } from './post-list-item'
+import { PostListItem, PostListItemProps } from './post-list-item'
 
 export default {
   title: 'components/PostListItem',
