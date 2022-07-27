@@ -11,7 +11,7 @@ const renderPostCards = (posts: PostCardModel.Model[]) => {
 
 export const LastPosts = ({ posts }: LastPostsProps) => {
   return (
-    <section className="default-screen-margin mb-24">
+    <section className="default-screen-margin">
       <div className="my-7">
         <h1 className="text-2xl lg:text-4xl font-bold">Últimas Histórias</h1>
         <div className="space-y-1">

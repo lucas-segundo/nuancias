@@ -5,6 +5,7 @@ import {
   NavbarProps,
 } from 'presentation/components'
 import { Meta } from 'presentation/components/elements'
+import { OtherPosts } from 'presentation/components'
 import { Base } from 'presentation/layouts'
 
 export type HomeProps = NavbarProps & LastPostsProps
@@ -18,7 +19,8 @@ export const Home = (props: HomeProps) => {
       />
       <Base searchPosts={props.searchPosts}>
         <Hero />
-        <LastPosts posts={props.posts} />
+        <LastPosts posts={props.posts?.slice(0, 6)} />
+        <OtherPosts posts={props.posts?.slice(6)} />
       </Base>
     </>
   )
