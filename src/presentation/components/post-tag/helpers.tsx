@@ -8,7 +8,11 @@ type Params = {
 
 export const renderPostTagsToListItems = ({ tags, cssClassName }: Params) =>
   tags.map((tag) => (
-    <li role={'tag-item'} key={tag.id} className={cssClassName}>
+    <li
+      role={'tag-item'}
+      key={tag.id}
+      className={cssClassName ? cssClassName : ''}
+    >
       <PostTag tagData={tag} />
     </li>
   ))
