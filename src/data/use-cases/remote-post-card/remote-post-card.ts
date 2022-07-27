@@ -1,4 +1,5 @@
 import { AbstractRemotePost } from 'data/abstracts'
+import { IMAGE_PLACEHOLDER } from 'data/helpers'
 import {
   PostCardSortVar,
   PostCardVariables,
@@ -76,10 +77,15 @@ export class RemotePostCard
 
       if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
 
-      const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
-      const avatarUrl = this.getAvatarUrl(
-        userAttr.avatar.data?.attributes?.formats
+      const postUrl = this.getImageFormat(
+        postAttr.image.data?.attributes?.formats,
+        IMAGE_PLACEHOLDER.POST
       )
+      const avatarUrl = this.getImageFormat(
+        userAttr.avatar.data?.attributes?.formats,
+        IMAGE_PLACEHOLDER.AVATAR
+      )
+
       const preview = this.makePreview(postAttr.content)
 
       const { title, slug, publishedAt } = postAttr

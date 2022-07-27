@@ -1,1 +1,1 @@
-export * from './image-formats'
+export * from './image-formats/image-formats'
