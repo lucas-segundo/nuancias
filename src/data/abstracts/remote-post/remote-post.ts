@@ -23,15 +23,19 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
   }
 
   getPostUrl(imageFormats: ImageFormats) {
-    const { medium, small } = imageFormats
-
-    return medium?.url || small?.url || '/images/post-placeholder.png'
+    return (
+      imageFormats?.medium?.url ||
+      imageFormats?.small?.url ||
+      '/images/post-placeholder.jpg'
+    )
   }
 
   getAvatarUrl(imageFormats: ImageFormats) {
-    const { medium, small } = imageFormats
-
-    return medium?.url || small?.url || 'avatar-placeholder.png'
+    return (
+      imageFormats?.medium?.url ||
+      imageFormats?.small?.url ||
+      '/images/avatar-placeholder.jpg'
+    )
   }
 
   makePreview(htmlContent: string) {
