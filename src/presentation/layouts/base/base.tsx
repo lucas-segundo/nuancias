@@ -1,5 +1,9 @@
-import { Navbar, PrivacyPolicy } from 'presentation/components'
-import { NavbarProps } from 'presentation/components'
+import {
+  NavbarProps,
+  Footer,
+  Navbar,
+  PrivacyPolicy,
+} from 'presentation/components'
 
 export type BaseProps = {
   children: React.ReactNode
@@ -11,6 +15,7 @@ export const Base = (props: BaseProps) => {
       <Navbar searchPosts={props.searchPosts} />
       {props.children}
       <PrivacyPolicy />
+      <Footer />
     </>
   )
 }
