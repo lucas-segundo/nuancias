@@ -57,13 +57,10 @@ export class RemotePostPage
     post: RemotePostPageModel.PostData
   ): PostPageModel.Model | null {
     const postAttr = post.attributes
-    if (!post.id || !postAttr) return null
+    const tags = this.mapTags(postAttr?.tags?.data)
+    const userAttr = postAttr?.user?.data?.attributes
 
-    const tags = this.mapTags(postAttr.tags?.data)
-    if (tags.length === 0) return null
-
-    const userAttr = postAttr.user?.data?.attributes
-    if (!userAttr) return null
+    if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
 
     const postUrl = this.getPostUrl(postAttr.image.data?.attributes?.formats)
     const avatarUrl = this.getAvatarUrl(
