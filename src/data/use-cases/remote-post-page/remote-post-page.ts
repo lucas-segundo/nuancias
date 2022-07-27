@@ -34,7 +34,7 @@ export class RemotePostPage
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        const postModel = RemotePostPage.adaptResponseToModel(response.data)
+        const postModel = this.adaptResponseToModel(response.data)
         return postModel
       case StatusCodeEnum.NO_CONTENT:
         return null
@@ -43,17 +43,17 @@ export class RemotePostPage
     }
   }
 
-  static adaptResponseToModel(data: RemotePostPageModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostPageModel.QueryResponse) {
     const postData = data.posts?.data[0]
 
     if (!postData) return null
 
-    const post = RemotePostPage.mapPost(postData)
+    const post = this.mapPost(postData)
 
     return post
   }
 
-  private static mapPost(
+  private mapPost(
     post: RemotePostPageModel.PostData
   ): PostPageModel.Model | null {
     const postAttr = post.attributes
