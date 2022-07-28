@@ -105,7 +105,7 @@ export const Meta = ({ title, description, noIndex }: MetaProps) => {
           site_name: 'Nuancias',
           images: [
             {
-              url: '/images/meta-tag-image-logo.png',
+              url: '/images/meta-tag-image-logo.jpg',
               width: 1200,
               height: 630,
               alt: 'Logo Nuancias',
