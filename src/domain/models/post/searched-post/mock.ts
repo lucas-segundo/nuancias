@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { SearchedPost } from '..'
+import { SearchedPost } from '../..'
 
 export const makeSearchedPostMock = (text?: string): SearchedPost.Model => ({
   id: faker.datatype.uuid(),

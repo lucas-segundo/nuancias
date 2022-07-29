@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { makeSearchedPostMock } from 'domain/models/post/mock'
+import { makeSearchedPostMock } from 'domain/models/post/searched-post/mock'
 
 import { SearchPosts } from 'domain/use-cases'
 import { SearchPostsField } from './search-post-field'
