@@ -1051,6 +1051,7 @@ export type UserAttributesFragment = {
 
 export type UserPostsFragment = {
   data: Array<{
+    id?: string | null
     attributes?: {
       title: string
       publishedAt?: any | null
@@ -1074,6 +1075,7 @@ export type UserAndPostsFragFragment = {
       biography: string
       posts?: {
         data: Array<{
+          id?: string | null
           attributes?: {
             title: string
             publishedAt?: any | null
@@ -1110,6 +1112,7 @@ export type GetUserAndPostsQuery = {
         biography: string
         posts?: {
           data: Array<{
+            id?: string | null
             attributes?: {
               title: string
               publishedAt?: any | null

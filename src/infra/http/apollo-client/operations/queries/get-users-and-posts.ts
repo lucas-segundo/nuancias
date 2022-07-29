@@ -15,6 +15,7 @@ export const GET_USER_AND_POSTS = gql`
 
   fragment userPosts on PostRelationResponseCollection {
     data {
+      id
       attributes {
         title
         publishedAt
