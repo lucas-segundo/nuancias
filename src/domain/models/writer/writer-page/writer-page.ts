@@ -6,4 +6,7 @@ export type Post = Pick<
   'id' | 'preview' | 'title' | 'slug' | 'publishedAt'
 >
 
-export type Model = UserModel<Image, Post[]>
+export type Model = Pick<
+  UserModel<Image, Post[]>,
+  'id' | 'name' | 'bio' | 'avatar' | 'posts'
+>

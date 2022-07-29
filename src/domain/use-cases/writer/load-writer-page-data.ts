@@ -1,10 +1,10 @@
 import { WriterPageModel } from 'domain/models'
 
-type Filter = {
+export type Params = {
   username: string
   postsLimit: number
 }
 
-export interface LoadWriterPageData {
-  get(filter: Filter): WriterPageModel.Model
+export interface Model {
+  get(params: Params): Promise<WriterPageModel.Model>
 }
