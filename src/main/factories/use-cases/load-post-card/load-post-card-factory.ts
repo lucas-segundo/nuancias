@@ -1,4 +1,4 @@
-import { RemotePostCard } from 'data/use-cases/remote-post-card/remote-post-card'
+import { RemotePostCard } from 'data/use-cases/post/remote-post-card/remote-post-card'
 import { ApolloGraphqlClient } from 'infra/http'
 import { GET_POSTS_BY_FILTER } from 'infra/http/apollo-client/operations/queries'
 

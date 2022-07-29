@@ -1,4 +1,4 @@
-import { RemoteAuthentication } from 'data/use-cases/remote-authentication/remote-authentication'
+import { RemoteAuthentication } from 'data/use-cases/account/remote-authentication/remote-authentication'
 import { AxiosClient } from 'infra/http'
 
 export const makeAuthentication = () => {
