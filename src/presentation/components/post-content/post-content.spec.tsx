@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { makePostPageMock } from 'domain/models/post/mock'
+import { makePostPageMock } from 'domain/models/post/post-page/mock'
 import { makePtBRDate } from '../post-card/helpers'
 
 import { PostContent } from './post-content'

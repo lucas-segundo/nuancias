@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { makeUserCommonMock } from 'domain/models/common/user/mock'
-import { makePostPageMock } from 'domain/models/post/mock'
+import { makePostPageMock } from 'domain/models/post/post-page/mock'
 import { SearchPosts } from 'domain/use-cases'
 import { Post } from '..'
 

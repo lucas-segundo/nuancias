@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makePostPageMock } from 'domain/models/post/mock'
+import { makePostPageMock } from 'domain/models/post/post-page/mock'
 import { PostContent, PostContentProps } from './post-content'
 
 export default {
