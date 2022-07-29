@@ -1046,7 +1046,7 @@ export type GetPostsSlugAndUsernameQuery = {
 export type UserAttributesFragment = {
   name: string
   biography: string
-  avatar: { data?: { attributes?: { url: string } | null } | null }
+  avatar: { data?: { attributes?: { formats?: any | null } | null } | null }
 }
 
 export type UserPostsFragment = {
@@ -1054,6 +1054,7 @@ export type UserPostsFragment = {
     id?: string | null
     attributes?: {
       title: string
+      slug: string
       publishedAt?: any | null
       content: string
       tags?: {
@@ -1062,7 +1063,7 @@ export type UserPostsFragment = {
           attributes?: { title: string; slug: string } | null
         }>
       } | null
-      image: { data?: { attributes?: { url: string } | null } | null }
+      image: { data?: { attributes?: { formats?: any | null } | null } | null }
     } | null
   }>
 }
@@ -1078,6 +1079,7 @@ export type UserAndPostsFragFragment = {
           id?: string | null
           attributes?: {
             title: string
+            slug: string
             publishedAt?: any | null
             content: string
             tags?: {
@@ -1086,11 +1088,13 @@ export type UserAndPostsFragFragment = {
                 attributes?: { title: string; slug: string } | null
               }>
             } | null
-            image: { data?: { attributes?: { url: string } | null } | null }
+            image: {
+              data?: { attributes?: { formats?: any | null } | null } | null
+            }
           } | null
         }>
       } | null
-      avatar: { data?: { attributes?: { url: string } | null } | null }
+      avatar: { data?: { attributes?: { formats?: any | null } | null } | null }
     } | null
   }>
 }
@@ -1115,6 +1119,7 @@ export type GetUserAndPostsQuery = {
             id?: string | null
             attributes?: {
               title: string
+              slug: string
               publishedAt?: any | null
               content: string
               tags?: {
@@ -1123,11 +1128,15 @@ export type GetUserAndPostsQuery = {
                   attributes?: { title: string; slug: string } | null
                 }>
               } | null
-              image: { data?: { attributes?: { url: string } | null } | null }
+              image: {
+                data?: { attributes?: { formats?: any | null } | null } | null
+              }
             } | null
           }>
         } | null
-        avatar: { data?: { attributes?: { url: string } | null } | null }
+        avatar: {
+          data?: { attributes?: { formats?: any | null } | null } | null
+        }
       } | null
     }>
   } | null

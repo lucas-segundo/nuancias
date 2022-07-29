@@ -7,7 +7,7 @@ export const GET_USER_AND_POSTS = gql`
     avatar {
       data {
         attributes {
-          url
+          formats
         }
       }
     }
@@ -18,6 +18,7 @@ export const GET_USER_AND_POSTS = gql`
       id
       attributes {
         title
+        slug
         publishedAt
         content
         tags {
@@ -32,7 +33,7 @@ export const GET_USER_AND_POSTS = gql`
         image {
           data {
             attributes {
-              url
+              formats
             }
           }
         }
