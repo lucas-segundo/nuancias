@@ -4,7 +4,7 @@ import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { PostPagePathModel } from 'domain/models'
-import { LoadPostPagePaths } from 'domain/use-cases/load-post-page-paths'
+import { LoadPostPagePaths } from 'domain/use-cases'
 
 type Filter = {
   limit: number
