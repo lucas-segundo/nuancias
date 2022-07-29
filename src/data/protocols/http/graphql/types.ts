@@ -1042,3 +1042,90 @@ export type GetPostsSlugAndUsernameQuery = {
     }>
   } | null
 }
+
+export type UserAttributesFragment = {
+  name: string
+  biography: string
+  avatar: { data?: { attributes?: { url: string } | null } | null }
+}
+
+export type UserPostsFragment = {
+  data: Array<{
+    attributes?: {
+      title: string
+      publishedAt?: any | null
+      content: string
+      tags?: {
+        data: Array<{
+          id?: string | null
+          attributes?: { title: string; slug: string } | null
+        }>
+      } | null
+      image: { data?: { attributes?: { url: string } | null } | null }
+    } | null
+  }>
+}
+
+export type UserAndPostsFragFragment = {
+  data: Array<{
+    id?: string | null
+    attributes?: {
+      name: string
+      biography: string
+      posts?: {
+        data: Array<{
+          attributes?: {
+            title: string
+            publishedAt?: any | null
+            content: string
+            tags?: {
+              data: Array<{
+                id?: string | null
+                attributes?: { title: string; slug: string } | null
+              }>
+            } | null
+            image: { data?: { attributes?: { url: string } | null } | null }
+          } | null
+        }>
+      } | null
+      avatar: { data?: { attributes?: { url: string } | null } | null }
+    } | null
+  }>
+}
+
+export type GetUserAndPostsQueryVariables = Exact<{
+  username: Scalars['String']
+  postsLimit: Scalars['Int']
+  postsSortBy?: InputMaybe<
+    Array<InputMaybe<Scalars['String']>> | InputMaybe<Scalars['String']>
+  >
+}>
+
+export type GetUserAndPostsQuery = {
+  usersPermissionsUsers?: {
+    data: Array<{
+      id?: string | null
+      attributes?: {
+        name: string
+        biography: string
+        posts?: {
+          data: Array<{
+            attributes?: {
+              title: string
+              publishedAt?: any | null
+              content: string
+              tags?: {
+                data: Array<{
+                  id?: string | null
+                  attributes?: { title: string; slug: string } | null
+                }>
+              } | null
+              image: { data?: { attributes?: { url: string } | null } | null }
+            } | null
+          }>
+        } | null
+        avatar: { data?: { attributes?: { url: string } | null } | null }
+      } | null
+    }>
+  } | null
+}

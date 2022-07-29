@@ -10,3 +10,5 @@ export * as RemotePostPageModel from './remote-post-page'
 export * as RemotePostPagePathsModel from './remote-post-page-paths'
 
 export * as RemoteTag from './remote-tag/remote-tag'
+
+export * as RemoteWriterPageData from './remote-writer-page-data/remote-writer-page-data'
