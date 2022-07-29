@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/mock'
+import { makePostCardsMock } from 'domain/models/post/post-card/mock'
 import { makePostLink } from 'presentation/routers/helpers'
 import { makePtBRDate } from './helpers'
 import { PostCard } from './post-card'

@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makePostCardsMock } from 'domain/models/post/mock'
+import { makePostCardsMock } from 'domain/models/post/post-card/mock'
 import { PostListItem, PostListItemProps } from './post-list-item'
 
 export default {

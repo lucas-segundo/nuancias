@@ -1,4 +1,4 @@
-import { ImageModel, TagModel, PostModel, UserModel } from '../common'
+import { ImageModel, TagModel, PostModel, UserModel } from '../../common'
 
 export type Post = Pick<
   PostModel,

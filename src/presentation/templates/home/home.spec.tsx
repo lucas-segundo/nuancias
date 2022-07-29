@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/mock'
+import { makePostCardsMock } from 'domain/models/post/post-card/mock'
 import { SearchPosts } from 'domain/use-cases'
 import { Home } from '..'
 

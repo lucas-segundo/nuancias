@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { PostCardModel, PostPageModel, SearchedPost } from '..'
+import { PostPageModel, SearchedPost } from '..'
 import { makeTagModelMock } from '../common/tag/mock'
 
 export const makeSearchedPostMock = (text?: string): SearchedPost.Model => ({
@@ -10,36 +10,6 @@ export const makeSearchedPostMock = (text?: string): SearchedPost.Model => ({
     username: faker.internet.userName(),
   },
 })
-
-const makeTag = () => ({
-  id: faker.datatype.uuid(),
-  slug: faker.random.word(),
-  title: faker.random.words(),
-})
-
-const makePostCardMock = (): PostCardModel.Model => ({
-  id: faker.datatype.uuid(),
-  title: faker.random.words(15),
-  preview: faker.random.words(),
-  slug: faker.random.word(),
-  publishedAt: faker.datatype.datetime().toDateString(),
-  writer: {
-    name: faker.name.findName(),
-    username: faker.internet.userName(),
-    avatar: {
-      src: faker.image.avatar(),
-    },
-  },
-  image: {
-    src: faker.image.city(),
-  },
-  tags: [makeTag(), makeTag()],
-})
-
-export const makePostCardsMock = (): PostCardModel.Model[] => [
-  makePostCardMock(),
-  makePostCardMock(),
-]
 
 export const makePostPageMock = (): PostPageModel.Model => ({
   id: faker.datatype.uuid(),
