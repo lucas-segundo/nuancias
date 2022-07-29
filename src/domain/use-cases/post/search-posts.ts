@@ -1,5 +1,5 @@
-import { SearchedPost } from 'domain/models'
+import { SearchedPostModel } from 'domain/models'
 
 export interface SearchPosts {
-  getAllByText(text: string): Promise<SearchedPost.Model[] | []>
+  getAllByText(text: string): Promise<SearchedPostModel.Model[] | []>
 }

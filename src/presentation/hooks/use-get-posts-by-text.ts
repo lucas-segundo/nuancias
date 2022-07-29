@@ -1,9 +1,9 @@
-import { SearchedPost } from 'domain/models'
+import { SearchedPostModel } from 'domain/models'
 import { SearchPosts } from 'domain/use-cases'
 import { useCallback, useState } from 'react'
 
 export const useGetPostsByText = (searchPosts: SearchPosts) => {
-  const [posts, setPosts] = useState<SearchedPost.Model[] | null>(null)
+  const [posts, setPosts] = useState<SearchedPostModel.Model[] | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
 

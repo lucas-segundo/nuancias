@@ -1,4 +1,4 @@
-import { WriterPage } from 'domain/models'
+import { WriterPageModel } from 'domain/models'
 
 type Filter = {
   username: string
@@ -6,5 +6,5 @@ type Filter = {
 }
 
 export interface LoadWriterPageData {
-  get(filter: Filter): WriterPage.Model
+  get(filter: Filter): WriterPageModel.Model
 }

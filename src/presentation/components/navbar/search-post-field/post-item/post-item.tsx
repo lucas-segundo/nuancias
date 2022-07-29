@@ -1,9 +1,9 @@
-import { SearchedPost } from 'domain/models'
+import { SearchedPostModel } from 'domain/models'
 import Link from 'next/link'
 import Skeleton from 'react-loading-skeleton'
 
 export type PostItemProps = {
-  post?: SearchedPost.Model
+  post?: SearchedPostModel.Model
   isLoading?: boolean
 }
 

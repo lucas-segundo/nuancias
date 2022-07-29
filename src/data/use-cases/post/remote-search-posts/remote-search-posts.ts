@@ -2,7 +2,7 @@ import { RemoteSearchPostsModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { SearchedPost } from 'domain/models'
+import { SearchedPostModel } from 'domain/models'
 import { SearchPosts } from 'domain/use-cases'
 
 export class RemoteSearchPosts implements SearchPosts {
@@ -11,7 +11,7 @@ export class RemoteSearchPosts implements SearchPosts {
     private readonly queryDocument: unknown
   ) {}
 
-  async getAllByText(text: string): Promise<SearchedPost.Model[] | []> {
+  async getAllByText(text: string): Promise<SearchedPostModel.Model[] | []> {
     const response = await this.graphqlClient.query<
       RemoteSearchPostsModel.QueryVariables,
       RemoteSearchPostsModel.QueryResponse
@@ -38,12 +38,14 @@ export class RemoteSearchPosts implements SearchPosts {
     if (!postsData) return null
 
     const posts = this.mapValidPosts(postsData)
-    return posts?.filter((post): post is SearchedPost.Model => !!post) || []
+    return (
+      posts?.filter((post): post is SearchedPostModel.Model => !!post) || []
+    )
   }
 
   private mapValidPosts(
     posts: RemoteSearchPostsModel.PostsData
-  ): (SearchedPost.Model | null)[] {
+  ): (SearchedPostModel.Model | null)[] {
     return posts.map((post) => {
       const postAttr = post.attributes
       const userAttr = postAttr?.user?.data?.attributes

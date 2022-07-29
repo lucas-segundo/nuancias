@@ -1,7 +1,9 @@
 import { faker } from '@faker-js/faker'
-import { SearchedPost } from '../..'
+import { SearchedPostModel } from '../..'
 
-export const makeSearchedPostMock = (text?: string): SearchedPost.Model => ({
+export const makeSearchedPostMock = (
+  text?: string
+): SearchedPostModel.Model => ({
   id: faker.datatype.uuid(),
   title: `${faker.random.word()} ${text}`,
   slug: `${faker.random.word()} ${text}`,

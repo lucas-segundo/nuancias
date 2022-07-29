@@ -1,7 +1,9 @@
-import { SearchedPost } from 'domain/models'
+import { SearchedPostModel } from 'domain/models'
 import { PostItem } from './post-item/post-item'
 
-export const renderPostItems = (posts: SearchedPost.Model[] | undefined) => {
+export const renderPostItems = (
+  posts: SearchedPostModel.Model[] | undefined
+) => {
   if (posts?.length)
     return (
       <div className="overflow-y-auto">
