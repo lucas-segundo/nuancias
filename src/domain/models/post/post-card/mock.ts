@@ -1,6 +1,11 @@
 import { faker } from '@faker-js/faker'
 import { PostCardModel } from 'domain/models'
-import { makeTagModelMock } from 'domain/models/common/tag/mock'
+
+export const makePostCardTagMock = (): PostCardModel.Tag => ({
+  id: faker.datatype.uuid(),
+  slug: faker.datatype.string(),
+  title: faker.random.words(),
+})
 
 export const makePostCardWriterMock = (): PostCardModel.Writer => ({
   name: faker.name.findName(),
@@ -20,7 +25,7 @@ export const makePostCardMock = (): PostCardModel.Model => ({
   image: {
     src: faker.image.city(),
   },
-  tags: [makeTagModelMock(), makeTagModelMock()],
+  tags: [makePostCardTagMock(), makePostCardTagMock()],
 })
 
 export const makePostCardsMock = (): PostCardModel.Model[] => [

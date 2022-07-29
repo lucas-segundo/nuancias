@@ -1,6 +1,11 @@
 import { faker } from '@faker-js/faker'
 import { PostPageModel } from 'domain/models'
-import { makeTagModelMock } from 'domain/models/common/tag/mock'
+
+export const makePostPageTagMock = (): PostPageModel.Tag => ({
+  id: faker.datatype.uuid(),
+  slug: faker.datatype.string(),
+  title: faker.random.words(),
+})
 
 export const makePostPageMock = (): PostPageModel.Model => ({
   id: faker.datatype.uuid(),
@@ -11,7 +16,7 @@ export const makePostPageMock = (): PostPageModel.Model => ({
   },
   content: '<h1>hello</h1>',
   publishedAt: faker.datatype.datetime().toDateString(),
-  tags: [makeTagModelMock(), makeTagModelMock()],
+  tags: [makePostPageTagMock(), makePostPageTagMock()],
   writer: {
     name: faker.name.findName(),
     username: faker.internet.userName(),
