@@ -1,9 +1,11 @@
 import { ImageModel } from '../image'
+import { PostModel } from '../post'
 
-export type UserModel = {
+export type UserModel<Avatar = ImageModel, Posts = PostModel[]> = {
   id: string
   name: string
   bio: string
   username: string
-  avatar: ImageModel
+  avatar: Avatar
+  posts: Posts
 }
