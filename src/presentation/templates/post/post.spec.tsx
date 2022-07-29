@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { makeUserCommonMock } from 'domain/models/common/user/mock'
 import { makePostPageMock } from 'domain/models/post/post-page/mock'
+import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
 import { SearchPosts } from 'domain/use-cases'
 import { Post } from '..'
 
@@ -13,7 +13,7 @@ describe('<Post />', () => {
     render(
       <Post
         searchPosts={searchPostsMocked}
-        userData={makeUserCommonMock()}
+        userData={makeWriterCardMock()}
         postData={makePostPageMock()}
       />
     )

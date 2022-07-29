@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import { makeUserCommonMock } from 'domain/models/common/user/mock'
+import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
 //import { makeUserLink } from 'presentation/routers/helpers'
 
 import { UserCard } from './user-card'
 
-const makeSut = (userData = makeUserCommonMock()) => {
+const makeSut = (userData = makeWriterCardMock()) => {
   render(<UserCard userData={userData} />)
 }
 
 describe('<UserCard />', () => {
   it('should render with props', () => {
-    const userData = makeUserCommonMock()
+    const userData = makeWriterCardMock()
     makeSut(userData)
 
     // expect(screen.getByRole('link')).toHaveAttribute(

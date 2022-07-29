@@ -1,10 +1,10 @@
-import { UserModel } from 'domain/models'
+import { WriterCardModel } from 'domain/models'
 import Image from 'next/image'
 // import Link from 'next/link'
 // import { makeUserLink } from 'presentation/routers/helpers'
 
 export type UserCardProps = {
-  userData: Pick<UserModel, 'username' | 'name' | 'bio' | 'avatar'>
+  userData: WriterCardModel.Model
 }
 
 export const UserCard = ({ userData }: UserCardProps) => {

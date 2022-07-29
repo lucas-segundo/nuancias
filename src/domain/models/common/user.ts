@@ -1,5 +1,5 @@
-import { ImageModel } from '../image'
-import { PostModel } from '../post'
+import { ImageModel } from './image'
+import { PostModel } from './post'
 
 export type UserModel<Avatar = ImageModel, Posts = PostModel[]> = {
   id: string

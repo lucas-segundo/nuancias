@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
-import { makeUserCommonMock } from 'domain/models/common/user/mock'
 import { makePostPageMock } from 'domain/models/post/post-page/mock'
+import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
 import { Post, PostProps } from './post'
 
 export default {
@@ -11,6 +11,6 @@ export default {
 export const Default: Story<PostProps> = (args) => <Post {...args} />
 
 Default.args = {
-  userData: makeUserCommonMock(),
+  userData: makeWriterCardMock(),
   postData: makePostPageMock(),
 }
