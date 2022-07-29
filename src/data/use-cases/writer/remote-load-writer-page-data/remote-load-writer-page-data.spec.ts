@@ -15,14 +15,20 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   )
   const fakeAuthToken = faker.datatype.uuid()
 
+  const fakeParams: LoadWriterPageData.Params = {
+    username: faker.internet.userName(),
+    postsLimit: faker.datatype.number(),
+  }
+
   return {
     sut,
     fakeAuthToken,
+    fakeParams,
   }
 }
 
 describe('RemoteLoadWriterPageData', () => {
-  it('should call GraphqlClient with right values', async () => {
+  it('should call client with right values', async () => {
     const fakeQueryDocument = faker.datatype.string()
     const { sut, fakeAuthToken } = makeSut(fakeQueryDocument)
     const params: LoadWriterPageData.Params = {
@@ -45,4 +51,13 @@ describe('RemoteLoadWriterPageData', () => {
 
     expect(graphqlClientMocked.query).toBeCalledWith(graphqlParams)
   })
+
+  // it('should return data if query is success', async () => {
+  //   const { sut, fakeAuthToken, fakeParams } = makeSut()
+
+  //   sut.setAuthToken(fakeAuthToken)
+  //   await sut.get(fakeParams)
+
+  //   graphqlClientMocked.query.mockResolvedValueOnce()
+  // })
 })

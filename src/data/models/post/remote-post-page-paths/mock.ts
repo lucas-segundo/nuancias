@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPagePathsModel } from '..'
+import { RemotePostPagePathsModel } from '../..'
 
 const makePost = () => ({
   id: faker.datatype.uuid(),

@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemoteAuthenticationResponse } from '..'
+import { RemoteAuthenticationResponse } from '../..'
 
 export const makeRemoteAuthenticationResponseMock =
   (): RemoteAuthenticationResponse.Model => ({

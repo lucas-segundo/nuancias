@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPageModel } from '..'
+import { RemotePostPageModel } from '../..'
 
 const makeImage = () => ({
   data: {

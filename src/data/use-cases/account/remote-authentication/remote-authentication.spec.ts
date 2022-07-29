@@ -4,7 +4,7 @@ import { RemoteAuthentication } from './remote-authentication'
 import { HttpClient } from 'data/protocols/http'
 import { makeFakeAccountModel } from 'domain/models'
 import { UnexpectedError, InvalidCredentialsError } from 'domain/errors'
-import { makeRemoteAuthenticationResponseMock } from 'data/models/remote-authentication/mock'
+import { makeRemoteAuthenticationResponseMock } from 'data/models/account/remote-authentication/mock'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 
 const httpClientMocked: jest.Mocked<HttpClient.Client> = {

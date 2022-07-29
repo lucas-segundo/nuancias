@@ -1,6 +1,6 @@
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
 import { makeImageFormats } from 'data/models/common/image-formats/mock'
-import { makeRemoteTagMock } from 'data/models/remote-tag/mock'
+import { makeRemoteTagMock } from 'data/models/tag/remote-tag/mock'
 import { AbstractRemotePost } from './remote-post'
 
 class Sut extends AbstractRemotePost {}

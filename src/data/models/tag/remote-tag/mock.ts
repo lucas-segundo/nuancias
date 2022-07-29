@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemoteTag } from '..'
+import { RemoteTag } from '../..'
 
 export const makeRemoteTagMock = (): RemoteTag.Model => ({
   id: faker.datatype.uuid(),

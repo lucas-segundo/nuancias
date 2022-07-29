@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemoteSearchPostsModel } from '..'
+import { RemoteSearchPostsModel } from '../..'
 
 export const makeSearchedPostMock = (): RemoteSearchPostsModel.PostData => ({
   id: faker.datatype.uuid(),

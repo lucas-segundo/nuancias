@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { makeSearchPostsResponseMock } from 'data/models/remote-search-posts/mock'
+import { makeSearchPostsResponseMock } from 'data/models/post/remote-search-posts/mock'
 import { RemoteSearchPostsModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'

@@ -4,7 +4,7 @@ import {
   RemotePostCardModel,
   RemotePostCardQueryVar,
 } from 'data/models'
-import { makePostCardQueryResponseMock } from 'data/models/remote-post-card/mock'
+import { makePostCardQueryResponseMock } from 'data/models/post/remote-post-card/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'

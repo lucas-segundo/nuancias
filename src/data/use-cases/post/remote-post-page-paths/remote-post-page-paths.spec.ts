@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
 import { RemotePostPagePathsModel } from 'data/models'
-import { makePostPagePathsQueryResponseMock } from 'data/models/remote-post-page-paths/mock'
+import { makePostPagePathsQueryResponseMock } from 'data/models/post/remote-post-page-paths/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'

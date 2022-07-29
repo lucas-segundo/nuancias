@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostCardModel } from '..'
+import { RemotePostCardModel } from '../..'
 
 const makeUserMock = () => ({
   data: {
