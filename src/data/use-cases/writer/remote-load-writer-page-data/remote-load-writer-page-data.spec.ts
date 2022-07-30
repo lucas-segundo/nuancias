@@ -3,6 +3,7 @@ import { RemoteWriterPageData } from 'data/models'
 import { makeRemoteWriterPageDataMock } from 'data/models/writer/remote-writer-page-data/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
+import { UnexpectedError } from 'domain/errors'
 import { LoadWriterPageData } from 'domain/use-cases'
 import { RemoteLoadWriterPageData } from './remote-load-writer-page-data'
 
@@ -72,5 +73,21 @@ describe('RemoteLoadWriterPageData', () => {
     const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
     expect(response).toEqual(fakeModel)
+  })
+
+  it('should throw UnexpectedError if a unknow error happen', async () => {
+    const { sut, fakeAuthToken, fakeParams } = makeSut()
+
+    graphqlClientMocked.query.mockResolvedValueOnce({
+      data: {},
+      statusCode: faker.internet.httpStatusCode({
+        types: ['clientError', 'serverError'],
+      }),
+    })
+
+    sut.setAuthToken(fakeAuthToken)
+    const response = sut.get(fakeParams)
+
+    await expect(response).rejects.toThrow(new UnexpectedError())
   })
 })
