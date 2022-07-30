@@ -5,7 +5,14 @@ import { makePtBRDate } from './helpers'
 import { PostCard } from './post-card'
 
 const makeSut = (postCards = makePostCardsMock()[0]) => {
-  render(<PostCard post={postCards} />)
+  render(
+    <PostCard
+      post={postCards}
+      tags={postCards.tags}
+      postImage={postCards.image}
+      writer={postCards.writer}
+    />
+  )
 }
 
 describe('<PostCard />', () => {
