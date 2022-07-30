@@ -17,5 +17,5 @@ export type Post = Pick<
 
 export type Model = Pick<
   UserModel<Image, Post[]>,
-  'id' | 'name' | 'bio' | 'avatar' | 'posts'
+  'id' | 'username' | 'name' | 'bio' | 'avatar' | 'posts'
 >
