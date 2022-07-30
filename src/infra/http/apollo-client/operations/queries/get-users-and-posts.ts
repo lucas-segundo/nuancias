@@ -3,6 +3,7 @@ import { gql } from '@apollo/client'
 export const GET_USER_AND_POSTS = gql`
   fragment userAttributes on UsersPermissionsUser {
     name
+    username
     biography
     avatar {
       data {

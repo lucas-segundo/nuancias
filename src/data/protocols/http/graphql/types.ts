@@ -1045,6 +1045,7 @@ export type GetPostsSlugAndUsernameQuery = {
 
 export type UserAttributesFragment = {
   name: string
+  username: string
   biography: string
   avatar: { data?: { attributes?: { formats?: any | null } | null } | null }
 }
@@ -1073,6 +1074,7 @@ export type UserAndPostsFragFragment = {
     id?: string | null
     attributes?: {
       name: string
+      username: string
       biography: string
       posts?: {
         data: Array<{
@@ -1113,6 +1115,7 @@ export type GetUserAndPostsQuery = {
       id?: string | null
       attributes?: {
         name: string
+        username: string
         biography: string
         posts?: {
           data: Array<{
