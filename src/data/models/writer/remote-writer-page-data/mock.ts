@@ -14,10 +14,11 @@ const makePostData = (): RemoteWriterPageData.PostData => ({
   attributes: {
     title: faker.random.words(),
     content: '<h1>hello</h1>',
+    slug: faker.datatype.uuid(),
     image: {
       data: {
         attributes: {
-          url: faker.image.abstract(),
+          formats: { medium: { url: faker.image.abstract() } },
         },
       },
     },
@@ -33,10 +34,11 @@ const makeWriterData = (): RemoteWriterPageData.WriterData => ({
   attributes: {
     name: faker.name.findName(),
     biography: faker.random.words(),
+    username: faker.internet.userName(),
     avatar: {
       data: {
         attributes: {
-          url: faker.image.avatar(),
+          formats: { medium: { url: faker.image.abstract() } },
         },
       },
     },

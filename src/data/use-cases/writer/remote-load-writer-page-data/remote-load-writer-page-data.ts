@@ -73,6 +73,7 @@ export class RemoteLoadWriterPageData
     return {
       id: writer.id,
       name: writerAttr.name,
+      username: writerAttr.username,
       bio: writerAttr.biography,
       avatar: {
         src: avatarUrl,
