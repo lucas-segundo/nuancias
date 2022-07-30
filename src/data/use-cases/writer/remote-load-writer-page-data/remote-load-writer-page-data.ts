@@ -2,6 +2,7 @@ import { AbstractRemotePost } from 'data/abstracts'
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
 import { RemoteWriterPageData } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
+import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { WriterPageModel } from 'domain/models'
 import { LoadWriterPageData } from 'domain/use-cases'
@@ -30,11 +31,13 @@ export class RemoteLoadWriterPageData
       },
     })
 
-    const modelData = this.adaptResponseToModel(response.data)
-    if (modelData) {
-      return modelData
-    } else {
-      throw new UnexpectedError()
+    const model = this.adaptResponseToModel(response.data)
+
+    switch (response.statusCode) {
+      case StatusCodeEnum.OK:
+        if (model) return model
+      default:
+        throw new UnexpectedError()
     }
   }
 
