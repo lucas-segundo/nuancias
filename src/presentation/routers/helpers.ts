@@ -2,6 +2,6 @@ export const makePostLink = (username: string, slug: string) => {
   return `/@${username}/${slug}`
 }
 
-export const makeUserLink = (username: string) => {
+export const makeWriterLink = (username: string) => {
   return `/@${username}`
 }
