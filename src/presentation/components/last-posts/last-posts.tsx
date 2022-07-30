@@ -6,7 +6,15 @@ export type LastPostsProps = {
 }
 
 const renderPostCards = (posts: PostCardModel.Model[]) => {
-  return posts.map((post) => <PostCard key={post.id} post={post} />)
+  return posts.map((post) => (
+    <PostCard
+      key={post.id}
+      post={post}
+      postImage={post.image}
+      tags={post.tags}
+      writer={post.writer}
+    />
+  ))
 }
 
 export const LastPosts = ({ posts }: LastPostsProps) => {
