@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { makePostCardsMock } from 'domain/models/post/post-card/mock'
-import { makePostLink } from 'presentation/routers/helpers'
+import { makePostLink, makeWriterLink } from 'presentation/routers/helpers'
 import { makePtBRDate } from './helpers'
 import { PostCard } from './post-card'
 
@@ -33,6 +33,11 @@ describe('<PostCard />', () => {
         'href',
         makePostLink(post.writer.username, post.slug)
       )
+    })
+
+    const linksToWriter = screen.getAllByRole('link-to-writer')
+    linksToWriter.forEach((link) => {
+      expect(link).toHaveAttribute('href', makeWriterLink(post.writer.username))
     })
   })
 })
