@@ -4,7 +4,7 @@ import { RemotePostPageModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { PostPageModel } from 'domain/models'
+import { PostContentModel } from 'domain/models'
 import { LoadPostPageData } from 'domain/use-cases'
 
 export class RemotePostPage
@@ -56,7 +56,7 @@ export class RemotePostPage
 
   private mapValidPost(
     post: RemotePostPageModel.PostData
-  ): PostPageModel.Model | null {
+  ): PostContentModel.Model | null {
     const postAttr = post.attributes
     const tags = this.mapTags(postAttr?.tags?.data)
     const userAttr = postAttr?.user?.data?.attributes

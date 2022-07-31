@@ -1,7 +1,7 @@
 export * as AccountModel from './account/account'
 export * as SearchedPostModel from './post/searched-post/searched-post'
 export * as PostPreviewModel from './post/preview/post-preview'
-export * as PostPageModel from './post/content/post-content'
+export * as PostContentModel from './post/content/post-content'
 export * as PostPagePathModel from './post/content/path/post-page-path'
 export * as WriterPreviewModel from './writer/preview/writer-preview'
 export * as WriterDetailsModel from './writer/details/writer-details'
