@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker'
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 
-export const makePostCardTagMock = (): PostCardModel.Tag => ({
+export const makePostCardTagMock = (): PostPreviewModel.Tag => ({
   id: faker.datatype.uuid(),
   slug: faker.datatype.string(),
   title: faker.random.words(),
 })
 
-export const makePostCardWriterMock = (): PostCardModel.Writer => ({
+export const makePostCardWriterMock = (): PostPreviewModel.Writer => ({
   name: faker.name.findName(),
   username: faker.internet.userName(),
   avatar: {
@@ -15,7 +15,7 @@ export const makePostCardWriterMock = (): PostCardModel.Writer => ({
   },
 })
 
-export const makePostCardMock = (): PostCardModel.Model => ({
+export const makePostPreviewMock = (): PostPreviewModel.Model => ({
   id: faker.datatype.uuid(),
   title: faker.random.words(15),
   preview: faker.random.words(),
@@ -27,18 +27,3 @@ export const makePostCardMock = (): PostCardModel.Model => ({
   },
   tags: [makePostCardTagMock(), makePostCardTagMock()],
 })
-
-export const makePostCardsMock = (): PostCardModel.Model[] => [
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-  makePostCardMock(),
-]

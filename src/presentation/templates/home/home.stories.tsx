@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makePostCardsMock } from 'domain/models/post/post-card/mock'
+import { makePostPreviewMock } from 'domain/models/post/preview/mock'
 import { Home, HomeProps } from './home'
 
 export default {
@@ -9,6 +9,15 @@ export default {
 
 export const Default: Story<HomeProps> = (args) => <Home {...args} />
 
+const posts = [
+  makePostPreviewMock(),
+  makePostPreviewMock(),
+  makePostPreviewMock(),
+  makePostPreviewMock(),
+  makePostPreviewMock(),
+  makePostPreviewMock(),
+]
+
 Default.args = {
-  posts: makePostCardsMock(),
+  posts,
 }

@@ -1,9 +1,11 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/post-card/mock'
+import { makePostPreviewMock } from 'domain/models/post/preview/mock'
 import { LastPosts } from './last-posts'
 
-const makeSut = (postCards = makePostCardsMock()) => {
-  render(<LastPosts posts={postCards} />)
+const makeSut = () => {
+  const fakePosts = [makePostPreviewMock(), makePostPreviewMock()]
+
+  render(<LastPosts posts={fakePosts} />)
 }
 
 describe('<LastPosts />', () => {

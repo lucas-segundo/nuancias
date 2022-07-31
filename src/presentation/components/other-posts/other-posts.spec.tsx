@@ -1,15 +1,17 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/post-card/mock'
+import { makePostPreviewMock } from 'domain/models/post/preview/mock'
 
 import { OtherPosts } from './other-posts'
 
-const makeSut = (posts = makePostCardsMock()) => {
+const makeFakePosts = () => [makePostPreviewMock(), makePostPreviewMock()]
+
+const makeSut = (posts = makeFakePosts()) => {
   render(<OtherPosts posts={posts} />)
 }
 
 describe('<OtherPosts />', () => {
   it('should render the heading', () => {
-    const posts = makePostCardsMock()
+    const posts = makeFakePosts()
     makeSut()
 
     const articles = screen.getAllByRole('article')

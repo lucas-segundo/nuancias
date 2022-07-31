@@ -9,7 +9,7 @@ import {
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 import { LoadPostCard } from 'domain/use-cases'
 
 export class RemotePostCard
@@ -26,7 +26,7 @@ export class RemotePostCard
   async getAll({
     limit,
     sort,
-  }: PostCardVariables): Promise<PostCardModel.Model[] | []> {
+  }: PostCardVariables): Promise<PostPreviewModel.Model[] | []> {
     const sortBy = sort && this.makeSortBy(sort)
 
     const response = await this.graphqlClient.query<
@@ -64,12 +64,12 @@ export class RemotePostCard
 
     const posts = this.mapValidPosts(postsData)
 
-    return posts?.filter((post): post is PostCardModel.Model => !!post) || []
+    return posts?.filter((post): post is PostPreviewModel.Model => !!post) || []
   }
 
   private mapValidPosts(
     posts: RemotePostCardModel.PostsData
-  ): (PostCardModel.Model | null)[] {
+  ): (PostPreviewModel.Model | null)[] {
     return posts.map((post) => {
       const postAttr = post.attributes
       const tags = this.mapTags(postAttr?.tags?.data)

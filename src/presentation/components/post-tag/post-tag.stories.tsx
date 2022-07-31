@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makePostCardTagMock } from 'domain/models/post/post-card/mock'
+import { makePostCardTagMock } from 'domain/models/post/preview/mock'
 import { PostTag, PostTagProps } from './post-tag'
 
 export default {

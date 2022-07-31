@@ -1,10 +1,10 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/post-card/mock'
+import { makePostPreviewMock } from 'domain/models/post/preview/mock'
 import { makePostLink, makeWriterLink } from 'presentation/routers/helpers'
 import { makePtBRDate } from './helpers'
 import { PostCard } from './post-card'
 
-const makeSut = (postCards = makePostCardsMock()[0]) => {
+const makeSut = (postCards = makePostPreviewMock()) => {
   render(
     <PostCard
       post={postCards}
@@ -17,7 +17,7 @@ const makeSut = (postCards = makePostCardsMock()[0]) => {
 
 describe('<PostCard />', () => {
   it('should load post content to component', async () => {
-    const post = makePostCardsMock()[0]
+    const post = makePostPreviewMock()
     makeSut(post)
 
     expect(screen.getByText(post.writer.name)).toBeInTheDocument()

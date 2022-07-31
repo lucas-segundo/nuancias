@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import { makePostCardsMock } from 'domain/models/post/post-card/mock'
+import { makePostPreviewMock } from 'domain/models/post/preview/mock'
 import { makePtBRDate } from '../post-card/helpers'
 
 import { PostListItem } from './post-list-item'
 
-const makeSut = (fakePost = makePostCardsMock()[0]) => {
+const makeSut = (fakePost = makePostPreviewMock()) => {
   render(<PostListItem post={fakePost} />)
 }
 
 describe('<PostListItem />', () => {
   it('should render with props', () => {
-    const fakePost = makePostCardsMock()[0]
+    const fakePost = makePostPreviewMock()
     makeSut(fakePost)
 
     expect(screen.getByAltText(/Imagem do usuário/i)).toBeInTheDocument()

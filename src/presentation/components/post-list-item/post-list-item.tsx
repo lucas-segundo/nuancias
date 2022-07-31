@@ -1,10 +1,10 @@
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 import Image from 'next/image'
 import { makePtBRDate } from '../post-card/helpers'
 import { renderPostTagsToListItems } from '../post-tag/helpers'
 
 export type PostListItemProps = {
-  post: PostCardModel.Model
+  post: PostPreviewModel.Model
 }
 
 export const PostListItem = ({ post }: PostListItemProps) => {

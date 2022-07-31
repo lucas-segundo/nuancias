@@ -1,5 +1,5 @@
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 
 export interface LoadPostCard<Filter> {
-  getAll(filter: Filter): Promise<PostCardModel.Model[] | []>
+  getAll(filter: Filter): Promise<PostPreviewModel.Model[] | []>
 }

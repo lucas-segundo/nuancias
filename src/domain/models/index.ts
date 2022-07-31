@@ -1,6 +1,6 @@
 export * as AccountModel from './account/account'
 export * as SearchedPostModel from './post/searched-post/searched-post'
-export * as PostCardModel from './post/post-card/post-card'
+export * as PostPreviewModel from './post/preview/post-preview'
 export * as PostPageModel from './post/post-page/post-page'
 export * as PostPagePathModel from './post/post-page/path/post-page-path'
 export * as WriterCardModel from './writer/writer-card/writer-card'

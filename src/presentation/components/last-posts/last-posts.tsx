@@ -1,11 +1,11 @@
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 import { PostCard } from '../post-card/post-card'
 
 export type LastPostsProps = {
-  posts?: PostCardModel.Model[]
+  posts?: PostPreviewModel.Model[]
 }
 
-const renderPostCards = (posts: PostCardModel.Model[]) => {
+const renderPostCards = (posts: PostPreviewModel.Model[]) => {
   return posts.map((post) => (
     <PostCard
       key={post.id}

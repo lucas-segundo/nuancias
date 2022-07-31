@@ -1,11 +1,11 @@
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 import { PostListItem } from '../post-list-item/post-list-item'
 
 export type OtherPostsProps = {
-  posts?: PostCardModel.Model[]
+  posts?: PostPreviewModel.Model[]
 }
 
-const renderPostItems = (posts: PostCardModel.Model[]) =>
+const renderPostItems = (posts: PostPreviewModel.Model[]) =>
   posts.map((post) => <PostListItem key={post.id} post={post} />)
 
 export const OtherPosts = ({ posts }: OtherPostsProps) => {

@@ -1,4 +1,4 @@
-import { PostCardModel } from 'domain/models'
+import { PostPreviewModel } from 'domain/models'
 import Image from 'next/image'
 import Link from 'next/link'
 import { makePostLink, makeWriterLink } from 'presentation/routers/helpers'
@@ -6,10 +6,10 @@ import { renderPostTagsToListItems } from '../post-tag/helpers'
 import { makePtBRDate } from './helpers'
 
 export type PostCardProps = {
-  post: PostCardModel.Post
-  tags: PostCardModel.Tag[]
-  writer: PostCardModel.Writer
-  postImage: PostCardModel.Image
+  post: PostPreviewModel.Post
+  tags: PostPreviewModel.Tag[]
+  writer: PostPreviewModel.Writer
+  postImage: PostPreviewModel.Image
 }
 
 export const PostCard = ({ post, writer, tags, postImage }: PostCardProps) => {
