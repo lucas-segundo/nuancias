@@ -9,6 +9,11 @@ export default {
 
 export const Default: Story<PostCardProps> = (args) => <PostCard {...args} />
 
+const post = makePostCardsMock()[0]
+
 Default.args = {
-  post: makePostCardsMock()[0],
+  post,
+  postImage: post.image,
+  tags: post.tags,
+  writer: post.writer,
 }
