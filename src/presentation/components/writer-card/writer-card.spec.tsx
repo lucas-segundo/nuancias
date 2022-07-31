@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
+import { makeWriterCardMock } from 'domain/models/writer/preview/mock'
 import { makeWriterLink } from 'presentation/routers/helpers'
 
 import { WriterCard } from './writer-card'

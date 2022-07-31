@@ -1,10 +1,10 @@
-import { WriterCardModel } from 'domain/models'
+import { WriterPreviewModel } from 'domain/models'
 import Image from 'next/image'
 import Link from 'next/link'
 import { makeWriterLink } from 'presentation/routers/helpers'
 
 export type WriterCardProps = {
-  writer: WriterCardModel.Model
+  writer: WriterPreviewModel.Model
 }
 
 export const WriterCard = ({ writer }: WriterCardProps) => {

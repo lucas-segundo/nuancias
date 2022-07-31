@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { WriterCardModel } from 'domain/models'
+import { WriterPreviewModel } from 'domain/models'
 
-export const makeWriterCardMock = (): WriterCardModel.Model => ({
+export const makeWriterCardMock = (): WriterPreviewModel.Model => ({
   name: faker.name.findName(),
   bio: faker.random.words(),
   username: faker.internet.userName(),

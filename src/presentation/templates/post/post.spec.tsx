@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { makePostContentMock } from 'domain/models/post/content/mock'
-import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
+import { makeWriterCardMock } from 'domain/models/writer/preview/mock'
 import { SearchPosts } from 'domain/use-cases/post'
 import { Post } from '..'
 

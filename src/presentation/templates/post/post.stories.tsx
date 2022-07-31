@@ -1,6 +1,6 @@
 import { Story, Meta } from '@storybook/react'
 import { makePostContentMock } from 'domain/models/post/content/mock'
-import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
+import { makeWriterCardMock } from 'domain/models/writer/preview/mock'
 import { Post, PostProps } from './post'
 
 export default {
