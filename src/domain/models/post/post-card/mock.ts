@@ -35,4 +35,10 @@ export const makePostCardsMock = (): PostCardModel.Model[] => [
   makePostCardMock(),
   makePostCardMock(),
   makePostCardMock(),
+  makePostCardMock(),
+  makePostCardMock(),
+  makePostCardMock(),
+  makePostCardMock(),
+  makePostCardMock(),
+  makePostCardMock(),
 ]
