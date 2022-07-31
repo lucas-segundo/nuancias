@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { makePostCardsMock } from 'domain/models/post/post-card/mock'
-import { SearchPosts } from 'domain/use-cases'
+import { SearchPosts } from 'domain/use-cases/post'
 import { Home } from '..'
 
 const searchPostsMocked: jest.Mocked<SearchPosts> = {
