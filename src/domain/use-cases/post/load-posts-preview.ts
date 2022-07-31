@@ -1,5 +1,5 @@
 import { PostPreviewModel } from 'domain/models'
 
-export interface LoadPostCard<Filter> {
+export interface LoadPostsPreview<Filter> {
   getAll(filter: Filter): Promise<PostPreviewModel.Model[] | []>
 }

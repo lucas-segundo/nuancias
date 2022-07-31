@@ -10,11 +10,11 @@ import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { PostPreviewModel } from 'domain/models'
-import { LoadPostCard } from 'domain/use-cases'
+import { LoadPostsPreview } from 'domain/use-cases'
 
 export class RemotePostCard
   extends AbstractRemotePost
-  implements LoadPostCard<PostCardVariables>
+  implements LoadPostsPreview<PostCardVariables>
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,
