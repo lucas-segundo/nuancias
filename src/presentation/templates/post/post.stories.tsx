@@ -11,6 +11,6 @@ export default {
 export const Default: Story<PostProps> = (args) => <Post {...args} />
 
 Default.args = {
-  userData: makeWriterCardMock(),
+  writer: makeWriterCardMock(),
   postData: makePostPageMock(),
 }

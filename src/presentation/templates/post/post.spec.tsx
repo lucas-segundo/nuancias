@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { makePostPageMock } from 'domain/models/post/post-page/mock'
 import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
-import { SearchPosts } from 'domain/use-cases'
+import { SearchPosts } from 'domain/use-cases/post'
 import { Post } from '..'
 
 const searchPostsMocked: jest.Mocked<SearchPosts> = {
@@ -13,7 +13,7 @@ describe('<Post />', () => {
     render(
       <Post
         searchPosts={searchPostsMocked}
-        userData={makeWriterCardMock()}
+        writer={makeWriterCardMock()}
         postData={makePostPageMock()}
       />
     )

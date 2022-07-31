@@ -8,7 +8,7 @@ import { LoadingPage } from 'presentation/components'
 import { Post } from 'presentation/templates'
 import { PostProps } from 'presentation/templates/post/post'
 
-type PostPageProps = Pick<PostProps, 'postData' | 'userData'>
+type PostPageProps = Pick<PostProps, 'postData' | 'writer'>
 
 const PostPage = (props: PostPageProps) => {
   const router = useRouter()
@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async ({
   return {
     props: {
       postData: data,
-      userData: data.writer,
+      writer: data.writer,
     },
     revalidate: Number(process.env.STATIC_PAGE_REVALIDATE_IN_SECONDS),
   }

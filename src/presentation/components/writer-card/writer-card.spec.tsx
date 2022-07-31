@@ -2,13 +2,13 @@ import { render, screen } from '@testing-library/react'
 import { makeWriterCardMock } from 'domain/models/writer/writer-card/mock'
 import { makeWriterLink } from 'presentation/routers/helpers'
 
-import { UserCard } from './user-card'
+import { WriterCard } from './writer-card'
 
 const makeSut = (userData = makeWriterCardMock()) => {
-  render(<UserCard userData={userData} />)
+  render(<WriterCard writer={userData} />)
 }
 
-describe('<UserCard />', () => {
+describe('<WriterCard />', () => {
   it('should render with props', () => {
     const userData = makeWriterCardMock()
     makeSut(userData)
