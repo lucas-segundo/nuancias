@@ -1,1 +1,1 @@
-export * as LoadWriterPageData from './load-writer-page-data'
+export * as LoadWriterDetails from './load-writer-details'

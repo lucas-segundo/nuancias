@@ -3,7 +3,7 @@ import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { makeSearchedPostMock } from 'domain/models/post/searched-post/mock'
 
-import { SearchPosts } from 'domain/use-cases'
+import { SearchPosts } from 'domain/use-cases/post'
 import { SearchPostsField } from './search-post-field'
 
 const searchPostsMocked: jest.Mocked<SearchPosts> = {

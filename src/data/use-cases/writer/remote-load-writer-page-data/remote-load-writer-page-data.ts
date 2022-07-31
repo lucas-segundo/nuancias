@@ -5,11 +5,11 @@ import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { WriterDetailsModel } from 'domain/models'
-import { LoadWriterPageData } from 'domain/use-cases'
+import { LoadWriterDetails } from 'domain/use-cases'
 
 export class RemoteLoadWriterPageData
   extends AbstractRemotePost
-  implements LoadWriterPageData.Model
+  implements LoadWriterDetails.Model
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,
@@ -18,7 +18,7 @@ export class RemoteLoadWriterPageData
     super()
   }
 
-  async get(params: LoadWriterPageData.Params) {
+  async get(params: LoadWriterDetails.Params) {
     const response = await this.graphqlClient.query<
       RemoteWriterPageData.QueryVariables,
       RemoteWriterPageData.QueryResponse
