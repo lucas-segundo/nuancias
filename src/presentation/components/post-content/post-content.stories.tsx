@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makePostPageMock } from 'domain/models/post/post-page/mock'
+import { makePostContentMock } from 'domain/models/post/content/mock'
 import { PostContent, PostContentProps } from './post-content'
 
 export default {
@@ -12,5 +12,5 @@ export const Default: Story<PostContentProps> = (args) => (
 )
 
 Default.args = {
-  postData: makePostPageMock(),
+  postData: makePostContentMock(),
 }

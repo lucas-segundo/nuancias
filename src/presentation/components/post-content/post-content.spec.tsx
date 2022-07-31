@@ -1,16 +1,16 @@
 import { render, screen } from '@testing-library/react'
-import { makePostPageMock } from 'domain/models/post/post-page/mock'
+import { makePostContentMock } from 'domain/models/post/content/mock'
 import { makePtBRDate } from '../post-card/helpers'
 
 import { PostContent } from './post-content'
 
-const makeSut = (postData = makePostPageMock()) => {
+const makeSut = (postData = makePostContentMock()) => {
   render(<PostContent postData={postData} />)
 }
 
 describe('<PostContent />', () => {
   it('should render with props', () => {
-    const postData = makePostPageMock()
+    const postData = makePostContentMock()
     makeSut(postData)
 
     expect(screen.getByText(postData.title)).toBeInTheDocument()
@@ -23,7 +23,7 @@ describe('<PostContent />', () => {
   })
 
   it('should render without image', () => {
-    const postData = makePostPageMock()
+    const postData = makePostContentMock()
     postData.image = undefined
     makeSut(postData)
 

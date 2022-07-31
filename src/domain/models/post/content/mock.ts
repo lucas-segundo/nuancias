@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker'
 import { PostPageModel } from 'domain/models'
 
-export const makePostPageTagMock = (): PostPageModel.Tag => ({
+const makePostPageTagMock = (): PostPageModel.Tag => ({
   id: faker.datatype.uuid(),
   slug: faker.datatype.string(),
   title: faker.random.words(),
 })
 
-export const makePostPageMock = (): PostPageModel.Model => ({
+export const makePostContentMock = (): PostPageModel.Model => ({
   id: faker.datatype.uuid(),
   title: faker.random.words(),
   preview: faker.random.words(),
