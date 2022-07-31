@@ -1,5 +1,5 @@
 import { PostContentModel } from 'domain/models'
 
-export interface LoadPostPageData {
+export interface LoadPostContentData {
   getBySlug(slug: string): Promise<PostContentModel.Model | null>
 }

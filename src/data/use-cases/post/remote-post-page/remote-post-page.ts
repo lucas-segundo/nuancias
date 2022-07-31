@@ -5,11 +5,11 @@ import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { PostContentModel } from 'domain/models'
-import { LoadPostPageData } from 'domain/use-cases'
+import { LoadPostContentData } from 'domain/use-cases'
 
 export class RemotePostPage
   extends AbstractRemotePost
-  implements LoadPostPageData
+  implements LoadPostContentData
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,
