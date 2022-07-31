@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
-import { makeWriterPageMock } from 'domain/models/writer/writer-page/mock'
-import { SearchPosts } from 'domain/use-cases'
+import { makeWriterDetailsMock } from 'domain/models/writer/details/mock'
+import { SearchPosts } from 'domain/use-cases/post'
 
 import { WriterPosts } from './writer-posts'
 
@@ -13,7 +13,7 @@ describe('<WriterPosts />', () => {
     render(
       <WriterPosts
         searchPosts={searchPostsMocked}
-        writer={makeWriterPageMock()}
+        writer={makeWriterDetailsMock()}
       />
     )
 

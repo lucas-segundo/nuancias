@@ -1,5 +1,5 @@
 import { Story, Meta } from '@storybook/react'
-import { makeWriterPageMock } from 'domain/models/writer/writer-page/mock'
+import { makeWriterDetailsMock } from 'domain/models/writer/details/mock'
 import { WriterPosts, WriterPostsProps } from './writer-posts'
 
 export default {
@@ -12,5 +12,5 @@ export const Default: Story<WriterPostsProps> = (args) => (
 )
 
 Default.args = {
-  writer: makeWriterPageMock(),
+  writer: makeWriterDetailsMock(),
 }

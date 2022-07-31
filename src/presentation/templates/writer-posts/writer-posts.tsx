@@ -1,14 +1,14 @@
-import { WriterPageModel } from 'domain/models'
+import { WriterDetailsModel } from 'domain/models'
 import { SearchPosts } from 'domain/use-cases/post'
 import { PostCard, WriterCard } from 'presentation/components'
 import { Base } from 'presentation/layouts'
 
 export type WriterPostsProps = {
   searchPosts: SearchPosts
-  writer: WriterPageModel.Model
+  writer: WriterDetailsModel.Model
 }
 
-const renderPostCards = (writer: WriterPageModel.Model) => {
+const renderPostCards = (writer: WriterDetailsModel.Model) => {
   const posts = writer.posts
   return posts.map((post) => (
     <PostCard

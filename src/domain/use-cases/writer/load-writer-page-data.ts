@@ -1,4 +1,4 @@
-import { WriterPageModel } from 'domain/models'
+import { WriterDetailsModel } from 'domain/models'
 
 export type Params = {
   username: string
@@ -6,5 +6,5 @@ export type Params = {
 }
 
 export interface Model {
-  get(params: Params): Promise<WriterPageModel.Model>
+  get(params: Params): Promise<WriterDetailsModel.Model>
 }

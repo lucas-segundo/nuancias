@@ -1,13 +1,13 @@
 import { faker } from '@faker-js/faker'
-import { WriterPageModel } from 'domain/models'
+import { WriterDetailsModel } from 'domain/models'
 
-const makeTag = (): WriterPageModel.Tag => ({
+const makeTag = (): WriterDetailsModel.Tag => ({
   id: faker.datatype.uuid(),
   title: faker.random.words(),
   slug: faker.datatype.uuid(),
 })
 
-const makePost = (): WriterPageModel.Post => ({
+const makePost = (): WriterDetailsModel.Post => ({
   id: faker.datatype.uuid(),
   title: faker.random.words(),
   preview: faker.random.words(),
@@ -19,7 +19,7 @@ const makePost = (): WriterPageModel.Post => ({
   tags: [makeTag(), makeTag()],
 })
 
-export const makeWriterPageMock = (): WriterPageModel.Model => ({
+export const makeWriterDetailsMock = (): WriterDetailsModel.Model => ({
   id: faker.datatype.uuid(),
   bio: faker.random.words(),
   username: faker.internet.userName(),

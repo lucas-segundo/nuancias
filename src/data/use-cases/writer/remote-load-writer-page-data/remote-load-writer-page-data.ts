@@ -4,7 +4,7 @@ import { RemoteWriterPageData } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { WriterPageModel } from 'domain/models'
+import { WriterDetailsModel } from 'domain/models'
 import { LoadWriterPageData } from 'domain/use-cases'
 
 export class RemoteLoadWriterPageData
@@ -43,7 +43,7 @@ export class RemoteLoadWriterPageData
 
   adaptResponseToModel(
     data: RemoteWriterPageData.QueryResponse
-  ): WriterPageModel.Model | null {
+  ): WriterDetailsModel.Model | null {
     const userData = data.usersPermissionsUsers?.data[0]
 
     if (!userData) return null
@@ -55,12 +55,12 @@ export class RemoteLoadWriterPageData
 
   private mapValidUser(
     writer: RemoteWriterPageData.WriterData
-  ): WriterPageModel.Model | null {
+  ): WriterDetailsModel.Model | null {
     if (!writer.id) return null
     const writerAttr = writer.attributes
     const posts = writerAttr?.posts?.data.map((post) => this.mapValidPost(post))
     const validPosts = posts?.filter(
-      (post): post is WriterPageModel.Post => !!post
+      (post): post is WriterDetailsModel.Post => !!post
     )
 
     if (!validPosts || !writerAttr) return null
@@ -84,7 +84,7 @@ export class RemoteLoadWriterPageData
 
   private mapValidPost(
     post: RemoteWriterPageData.PostData
-  ): WriterPageModel.Post | null {
+  ): WriterDetailsModel.Post | null {
     const postAttr = post.attributes
     const tags = this.mapTags(postAttr?.tags?.data)
 

@@ -1,5 +1,5 @@
 import { UnexpectedError } from 'domain/errors'
-import { WriterPageModel } from 'domain/models'
+import { WriterDetailsModel } from 'domain/models'
 import { makeLoadWriterPage, makeSeachPost } from 'main/factories/use-cases'
 import { LoadingPage } from 'presentation/components'
 
@@ -8,7 +8,7 @@ import { WriterPosts } from 'presentation/templates'
 import { useRouter } from 'next/router'
 import { makeLoadPostPaths } from 'main/factories/use-cases/load-post-page-paths/load-post-page-paths-factory'
 
-const WriterPage = (writer: WriterPageModel.Model) => {
+const WriterPage = (writer: WriterDetailsModel.Model) => {
   const router = useRouter()
 
   if (router.isFallback) return <LoadingPage />
@@ -41,7 +41,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<WriterPageModel.Model> = async ({
+export const getStaticProps: GetStaticProps<WriterDetailsModel.Model> = async ({
   params,
 }) => {
   const loadWriterPage = makeLoadWriterPage()
