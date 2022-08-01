@@ -7,7 +7,7 @@ import { UnexpectedError } from 'domain/errors'
 import { PostContentModel } from 'domain/models'
 import { LoadPostContentData } from 'domain/use-cases'
 
-export class RemotePostPage
+export class RemotePostContent
   extends AbstractRemotePost
   implements LoadPostContentData
 {

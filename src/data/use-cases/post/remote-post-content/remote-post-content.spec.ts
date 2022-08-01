@@ -4,14 +4,14 @@ import { makePostPageQueryResponseMock } from 'data/models/post/remote-post-page
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { RemotePostPage } from './remote-post-page'
+import { RemotePostContent } from './remote-post-content'
 
 const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
   query: jest.fn(),
 }
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
-  const sut = new RemotePostPage(graphqlClientMocked, fakeQueryDocument)
+  const sut = new RemotePostContent(graphqlClientMocked, fakeQueryDocument)
   const fakeSlug = faker.datatype.uuid()
   const fakeAuthToken = faker.datatype.uuid()
   const fakeVariables: RemotePostPageModel.QueryVariables = {
@@ -32,7 +32,7 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   }
 }
 
-describe('RemotePostPage', () => {
+describe('RemotePostContent', () => {
   it('should call GraphqlClient correctly', async () => {
     const fakeQueryDocument = faker.datatype.string()
     const { sut, fakeAuthToken, fakeSlug, fakeVariables, fakeResponse } =
