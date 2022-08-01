@@ -10,4 +10,4 @@ export * as RemoteWriterPostIDModel from './post/remote-load-writer-post-id'
 
 export * as RemoteTag from './tag/remote-tag/remote-tag'
 
-export * as RemoteWriterPageData from './writer/remote-writer-page-data/remote-writer-page-data'
+export * as RemoteWriterDetails from './writer/remote-load-writer-details/remote-load-writer-details'

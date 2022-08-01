@@ -1,6 +1,6 @@
 import { AbstractRemotePost } from 'data/abstracts'
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
-import { RemoteWriterPageData } from 'data/models'
+import { RemoteWriterDetails } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -20,8 +20,8 @@ export class RemoteLoadWriterDetails
 
   async get(params: LoadWriterDetails.Params) {
     const response = await this.graphqlClient.query<
-      RemoteWriterPageData.QueryVariables,
-      RemoteWriterPageData.QueryResponse
+      RemoteWriterDetails.QueryVariables,
+      RemoteWriterDetails.QueryResponse
     >({
       queryDocument: this.queryDocument,
       variables: { ...params, postsSortBy: 'publishedAt:desc' },
@@ -42,7 +42,7 @@ export class RemoteLoadWriterDetails
   }
 
   adaptResponseToModel(
-    data: RemoteWriterPageData.QueryResponse
+    data: RemoteWriterDetails.QueryResponse
   ): WriterDetailsModel.Model | null {
     const userData = data.usersPermissionsUsers?.data[0]
 
@@ -54,7 +54,7 @@ export class RemoteLoadWriterDetails
   }
 
   private mapValidUser(
-    writer: RemoteWriterPageData.WriterData
+    writer: RemoteWriterDetails.WriterData
   ): WriterDetailsModel.Model | null {
     if (!writer.id) return null
     const writerAttr = writer.attributes
@@ -83,7 +83,7 @@ export class RemoteLoadWriterDetails
   }
 
   private mapValidPost(
-    post: RemoteWriterPageData.PostData
+    post: RemoteWriterDetails.PostData
   ): WriterDetailsModel.Post | null {
     const postAttr = post.attributes
     const tags = this.mapTags(postAttr?.tags?.data)

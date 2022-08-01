@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { RemoteWriterPageData } from 'data/models'
-import { makeRemoteWriterPageDataMock } from 'data/models/writer/remote-writer-page-data/mock'
+import { RemoteWriterDetails } from 'data/models'
+import { makeRemoteWriterPageDataMock } from 'data/models/writer/remote-load-writer-details/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -23,7 +23,7 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
     postsLimit: faker.datatype.number(),
   }
 
-  const fakeResponse: HttpResponse<RemoteWriterPageData.QueryResponse> = {
+  const fakeResponse: HttpResponse<RemoteWriterDetails.QueryResponse> = {
     data: makeRemoteWriterPageDataMock(),
     statusCode: StatusCodeEnum.OK,
   }
@@ -50,7 +50,7 @@ describe('RemoteLoadWriterDetails', () => {
     sut.setAuthToken(fakeAuthToken)
     await sut.get(params)
 
-    const graphqlParams: GraphqlClient.Params<RemoteWriterPageData.QueryVariables> =
+    const graphqlParams: GraphqlClient.Params<RemoteWriterDetails.QueryVariables> =
       {
         queryDocument: fakeQueryDocument,
         variables: { ...params, postsSortBy: 'publishedAt:desc' },

@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
-import { RemoteWriterPageData } from 'data/models'
+import { RemoteWriterDetails } from 'data/models'
 
-const makeTagData = (): RemoteWriterPageData.TagData => ({
+const makeTagData = (): RemoteWriterDetails.TagData => ({
   id: faker.datatype.uuid(),
   attributes: {
     title: faker.random.words(),
@@ -9,7 +9,7 @@ const makeTagData = (): RemoteWriterPageData.TagData => ({
   },
 })
 
-const makePostData = (): RemoteWriterPageData.PostData => ({
+const makePostData = (): RemoteWriterDetails.PostData => ({
   id: faker.datatype.uuid(),
   attributes: {
     title: faker.random.words(),
@@ -29,7 +29,7 @@ const makePostData = (): RemoteWriterPageData.PostData => ({
   },
 })
 
-const makeWriterData = (): RemoteWriterPageData.WriterData => ({
+const makeWriterData = (): RemoteWriterDetails.WriterData => ({
   id: faker.datatype.uuid(),
   attributes: {
     name: faker.name.findName(),
@@ -49,7 +49,7 @@ const makeWriterData = (): RemoteWriterPageData.WriterData => ({
 })
 
 export const makeRemoteWriterPageDataMock =
-  (): RemoteWriterPageData.QueryResponse => ({
+  (): RemoteWriterDetails.QueryResponse => ({
     usersPermissionsUsers: {
       data: [makeWriterData(), makeWriterData()],
     },
