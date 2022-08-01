@@ -12,7 +12,7 @@ import { UnexpectedError } from 'domain/errors'
 import { PostPreviewModel } from 'domain/models'
 import { LoadPostsPreview } from 'domain/use-cases'
 
-export class RemotePostCard
+export class RemotePostPreview
   extends AbstractRemotePost
   implements LoadPostsPreview<PostCardVariables>
 {

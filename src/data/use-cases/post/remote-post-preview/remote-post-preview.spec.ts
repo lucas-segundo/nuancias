@@ -8,14 +8,14 @@ import { makePostCardQueryResponseMock } from 'data/models/post/remote-post-card
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { RemotePostCard } from './remote-post-card'
+import { RemotePostPreview } from './remote-post-preview'
 
 const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
   query: jest.fn(),
 }
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
-  const sut = new RemotePostCard(graphqlClientMocked, fakeQueryDocument)
+  const sut = new RemotePostPreview(graphqlClientMocked, fakeQueryDocument)
   const fakeResponse: HttpResponse<RemotePostCardModel.QueryResponse> = {
     data: makePostCardQueryResponseMock(),
     statusCode: StatusCodeEnum.OK,
@@ -31,7 +31,7 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   }
 }
 
-describe('RemotePostCard', () => {
+describe('RemotePostPreview', () => {
   it('should call GraphqlClient with right values', async () => {
     const fakeQueryDocument = faker.datatype.string()
     const { sut, fakeResponse, fakeFilter } = makeSut(fakeQueryDocument)
