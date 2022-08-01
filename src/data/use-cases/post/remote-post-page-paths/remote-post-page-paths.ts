@@ -3,7 +3,7 @@ import { RemotePostPagePathsModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { PostPagePathModel } from 'domain/models'
+import { PathWriterPostModel } from 'domain/models'
 import { LoadPostPagePaths } from 'domain/use-cases'
 
 type Filter = {
@@ -21,7 +21,7 @@ export class RemotePostPagePaths
     super()
   }
 
-  async getAll({ limit }: Filter): Promise<PostPagePathModel.Model[] | []> {
+  async getAll({ limit }: Filter): Promise<PathWriterPostModel.Model[] | []> {
     const response = await this.graphqlClient.query<
       RemotePostPagePathsModel.QueryVariables,
       RemotePostPagePathsModel.QueryResponse
@@ -53,13 +53,13 @@ export class RemotePostPagePaths
     const posts = this.mapValidPosts(postsData)
 
     return (
-      posts?.filter((post): post is PostPagePathModel.Model => !!post) || []
+      posts?.filter((post): post is PathWriterPostModel.Model => !!post) || []
     )
   }
 
   private mapValidPosts(
     posts: RemotePostPagePathsModel.PostsData
-  ): (PostPagePathModel.Model | null)[] {
+  ): (PathWriterPostModel.Model | null)[] {
     return posts.map((post) => {
       const userData = post.attributes?.user?.data
       if (
