@@ -7,7 +7,7 @@ import { UnexpectedError } from 'domain/errors'
 import { WriterDetailsModel } from 'domain/models'
 import { LoadWriterDetails } from 'domain/use-cases'
 
-export class RemoteLoadWriterPageData
+export class RemoteLoadWriterDetails
   extends AbstractRemotePost
   implements LoadWriterDetails.Model
 {

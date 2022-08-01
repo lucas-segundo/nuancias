@@ -5,14 +5,14 @@ import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { LoadWriterDetails } from 'domain/use-cases'
-import { RemoteLoadWriterPageData } from './remote-load-writer-page-data'
+import { RemoteLoadWriterDetails } from './remote-load-writer-details'
 
 const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
   query: jest.fn(),
 }
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
-  const sut = new RemoteLoadWriterPageData(
+  const sut = new RemoteLoadWriterDetails(
     graphqlClientMocked,
     fakeQueryDocument
   )
@@ -36,7 +36,7 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   }
 }
 
-describe('RemoteLoadWriterPageData', () => {
+describe('RemoteLoadWriterDetails', () => {
   it('should call client with right values', async () => {
     const fakeQueryDocument = faker.datatype.string()
     const { sut, fakeAuthToken, fakeResponse } = makeSut(fakeQueryDocument)
