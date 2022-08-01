@@ -54,55 +54,58 @@ export class RemotePostPreview
   }
 
   adaptResponseToModel(data: RemotePostPreviewModel.QueryResponse) {
-    const postsData = data.posts?.data
-    if (!postsData) return []
+    const posts = data.posts?.data.reduce<PostPreviewModel.Model[] | []>(
+      (validPosts, post) => {
+        const result = this.mapValidPost(post)
+        result && validPosts.push()
 
-    const posts = this.mapValidPosts(postsData)
+        return validPosts
+      },
+      []
+    )
 
-    return posts?.filter((post): post is PostPreviewModel.Model => !!post) || []
+    return posts || []
   }
 
-  private mapValidPosts(
-    posts: RemotePostPreviewModel.PostsData
-  ): (PostPreviewModel.Model | null)[] {
-    return posts.map((post) => {
-      const postAttr = post.attributes
-      const tags = this.mapTags(postAttr?.tags?.data)
-      const userAttr = postAttr?.user?.data?.attributes
+  private mapValidPost(
+    post: RemotePostPreviewModel.PostData
+  ): PostPreviewModel.Model | null {
+    const postAttr = post.attributes
+    const tags = this.mapTags(postAttr?.tags?.data)
+    const userAttr = postAttr?.user?.data?.attributes
 
-      if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
+    if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
 
-      const postUrl = this.getImageFormat(
-        postAttr.image.data?.attributes?.formats,
-        IMAGE_PLACEHOLDER.POST
-      )
-      const avatarUrl = this.getImageFormat(
-        userAttr.avatar.data?.attributes?.formats,
-        IMAGE_PLACEHOLDER.AVATAR
-      )
+    const postUrl = this.getImageFormat(
+      postAttr.image.data?.attributes?.formats,
+      IMAGE_PLACEHOLDER.POST
+    )
+    const avatarUrl = this.getImageFormat(
+      userAttr.avatar.data?.attributes?.formats,
+      IMAGE_PLACEHOLDER.AVATAR
+    )
 
-      const preview = this.makePreview(postAttr.content)
+    const preview = this.makePreview(postAttr.content)
 
-      const { title, slug, publishedAt } = postAttr
-      const { name, username } = userAttr
-      return {
-        id: post.id,
-        title,
-        preview,
-        slug,
-        publishedAt,
-        image: {
-          src: postUrl,
+    const { title, slug, publishedAt } = postAttr
+    const { name, username } = userAttr
+    return {
+      id: post.id,
+      title,
+      preview,
+      slug,
+      publishedAt,
+      image: {
+        src: postUrl,
+      },
+      writer: {
+        name,
+        username,
+        avatar: {
+          src: avatarUrl,
         },
-        writer: {
-          name,
-          username,
-          avatar: {
-            src: avatarUrl,
-          },
-        },
-        tags,
-      }
-    })
+      },
+      tags,
+    }
   }
 }

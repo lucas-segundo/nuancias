@@ -67,7 +67,7 @@ describe('RemotePostPreview', () => {
     expect(response).toEqual(fakeModel)
   })
 
-  it('should returns empty array if dont have PostCards', async () => {
+  it('should returns empty array if dont have data', async () => {
     const { sut, fakeFilter } = makeSut()
 
     const fakeResponse: HttpResponse = {
