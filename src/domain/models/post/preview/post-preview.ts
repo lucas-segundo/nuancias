@@ -2,10 +2,12 @@ import { ImageModel, TagModel, PostModel, UserModel } from '../../common'
 
 export type Post = Pick<
   PostModel,
-  'id' | 'title' | 'slug' | 'preview' | 'publishedAt'
+  'id' | 'title' | 'preview' | 'slug' | 'publishedAt'
 >
-export type Writer = Pick<UserModel, 'avatar' | 'name' | 'username'>
-export type Tag = Pick<TagModel, 'id' | 'slug' | 'title'>
+export type Writer = Pick<UserModel, 'name' | 'username' | 'avatar'>
+
+export type Tag = Pick<TagModel, 'id' | 'title' | 'slug'>
+
 export type Image = Pick<ImageModel, 'src'>
 
 export type Model = Post & {
