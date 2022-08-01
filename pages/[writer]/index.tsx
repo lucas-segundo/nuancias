@@ -6,7 +6,7 @@ import { LoadingPage } from 'presentation/components'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { WriterPosts } from 'presentation/templates'
 import { useRouter } from 'next/router'
-import { makeLoadPostsPath } from 'main/factories/use-cases/load-posts-path/load-posts-path-factory'
+import { makeLoadWriterPostID } from 'main/factories/use-cases/load-writer-post-id/load-writer-post-id'
 
 const WriterPage = (writer: WriterDetailsModel.Model) => {
   const router = useRouter()
@@ -23,7 +23,7 @@ type Params = {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const loadPagePaths = makeLoadPostsPath()
+  const loadPagePaths = makeLoadWriterPostID()
   const authToken = process.env.API_JWT_TOKEN || ''
 
   loadPagePaths.setAuthToken(authToken)

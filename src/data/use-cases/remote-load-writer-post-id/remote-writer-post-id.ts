@@ -3,16 +3,16 @@ import { RemotePostPagePathsModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { PathWriterPostModel } from 'domain/models'
-import { LoadPathWriterPost } from 'domain/use-cases'
+import { WriterPostIDModel } from 'domain/models'
+import { LoadWriterPostID } from 'domain/use-cases'
 
 type Filter = {
   limit: number
 }
 
-export class RemotePostsPath
+export class RemoteWriterPostID
   extends AbstractAuthToken
-  implements LoadPathWriterPost<Filter>
+  implements LoadWriterPostID<Filter>
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,
@@ -21,7 +21,7 @@ export class RemotePostsPath
     super()
   }
 
-  async getAll({ limit }: Filter): Promise<PathWriterPostModel.Model[] | []> {
+  async getAll({ limit }: Filter): Promise<WriterPostIDModel.Model[] | []> {
     const response = await this.graphqlClient.query<
       RemotePostPagePathsModel.QueryVariables,
       RemotePostPagePathsModel.QueryResponse
@@ -53,13 +53,13 @@ export class RemotePostsPath
     const posts = this.mapValidPosts(postsData)
 
     return (
-      posts?.filter((post): post is PathWriterPostModel.Model => !!post) || []
+      posts?.filter((post): post is WriterPostIDModel.Model => !!post) || []
     )
   }
 
   private mapValidPosts(
     posts: RemotePostPagePathsModel.PostsData
-  ): (PathWriterPostModel.Model | null)[] {
+  ): (WriterPostIDModel.Model | null)[] {
     return posts.map((post) => {
       const userData = post.attributes?.user?.data
       if (

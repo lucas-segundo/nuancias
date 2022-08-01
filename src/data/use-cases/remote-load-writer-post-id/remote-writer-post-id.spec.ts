@@ -4,14 +4,14 @@ import { makePostPagePathsQueryResponseMock } from 'data/models/post/remote-post
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
-import { RemotePostsPath } from './remote-posts-path'
+import { RemoteWriterPostID } from './remote-writer-post-id'
 
 const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
   query: jest.fn(),
 }
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
-  const sut = new RemotePostsPath(graphqlClientMocked, fakeQueryDocument)
+  const sut = new RemoteWriterPostID(graphqlClientMocked, fakeQueryDocument)
   const fakeAuthToken = faker.datatype.uuid()
 
   const fakeResponse: HttpResponse<RemotePostPagePathsModel.QueryResponse> = {
