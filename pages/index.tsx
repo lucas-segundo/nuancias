@@ -1,4 +1,4 @@
-import { makeSeachPost, makeLoadPostCard } from 'main/factories/use-cases'
+import { makeSeachPost, makeLoadPostPreview } from 'main/factories/use-cases'
 import type { GetStaticProps, NextPage } from 'next'
 import { Home } from 'presentation/templates'
 import { HomeProps } from 'presentation/templates/home/home'
@@ -12,7 +12,7 @@ export default HomePage
 export const getStaticProps: GetStaticProps<
   Pick<HomeProps, 'posts'>
 > = async () => {
-  const loadPostCards = makeLoadPostCard()
+  const loadPostCards = makeLoadPostPreview()
   const authToken = process.env.API_JWT_TOKEN || ''
   loadPostCards.setAuthToken(authToken)
 

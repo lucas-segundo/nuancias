@@ -1,6 +1,6 @@
 import { UnexpectedError } from 'domain/errors'
 import { WriterDetailsModel } from 'domain/models'
-import { makeLoadWriterPage, makeSeachPost } from 'main/factories/use-cases'
+import { makeLoadWriterDetails, makeSeachPost } from 'main/factories/use-cases'
 import { LoadingPage } from 'presentation/components'
 
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -44,7 +44,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps<WriterDetailsModel.Model> = async ({
   params,
 }) => {
-  const loadWriterPage = makeLoadWriterPage()
+  const loadWriterPage = makeLoadWriterDetails()
   const authToken = process.env.API_JWT_TOKEN || ''
 
   loadWriterPage.setAuthToken(authToken)

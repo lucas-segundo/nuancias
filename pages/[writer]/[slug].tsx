@@ -1,7 +1,7 @@
 import { UnexpectedError } from 'domain/errors'
 import { makeSeachPost } from 'main/factories/use-cases'
 import { makeLoadWriterPostID } from 'main/factories/use-cases/load-writer-post-id/load-writer-post-id'
-import { makeLoadPostPage } from 'main/factories/use-cases/load-post-page/load-post-page-factory'
+import { makeLoadPostContent } from 'main/factories/use-cases'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
 import { LoadingPage } from 'presentation/components'
@@ -48,7 +48,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
 export const getStaticProps: GetStaticProps<PostPageProps> = async ({
   params,
 }) => {
-  const loadPostPage = makeLoadPostPage()
+  const loadPostPage = makeLoadPostContent()
   const authToken = process.env.API_JWT_TOKEN || ''
 
   loadPostPage.setAuthToken(authToken)
