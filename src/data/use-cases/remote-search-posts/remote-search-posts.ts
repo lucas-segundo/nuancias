@@ -33,32 +33,34 @@ export class RemoteSearchPosts implements SearchPosts {
     }
   }
 
-  adaptResponseToModel(resData: RemoteSearchPostsModel.QueryResponse) {
-    const postsData = resData.posts?.data
-    if (!postsData) return null
+  adaptResponseToModel(data: RemoteSearchPostsModel.QueryResponse) {
+    const posts = data.posts?.data.reduce<SearchedPostModel.Model[] | []>(
+      (validPosts, post) => {
+        const result = this.mapValidPost(post)
+        result && validPosts.push()
 
-    const posts = this.mapValidPosts(postsData)
-    return (
-      posts?.filter((post): post is SearchedPostModel.Model => !!post) || []
+        return validPosts
+      },
+      []
     )
+
+    return posts || []
   }
 
-  private mapValidPosts(
-    posts: RemoteSearchPostsModel.PostsData
-  ): (SearchedPostModel.Model | null)[] {
-    return posts.map((post) => {
-      const postAttr = post.attributes
-      const userAttr = postAttr?.user?.data?.attributes
-      if (!post.id || !postAttr || !userAttr) return null
+  private mapValidPost(
+    post: RemoteSearchPostsModel.PostData
+  ): SearchedPostModel.Model | null {
+    const postAttr = post.attributes
+    const userAttr = postAttr?.user?.data?.attributes
+    if (!post.id || !postAttr || !userAttr) return null
 
-      return {
-        id: post.id,
-        title: postAttr.title,
-        slug: postAttr.slug,
-        writer: {
-          username: userAttr.username,
-        },
-      }
-    })
+    return {
+      id: post.id,
+      title: postAttr.title,
+      slug: postAttr.slug,
+      writer: {
+        username: userAttr.username,
+      },
+    }
   }
 }
