@@ -71,7 +71,11 @@ describe('<SearchPosts />', () => {
     )
     await userSearchPost()
 
-    expect(await screen.findByText(/ocorreu um erro/i)).toBeInTheDocument()
+    expect(
+      await screen.findByText(/ocorreu um erro/i, undefined, {
+        interval: 600,
+      })
+    ).toBeInTheDocument()
   })
 
   it('should dropdown disappear after erase the input text', async () => {
