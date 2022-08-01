@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker'
 import axios, { AxiosRequestConfig } from 'axios'
 import { StatusCodeEnum } from 'data/protocols/http/common'
-import { makeFakeHttpParams } from 'data/use-cases/account/remote-authentication/mock'
+import { makeFakeHttpParams } from 'data/use-cases/remote-authentication/mock'
 import { AxiosClient } from './axios-client'
 
 jest.mock('axios')
