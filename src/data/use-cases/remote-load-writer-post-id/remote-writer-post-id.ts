@@ -1,5 +1,5 @@
 import { AbstractAuthToken } from 'data/abstracts'
-import { RemotePostPagePathsModel } from 'data/models'
+import { RemoteWriterPostIDModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -23,8 +23,8 @@ export class RemoteWriterPostID
 
   async getAll({ limit }: Filter): Promise<WriterPostIDModel.Model[] | []> {
     const response = await this.graphqlClient.query<
-      RemotePostPagePathsModel.QueryVariables,
-      RemotePostPagePathsModel.QueryResponse
+      RemoteWriterPostIDModel.QueryVariables,
+      RemoteWriterPostIDModel.QueryResponse
     >({
       queryDocument: this.queryDocument,
       variables: {
@@ -46,7 +46,7 @@ export class RemoteWriterPostID
     }
   }
 
-  adaptResponseToModel(data: RemotePostPagePathsModel.QueryResponse) {
+  adaptResponseToModel(data: RemoteWriterPostIDModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
 
@@ -58,7 +58,7 @@ export class RemoteWriterPostID
   }
 
   private mapValidPosts(
-    posts: RemotePostPagePathsModel.PostsData
+    posts: RemoteWriterPostIDModel.PostsData
   ): (WriterPostIDModel.Model | null)[] {
     return posts.map((post) => {
       const userData = post.attributes?.user?.data

@@ -6,7 +6,7 @@ export * as RemoteSearchPostsModel from './post/remote-search-posts'
 
 export * as RemotePostContentModel from './post/remote-post-content/remote-post-content'
 
-export * as RemotePostPagePathsModel from './post/remote-post-page-paths'
+export * as RemoteWriterPostIDModel from './post/remote-load-writer-post-id'
 
 export * as RemoteTag from './tag/remote-tag/remote-tag'
 

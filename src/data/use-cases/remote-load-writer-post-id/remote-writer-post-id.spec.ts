@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPagePathsModel } from 'data/models'
-import { makePostPagePathsQueryResponseMock } from 'data/models/post/remote-post-page-paths/mock'
+import { RemoteWriterPostIDModel } from 'data/models'
+import { makePostPagePathsQueryResponseMock } from 'data/models/post/remote-load-writer-post-id/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -14,12 +14,12 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   const sut = new RemoteWriterPostID(graphqlClientMocked, fakeQueryDocument)
   const fakeAuthToken = faker.datatype.uuid()
 
-  const fakeResponse: HttpResponse<RemotePostPagePathsModel.QueryResponse> = {
+  const fakeResponse: HttpResponse<RemoteWriterPostIDModel.QueryResponse> = {
     data: makePostPagePathsQueryResponseMock(),
     statusCode: StatusCodeEnum.OK,
   }
 
-  const fakeFilter: RemotePostPagePathsModel.QueryVariables = {
+  const fakeFilter: RemoteWriterPostIDModel.QueryVariables = {
     limit: faker.datatype.number(),
   }
 

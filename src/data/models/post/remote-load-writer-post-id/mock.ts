@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPagePathsModel } from '../..'
+import { RemoteWriterPostIDModel } from '../..'
 
 const makePost = () => ({
   id: faker.datatype.uuid(),
@@ -17,7 +17,7 @@ const makePost = () => ({
 })
 
 export const makePostPagePathsQueryResponseMock =
-  (): RemotePostPagePathsModel.QueryResponse => ({
+  (): RemoteWriterPostIDModel.QueryResponse => ({
     posts: {
       data: [makePost(), makePost()],
     },
