@@ -5,3 +5,4 @@ export type QueryVariables = GetPostsSlugAndUsernameQueryVariables
 
 export type QueryResponse = GetPostsSlugAndUsernameQuery
 export type PostsData = NonNullable<QueryResponse['posts']>['data']
+export type PostData = PostsData[0]

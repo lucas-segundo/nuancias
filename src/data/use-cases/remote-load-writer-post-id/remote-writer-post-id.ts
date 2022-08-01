@@ -47,39 +47,35 @@ export class RemoteWriterPostID
   }
 
   adaptResponseToModel(data: RemoteWriterPostIDModel.QueryResponse) {
-    const postsData = data.posts?.data
-    if (!postsData) return []
+    const posts = data.posts?.data.reduce<WriterPostIDModel.Model[] | []>(
+      (validPosts, post) => {
+        const result = this.mapValidPost(post)
+        result && validPosts.push()
 
-    const posts = this.mapValidPosts(postsData)
-
-    return (
-      posts?.filter((post): post is WriterPostIDModel.Model => !!post) || []
+        return validPosts
+      },
+      []
     )
+
+    return posts || []
   }
 
-  private mapValidPosts(
-    posts: RemoteWriterPostIDModel.PostsData
-  ): (WriterPostIDModel.Model | null)[] {
-    return posts.map((post) => {
-      const userData = post.attributes?.user?.data
-      if (
-        !userData?.id ||
-        !userData.attributes ||
-        !post?.id ||
-        !post?.attributes
-      )
-        return null
+  private mapValidPost(
+    post: RemoteWriterPostIDModel.PostData
+  ): WriterPostIDModel.Model | null {
+    const userData = post.attributes?.user?.data
+    if (!userData?.id || !userData.attributes || !post?.id || !post?.attributes)
+      return null
 
-      return {
-        post: {
-          id: post.id,
-          slug: post.attributes.slug,
-        },
-        writer: {
-          id: userData.id,
-          username: userData.attributes.username,
-        },
-      }
-    })
+    return {
+      post: {
+        id: post.id,
+        slug: post.attributes.slug,
+      },
+      writer: {
+        id: userData.id,
+        username: userData.attributes.username,
+      },
+    }
   }
 }
