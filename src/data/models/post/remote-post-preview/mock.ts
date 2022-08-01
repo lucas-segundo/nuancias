@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostCardModel } from '../..'
+import { RemotePostPreviewModel } from '../..'
 
 const makeUserMock = () => ({
   data: {
@@ -68,7 +68,7 @@ const makeTagsMock = () => ({
 })
 
 export const makePostCardQueryResponseMock =
-  (): RemotePostCardModel.QueryResponse => ({
+  (): RemotePostPreviewModel.QueryResponse => ({
     posts: {
       data: [
         {

@@ -1,11 +1,10 @@
 export * as RemoteAuthenticationResponse from './account/remote-authentication/remote-authentication-response'
 
-export * as RemotePostCardModel from './post/remote-post-card/remote-post-card-response'
-export * from './post/remote-post-card/remote-post-card-variables'
+export * as RemotePostPreviewModel from './post/remote-post-preview/remote-post-preview'
 
 export * as RemoteSearchPostsModel from './post/remote-search-posts'
 
-export * as RemotePostPageModel from './post/remote-post-page'
+export * as RemotePostContentModel from './post/remote-post-content/remote-post-content'
 
 export * as RemotePostPagePathsModel from './post/remote-post-page-paths'
 

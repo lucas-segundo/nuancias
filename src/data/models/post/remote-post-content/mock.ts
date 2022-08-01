@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPageModel } from '../..'
+import { RemotePostContentModel } from '../..'
 
 const makeImage = () => ({
   data: {
@@ -10,7 +10,7 @@ const makeImage = () => ({
   },
 })
 
-const makeTag = (): RemotePostPageModel.TagData => ({
+const makeTag = (): RemotePostContentModel.TagData => ({
   id: faker.datatype.uuid(),
   attributes: {
     title: faker.random.word(),
@@ -18,7 +18,7 @@ const makeTag = (): RemotePostPageModel.TagData => ({
   },
 })
 
-const makePost = (): RemotePostPageModel.PostData => ({
+const makePost = (): RemotePostContentModel.PostData => ({
   id: faker.datatype.uuid(),
   attributes: {
     title: faker.random.word(),
@@ -43,7 +43,7 @@ const makePost = (): RemotePostPageModel.PostData => ({
 })
 
 export const makePostPageQueryResponseMock =
-  (): RemotePostPageModel.QueryResponse => ({
+  (): RemotePostContentModel.QueryResponse => ({
     posts: {
       data: [makePost(), makePost()],
     },

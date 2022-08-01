@@ -1,4 +1,9 @@
-import { GetPostBySlugQuery } from 'data/protocols/http/graphql/types'
+import {
+  GetPostBySlugQuery,
+  GetPostBySlugQueryVariables,
+} from 'data/protocols/http/graphql/types'
+
+export type QueryVariables = GetPostBySlugQueryVariables
 
 export type QueryResponse = GetPostBySlugQuery
 export type PostData = NonNullable<GetPostBySlugQuery['posts']>['data'][0]

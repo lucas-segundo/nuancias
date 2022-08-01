@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker'
-import { RemotePostPageModel } from 'data/models'
-import { makePostPageQueryResponseMock } from 'data/models/post/remote-post-page/mock'
+import { RemotePostContentModel } from 'data/models'
+import { makePostPageQueryResponseMock } from 'data/models/post/remote-post-content/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -14,11 +14,11 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   const sut = new RemotePostContent(graphqlClientMocked, fakeQueryDocument)
   const fakeSlug = faker.datatype.uuid()
   const fakeAuthToken = faker.datatype.uuid()
-  const fakeVariables: RemotePostPageModel.QueryVariables = {
+  const fakeVariables: RemotePostContentModel.QueryVariables = {
     slug: fakeSlug,
   }
 
-  const fakeResponse: HttpResponse<RemotePostPageModel.QueryResponse> = {
+  const fakeResponse: HttpResponse<RemotePostContentModel.QueryResponse> = {
     data: makePostPageQueryResponseMock(),
     statusCode: StatusCodeEnum.OK,
   }
@@ -43,7 +43,7 @@ describe('RemotePostContent', () => {
     sut.setAuthToken(fakeAuthToken)
     await sut.getBySlug(fakeSlug)
 
-    const graphqlParams: GraphqlClient.Params<RemotePostPageModel.QueryVariables> =
+    const graphqlParams: GraphqlClient.Params<RemotePostContentModel.QueryVariables> =
       {
         queryDocument: fakeQueryDocument,
         variables: fakeVariables,

@@ -1,10 +1,6 @@
 import { faker } from '@faker-js/faker'
-import {
-  PostCardVariables,
-  RemotePostCardModel,
-  RemotePostCardQueryVar,
-} from 'data/models'
-import { makePostCardQueryResponseMock } from 'data/models/post/remote-post-card/mock'
+import { RemotePostPreviewModel } from 'data/models'
+import { makePostCardQueryResponseMock } from 'data/models/post/remote-post-preview/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -16,11 +12,11 @@ const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   const sut = new RemotePostPreview(graphqlClientMocked, fakeQueryDocument)
-  const fakeResponse: HttpResponse<RemotePostCardModel.QueryResponse> = {
+  const fakeResponse: HttpResponse<RemotePostPreviewModel.QueryResponse> = {
     data: makePostCardQueryResponseMock(),
     statusCode: StatusCodeEnum.OK,
   }
-  const fakeFilter: PostCardVariables = {
+  const fakeFilter: RemotePostPreviewModel.Params = {
     limit: faker.datatype.number(),
   }
 
@@ -43,7 +39,7 @@ describe('RemotePostPreview', () => {
     await sut.getAll(fakeFilter)
 
     const { limit, sort } = fakeFilter
-    const variables: RemotePostCardQueryVar = {
+    const variables: RemotePostPreviewModel.QueryVariables = {
       limit,
       sortBy: sort && sut.makeSortBy(sort),
     }

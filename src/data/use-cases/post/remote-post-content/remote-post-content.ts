@@ -1,6 +1,6 @@
 import { AbstractRemotePost } from 'data/abstracts'
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
-import { RemotePostPageModel } from 'data/models'
+import { RemotePostContentModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -20,8 +20,8 @@ export class RemotePostContent
 
   async getBySlug(slug: string) {
     const response = await this.graphqlClient.query<
-      RemotePostPageModel.QueryVariables,
-      RemotePostPageModel.QueryResponse
+      RemotePostContentModel.QueryVariables,
+      RemotePostContentModel.QueryResponse
     >({
       queryDocument: this.queryDocument,
       variables: {
@@ -44,7 +44,7 @@ export class RemotePostContent
     }
   }
 
-  adaptResponseToModel(data: RemotePostPageModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostContentModel.QueryResponse) {
     const postData = data.posts?.data[0]
 
     if (!postData) return null
@@ -55,7 +55,7 @@ export class RemotePostContent
   }
 
   private mapValidPost(
-    post: RemotePostPageModel.PostData
+    post: RemotePostContentModel.PostData
   ): PostContentModel.Model | null {
     const postAttr = post.attributes
     const tags = this.mapTags(postAttr?.tags?.data)

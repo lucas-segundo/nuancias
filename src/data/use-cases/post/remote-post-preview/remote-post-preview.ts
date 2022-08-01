@@ -1,11 +1,6 @@
 import { AbstractRemotePost } from 'data/abstracts'
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
-import {
-  PostCardSortVar,
-  PostCardVariables,
-  RemotePostCardModel,
-  RemotePostCardQueryVar,
-} from 'data/models'
+import { RemotePostPreviewModel } from 'data/models'
 import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
@@ -14,7 +9,7 @@ import { LoadPostsPreview } from 'domain/use-cases'
 
 export class RemotePostPreview
   extends AbstractRemotePost
-  implements LoadPostsPreview<PostCardVariables>
+  implements LoadPostsPreview<RemotePostPreviewModel.Params>
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,
@@ -26,12 +21,12 @@ export class RemotePostPreview
   async getAll({
     limit,
     sort,
-  }: PostCardVariables): Promise<PostPreviewModel.Model[] | []> {
+  }: RemotePostPreviewModel.Params): Promise<PostPreviewModel.Model[] | []> {
     const sortBy = sort && this.makeSortBy(sort)
 
     const response = await this.graphqlClient.query<
-      RemotePostCardQueryVar,
-      RemotePostCardModel.QueryResponse
+      RemotePostPreviewModel.QueryVariables,
+      RemotePostPreviewModel.QueryResponse
     >({
       queryDocument: this.queryDocument,
       variables: {
@@ -54,11 +49,11 @@ export class RemotePostPreview
     }
   }
 
-  makeSortBy(sort: PostCardSortVar) {
+  makeSortBy(sort: RemotePostPreviewModel.SortBy) {
     return `${sort.by}:${sort.order}`
   }
 
-  adaptResponseToModel(data: RemotePostCardModel.QueryResponse) {
+  adaptResponseToModel(data: RemotePostPreviewModel.QueryResponse) {
     const postsData = data.posts?.data
     if (!postsData) return []
 
@@ -68,7 +63,7 @@ export class RemotePostPreview
   }
 
   private mapValidPosts(
-    posts: RemotePostCardModel.PostsData
+    posts: RemotePostPreviewModel.PostsData
   ): (PostPreviewModel.Model | null)[] {
     return posts.map((post) => {
       const postAttr = post.attributes
