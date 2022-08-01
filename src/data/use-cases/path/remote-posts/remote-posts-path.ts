@@ -4,15 +4,15 @@ import { GraphqlClient } from 'data/protocols/http'
 import { StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { PathWriterPostModel } from 'domain/models'
-import { LoadPostPagePaths } from 'domain/use-cases'
+import { LoadPathWriterPost } from 'domain/use-cases'
 
 type Filter = {
   limit: number
 }
 
-export class RemotePostPagePaths
+export class RemotePostsPath
   extends AbstractAuthToken
-  implements LoadPostPagePaths<Filter>
+  implements LoadPathWriterPost<Filter>
 {
   constructor(
     private readonly graphqlClient: GraphqlClient.Client,

@@ -1,6 +1,6 @@
 import { UnexpectedError } from 'domain/errors'
 import { makeSeachPost } from 'main/factories/use-cases'
-import { makeLoadPostPaths } from 'main/factories/use-cases/load-post-page-paths/load-post-page-paths-factory'
+import { makeLoadPostsPath } from 'main/factories/use-cases/load-posts-path/load-posts-path-factory'
 import { makeLoadPostPage } from 'main/factories/use-cases/load-post-page/load-post-page-factory'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import { useRouter } from 'next/router'
@@ -26,7 +26,7 @@ type Params = {
 }
 
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const loadPagePaths = makeLoadPostPaths()
+  const loadPagePaths = makeLoadPostsPath()
   const authToken = process.env.API_JWT_TOKEN || ''
 
   loadPagePaths.setAuthToken(authToken)

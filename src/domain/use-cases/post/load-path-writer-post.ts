@@ -1,5 +1,5 @@
 import { PathWriterPostModel } from 'domain/models'
 
-export interface LoadPostPagePaths<Filter> {
+export interface LoadPathWriterPost<Filter> {
   getAll(filter: Filter): Promise<PathWriterPostModel.Model[]>
 }
