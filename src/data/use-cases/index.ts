@@ -6,3 +6,5 @@ export * from './remote-search-posts/remote-search-posts'
 
 export * from './remote-load-writer-details/remote-load-writer-details'
 export * from './remote-authentication/remote-authentication'
+
+export * from './remote-load-tag-details/remote-load-tag-details'
