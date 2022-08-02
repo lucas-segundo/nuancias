@@ -35,65 +35,61 @@ export class RemotePostContent
 
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
-        const postModel = this.adaptResponseToModel(response.data)
-        return postModel
-      case StatusCodeEnum.NO_CONTENT:
-        return null
+        const model = this.adaptResponseToModel(response.data)
+        if (model) return model
       default:
         throw new UnexpectedError()
     }
   }
 
-  adaptResponseToModel(data: RemotePostContentModel.QueryResponse) {
+  adaptResponseToModel(
+    data: RemotePostContentModel.QueryResponse
+  ): PostContentModel.Model | undefined {
     const postData = data.posts?.data[0]
 
-    if (!postData) return null
-
-    const post = this.mapValidPost(postData)
-
-    return post
+    if (postData) return this.mapValidPost(postData)
   }
 
   private mapValidPost(
     post: RemotePostContentModel.PostData
-  ): PostContentModel.Model | null {
+  ): PostContentModel.Model | undefined {
     const postAttr = post.attributes
     const tags = this.adaptToTagModel(postAttr?.tags?.data)
     const userAttr = postAttr?.user?.data?.attributes
 
-    if (!post.id || !postAttr || !userAttr || tags.length === 0) return null
-
     const postUrl = this.getImageFormat(
-      postAttr.image.data?.attributes?.formats,
+      postAttr?.image.data?.attributes?.formats,
       IMAGE_PLACEHOLDER.POST
     )
     const avatarUrl = this.getImageFormat(
-      userAttr.avatar.data?.attributes?.formats,
+      userAttr?.avatar.data?.attributes?.formats,
       IMAGE_PLACEHOLDER.AVATAR
     )
 
-    const preview = this.makePreview(postAttr.content)
+    if (post.id && postAttr && userAttr && tags.length) {
+      const preview = this.makePreview(postAttr.content)
 
-    const { title, content, publishedAt } = postAttr
-    const { name, username, biography } = userAttr
-    return {
-      id: post.id,
-      title,
-      preview,
-      content,
-      publishedAt,
-      image: {
-        src: postUrl,
-      },
-      writer: {
-        name,
-        bio: biography,
-        username,
-        avatar: {
-          src: avatarUrl,
+      const { title, content, publishedAt } = postAttr
+      const { name, username, biography } = userAttr
+      return {
+        id: post.id,
+        title,
+        preview,
+        content,
+        publishedAt,
+        image: {
+          src: postUrl,
         },
-      },
-      tags,
+        writer: {
+          name,
+          bio: biography,
+          username,
+          avatar: {
+            src: avatarUrl,
+          },
+        },
+        tags,
+      }
     }
   }
 }
