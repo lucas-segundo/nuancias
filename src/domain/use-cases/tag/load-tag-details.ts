@@ -1,9 +1,9 @@
 import { TagDetailsModel } from 'domain/models'
 
-type Params = {
+export type Params = {
   id: string
 }
 
-export interface LoadTagDetails {
+export interface Model {
   get(params: Params): Promise<TagDetailsModel.Model>
 }
