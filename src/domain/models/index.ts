@@ -9,6 +9,7 @@ export * as WriterPreviewModel from './writer/preview/writer-preview'
 export * as WriterDetailsModel from './writer/details/writer-details'
 
 export * as TagPreviewModel from './tag/preview/tag-preview'
+export * as TagDetailsModel from './tag/details/tag-details'
 
 export * from './common'
 export * from './account/mock'
