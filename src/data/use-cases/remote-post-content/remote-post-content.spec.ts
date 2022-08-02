@@ -56,7 +56,7 @@ describe('RemotePostContent', () => {
     expect(graphqlClientMocked.query).toBeCalledWith(graphqlParams)
   })
 
-  it('should return PostPageData if query is success', async () => {
+  it('should return data if query is success', async () => {
     const { sut, fakeResponse, fakeSlug } = makeSut()
 
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
@@ -67,15 +67,15 @@ describe('RemotePostContent', () => {
     expect(response).toEqual(fakeModel)
   })
 
-  it('should return null if query found nothing', async () => {
+  it('should return error if query found nothing', async () => {
     const { sut, fakeResponse, fakeSlug } = makeSut()
     fakeResponse.statusCode = StatusCodeEnum.NO_CONTENT
 
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
-    const response = await sut.getBySlug(fakeSlug)
+    const response = sut.getBySlug(fakeSlug)
 
-    expect(response).toBeNull()
+    await expect(response).rejects.toThrow(new UnexpectedError())
   })
 
   it('should throw UnexpectedError if a unknow error happen', async () => {
