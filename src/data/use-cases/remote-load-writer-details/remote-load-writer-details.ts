@@ -58,10 +58,15 @@ export class RemoteLoadWriterDetails
   ): WriterDetailsModel.Model | null {
     if (!writer.id) return null
     const writerAttr = writer.attributes
-    const posts = writerAttr?.posts?.data.map((post) => this.mapValidPost(post))
-    const validPosts = posts?.filter(
-      (post): post is WriterDetailsModel.Post => !!post
-    )
+
+    const validPosts = writerAttr?.posts?.data.reduce<
+      WriterDetailsModel.Post[]
+    >((validPosts, post) => {
+      const result = this.mapValidPost(post)
+      result && validPosts.push(result)
+
+      return validPosts
+    }, [])
 
     if (!validPosts || !writerAttr) return null
 
