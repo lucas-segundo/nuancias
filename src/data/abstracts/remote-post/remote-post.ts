@@ -1,12 +1,12 @@
 import { getCharactersFromHTML, IMAGE_PLACEHOLDER } from 'data/helpers'
 import { RemoteTag } from 'data/models'
 import { ImageFormats } from 'data/models/common'
-import { TagModel } from 'domain/models/common'
+import { TagPreviewModel } from 'domain/models'
 import { AbstractAuthToken } from '../auth-token/auth-token'
 
 export abstract class AbstractRemotePost extends AbstractAuthToken {
-  adaptToTagModel(data?: RemoteTag.Model[]): TagModel[] | [] {
-    const tags = data?.reduce<TagModel[]>((validTags, tag) => {
+  adaptToTagModel(data?: RemoteTag.Model[]): TagPreviewModel.Model[] | [] {
+    const tags = data?.reduce<TagPreviewModel.Model[]>((validTags, tag) => {
       const result = this.mapValidTag(tag)
 
       result && validTags.push(result)
@@ -17,7 +17,7 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
     return tags || []
   }
 
-  mapValidTag(tag?: RemoteTag.Model): TagModel | undefined {
+  mapValidTag(tag?: RemoteTag.Model): TagPreviewModel.Model | undefined {
     if (tag?.id && tag?.attributes?.title && tag?.attributes?.slug) {
       const { id, attributes } = tag
       return {
