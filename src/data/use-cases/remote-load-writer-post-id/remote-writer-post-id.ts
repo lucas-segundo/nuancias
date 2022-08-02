@@ -64,20 +64,18 @@ export class RemoteWriterPostID
 
   private mapValidPost(
     post: RemoteWriterPostIDModel.PostData
-  ): WriterPostIDModel.Model | null {
+  ): WriterPostIDModel.Model | undefined {
     const userData = post.attributes?.user?.data
-    if (!userData?.id || !userData.attributes || !post?.id || !post?.attributes)
-      return null
-
-    return {
-      post: {
-        id: post.id,
-        slug: post.attributes.slug,
-      },
-      writer: {
-        id: userData.id,
-        username: userData.attributes.username,
-      },
-    }
+    if (userData?.id && userData.attributes && post?.id && post?.attributes)
+      return {
+        post: {
+          id: post.id,
+          slug: post.attributes.slug,
+        },
+        writer: {
+          id: userData.id,
+          username: userData.attributes.username,
+        },
+      }
   }
 }
