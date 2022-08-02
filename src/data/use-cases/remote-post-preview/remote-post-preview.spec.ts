@@ -56,13 +56,16 @@ describe('RemotePostPreview', () => {
     expect(graphqlClientMocked.query).toBeCalledWith(graphqlParams)
   })
 
-  it('should return PostCards if query is success', async () => {
+  it('should return data if query is success', async () => {
     const { sut, fakeResponse, fakeFilter } = makeSut()
 
     graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
 
     const response = await sut.getAll(fakeFilter)
     const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
+
+    expect(response.length).toBeGreaterThan(0)
+    expect(fakeModel.length).toBeGreaterThan(0)
 
     expect(response).toEqual(fakeModel)
   })

@@ -54,10 +54,10 @@ export class RemotePostPreview
   }
 
   adaptResponseToModel(data: RemotePostPreviewModel.QueryResponse) {
-    const posts = data.posts?.data.reduce<PostPreviewModel.Model[] | []>(
+    const posts = data.posts?.data.reduce<PostPreviewModel.Model[]>(
       (validPosts, post) => {
         const result = this.mapValidPost(post)
-        result && validPosts.push()
+        result && validPosts.push(result)
 
         return validPosts
       },
