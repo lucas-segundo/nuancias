@@ -1,4 +1,3 @@
-import { UnexpectedError } from 'domain/errors'
 import { makeSeachPost } from 'main/factories/use-cases'
 import { makeLoadWriterPostID } from 'main/factories/use-cases/load-writer-post-id/load-writer-post-id'
 import { makeLoadPostContent } from 'main/factories/use-cases'
@@ -53,10 +52,6 @@ export const getStaticProps: GetStaticProps<PostPageProps> = async ({
 
   loadPostPage.setAuthToken(authToken)
   const data = await loadPostPage.getBySlug(params?.slug as string)
-
-  if (!data) {
-    throw new UnexpectedError()
-  }
 
   return {
     props: {
