@@ -72,8 +72,8 @@ describe('RemoteLoadWriterDetails', () => {
     const response = await sut.get(fakeParams)
     const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
-    expect(response).not.toBeNull()
-    expect(fakeModel).not.toBeNull()
+    expect(response).not.toBeUndefined()
+    expect(fakeModel).not.toBeUndefined()
 
     expect(response).toEqual(fakeModel)
   })

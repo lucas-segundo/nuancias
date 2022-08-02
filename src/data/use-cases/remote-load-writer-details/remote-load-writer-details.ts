@@ -31,10 +31,9 @@ export class RemoteLoadWriterDetails
       },
     })
 
-    const model = this.adaptResponseToModel(response.data)
-
     switch (response.statusCode) {
       case StatusCodeEnum.OK:
+        const model = this.adaptResponseToModel(response.data)
         if (model) return model
       default:
         throw new UnexpectedError()
@@ -43,20 +42,15 @@ export class RemoteLoadWriterDetails
 
   adaptResponseToModel(
     data: RemoteWriterDetails.QueryResponse
-  ): WriterDetailsModel.Model | null {
+  ): WriterDetailsModel.Model | undefined {
     const userData = data.usersPermissionsUsers?.data[0]
 
-    if (!userData) return null
-
-    const writer = this.mapValidUser(userData)
-
-    return writer
+    if (userData) return this.mapValidUser(userData)
   }
 
   private mapValidUser(
     writer: RemoteWriterDetails.WriterData
-  ): WriterDetailsModel.Model | null {
-    if (!writer.id) return null
+  ): WriterDetailsModel.Model | undefined {
     const writerAttr = writer.attributes
 
     const validPosts = writerAttr?.posts?.data.reduce<
@@ -68,52 +62,50 @@ export class RemoteLoadWriterDetails
       return validPosts
     }, [])
 
-    if (!validPosts || !writerAttr) return null
-
     const avatarUrl = this.getImageFormat(
-      writerAttr.avatar.data?.attributes?.formats,
+      writerAttr?.avatar.data?.attributes?.formats,
       IMAGE_PLACEHOLDER.AVATAR
     )
 
-    return {
-      id: writer.id,
-      name: writerAttr.name,
-      username: writerAttr.username,
-      bio: writerAttr.biography,
-      avatar: {
-        src: avatarUrl,
-      },
-      posts: validPosts,
-    }
+    if (validPosts && writerAttr && writer.id)
+      return {
+        id: writer.id,
+        name: writerAttr.name,
+        username: writerAttr.username,
+        bio: writerAttr.biography,
+        avatar: {
+          src: avatarUrl,
+        },
+        posts: validPosts,
+      }
   }
 
   private mapValidPost(
     post: RemoteWriterDetails.PostData
-  ): WriterDetailsModel.Post | null {
+  ): WriterDetailsModel.Post | undefined {
     const postAttr = post.attributes
     const tags = this.adaptToTagModel(postAttr?.tags?.data)
 
-    if (!post.id || !postAttr || tags.length === 0) return null
-
     const postUrl = this.getImageFormat(
-      postAttr.image.data?.attributes?.formats,
+      postAttr?.image.data?.attributes?.formats,
       IMAGE_PLACEHOLDER.POST
     )
 
-    const preview = this.makePreview(postAttr.content)
+    if (post.id && postAttr && tags.length) {
+      const preview = this.makePreview(postAttr.content)
+      const { title, slug, publishedAt } = postAttr
 
-    const { title, slug, publishedAt } = postAttr
-
-    return {
-      id: post.id,
-      title,
-      slug,
-      preview,
-      publishedAt,
-      image: {
-        src: postUrl,
-      },
-      tags,
+      return {
+        id: post.id,
+        title,
+        slug,
+        preview,
+        publishedAt,
+        image: {
+          src: postUrl,
+        },
+        tags,
+      }
     }
   }
 }
