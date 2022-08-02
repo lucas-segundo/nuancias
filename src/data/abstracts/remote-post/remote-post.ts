@@ -5,7 +5,7 @@ import { TagModel } from 'domain/models/common'
 import { AbstractAuthToken } from '../auth-token/auth-token'
 
 export abstract class AbstractRemotePost extends AbstractAuthToken {
-  adaptToTagModel(data?: RemoteTag.Model[] | null): TagModel[] | [] {
+  adaptToTagModel(data?: RemoteTag.Model[]): TagModel[] | [] {
     const tags = data?.reduce<TagModel[]>((validTags, tag) => {
       const result = this.mapValidTag(tag)
 
@@ -17,22 +17,21 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
     return tags || []
   }
 
-  mapValidTag(tag?: RemoteTag.Model): TagModel | null {
-    if (!tag) return null
-    const { id, attributes } = tag
-
-    if (id && attributes?.title && attributes?.slug) {
+  mapValidTag(tag?: RemoteTag.Model): TagModel | undefined {
+    if (tag?.id && tag?.attributes?.title && tag?.attributes?.slug) {
+      const { id, attributes } = tag
       return {
         id,
         title: attributes?.title,
         slug: attributes?.slug,
       }
-    } else {
-      return null
     }
   }
 
-  getImageFormat(imageFormats: ImageFormats, placeholder: IMAGE_PLACEHOLDER) {
+  getImageFormat(
+    imageFormats: ImageFormats,
+    placeholder: IMAGE_PLACEHOLDER
+  ): string {
     return (
       imageFormats?.medium?.url ||
       imageFormats?.small?.url ||
@@ -41,7 +40,7 @@ export abstract class AbstractRemotePost extends AbstractAuthToken {
     )
   }
 
-  makePreview(htmlContent: string) {
+  makePreview(htmlContent: string): string {
     return (
       getCharactersFromHTML({
         html: htmlContent,
