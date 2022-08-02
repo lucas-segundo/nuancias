@@ -46,11 +46,13 @@ export class RemoteWriterPostID
     }
   }
 
-  adaptResponseToModel(data: RemoteWriterPostIDModel.QueryResponse) {
-    const posts = data.posts?.data.reduce<WriterPostIDModel.Model[] | []>(
+  adaptResponseToModel(
+    data: RemoteWriterPostIDModel.QueryResponse
+  ): WriterPostIDModel.Model[] | [] {
+    const posts = data.posts?.data.reduce<WriterPostIDModel.Model[]>(
       (validPosts, post) => {
         const result = this.mapValidPost(post)
-        result && validPosts.push()
+        result && validPosts.push(result)
 
         return validPosts
       },
