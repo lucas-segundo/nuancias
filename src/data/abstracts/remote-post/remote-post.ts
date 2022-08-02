@@ -5,21 +5,31 @@ import { TagModel } from 'domain/models/common'
 import { AbstractAuthToken } from '../auth-token/auth-token'
 
 export abstract class AbstractRemotePost extends AbstractAuthToken {
-  mapTags(tags?: RemoteTag.Model[] | null): TagModel[] | [] {
-    const tagsMapped = tags?.map((tag) => {
-      const { id, attributes } = tag
+  adaptToTagModel(data?: RemoteTag.Model[] | null): TagModel[] | [] {
+    const tags = data?.reduce<TagModel[]>((validTags, tag) => {
+      const result = this.mapValidTag(tag)
 
-      if (id && attributes?.title && attributes?.slug)
-        return {
-          id,
-          title: attributes?.title,
-          slug: attributes?.slug,
-        }
-    })
+      result && validTags.push(result)
 
-    const tagsChecked = tagsMapped?.filter((tag): tag is TagModel => !!tag)
+      return validTags
+    }, [])
 
-    return tagsChecked || []
+    return tags || []
+  }
+
+  mapValidTag(tag?: RemoteTag.Model): TagModel | null {
+    if (!tag) return null
+    const { id, attributes } = tag
+
+    if (id && attributes?.title && attributes?.slug) {
+      return {
+        id,
+        title: attributes?.title,
+        slug: attributes?.slug,
+      }
+    } else {
+      return null
+    }
   }
 
   getImageFormat(imageFormats: ImageFormats, placeholder: IMAGE_PLACEHOLDER) {

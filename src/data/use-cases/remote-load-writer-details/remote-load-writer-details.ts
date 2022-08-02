@@ -86,7 +86,7 @@ export class RemoteLoadWriterDetails
     post: RemoteWriterDetails.PostData
   ): WriterDetailsModel.Post | null {
     const postAttr = post.attributes
-    const tags = this.mapTags(postAttr?.tags?.data)
+    const tags = this.adaptToTagModel(postAttr?.tags?.data)
 
     if (!post.id || !postAttr || tags.length === 0) return null
 

@@ -71,7 +71,7 @@ export class RemotePostPreview
     post: RemotePostPreviewModel.PostData
   ): PostPreviewModel.Model | null {
     const postAttr = post.attributes
-    const tags = this.mapTags(postAttr?.tags?.data)
+    const tags = this.adaptToTagModel(postAttr?.tags?.data)
     const userAttr = postAttr?.user?.data?.attributes
 
     if (!post.id || !postAttr || !userAttr || tags.length === 0) return null

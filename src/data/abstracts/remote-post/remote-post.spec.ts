@@ -21,7 +21,7 @@ describe('AbstractRemotePost', () => {
   it('should return tag mapped', () => {
     const { sut } = makeSut()
     const remoteTagMock = makeRemoteTagMock()
-    const tags = sut.mapTags([remoteTagMock])
+    const tags = sut.adaptToTagModel([remoteTagMock])
 
     const remoteTagMapped = {
       id: remoteTagMock.id,
@@ -34,7 +34,7 @@ describe('AbstractRemotePost', () => {
 
   it('should return empty tag array with receive nothing in params', () => {
     const { sut } = makeSut()
-    const tags = sut.mapTags()
+    const tags = sut.adaptToTagModel()
 
     expect(tags).toStrictEqual([])
   })
