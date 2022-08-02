@@ -1043,6 +1043,88 @@ export type GetPostsSlugAndUsernameQuery = {
   } | null
 }
 
+export type ImageFragFragment = {
+  data?: {
+    id?: string | null
+    attributes?: { formats?: any | null } | null
+  } | null
+}
+
+export type PostsFragFragment = {
+  data: Array<{
+    id?: string | null
+    attributes?: {
+      title: string
+      slug: string
+      publishedAt?: any | null
+      image: {
+        data?: {
+          id?: string | null
+          attributes?: { formats?: any | null } | null
+        } | null
+      }
+    } | null
+  }>
+}
+
+export type TagFragFragment = {
+  data?: {
+    id?: string | null
+    attributes?: {
+      title: string
+      slug: string
+      posts?: {
+        data: Array<{
+          id?: string | null
+          attributes?: {
+            title: string
+            slug: string
+            publishedAt?: any | null
+            image: {
+              data?: {
+                id?: string | null
+                attributes?: { formats?: any | null } | null
+              } | null
+            }
+          } | null
+        }>
+      } | null
+    } | null
+  } | null
+}
+
+export type GetTagPostsQueryVariables = Exact<{
+  tagId: Scalars['ID']
+}>
+
+export type GetTagPostsQuery = {
+  tag?: {
+    data?: {
+      id?: string | null
+      attributes?: {
+        title: string
+        slug: string
+        posts?: {
+          data: Array<{
+            id?: string | null
+            attributes?: {
+              title: string
+              slug: string
+              publishedAt?: any | null
+              image: {
+                data?: {
+                  id?: string | null
+                  attributes?: { formats?: any | null } | null
+                } | null
+              }
+            } | null
+          }>
+        } | null
+      } | null
+    } | null
+  } | null
+}
+
 export type UserAttributesFragment = {
   name: string
   username: string
