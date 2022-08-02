@@ -54,6 +54,9 @@ describe('RemoteSearchPosts', () => {
     const response = await sut.getAllByText(fakeText)
     const fakeModel = sut.adaptResponseToModel(fakeResponse.data)
 
+    expect(response.length).toBeGreaterThan(0)
+    expect(fakeModel.length).toBeGreaterThan(0)
+
     expect(response).toEqual(fakeModel)
   })
 

@@ -34,10 +34,10 @@ export class RemoteSearchPosts implements SearchPosts {
   }
 
   adaptResponseToModel(data: RemoteSearchPostsModel.QueryResponse) {
-    const posts = data.posts?.data.reduce<SearchedPostModel.Model[] | []>(
+    const posts = data.posts?.data.reduce<SearchedPostModel.Model[]>(
       (validPosts, post) => {
         const result = this.mapValidPost(post)
-        result && validPosts.push()
+        result && validPosts.push(result)
 
         return validPosts
       },
