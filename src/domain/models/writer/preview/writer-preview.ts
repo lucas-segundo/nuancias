@@ -1,3 +1,10 @@
-import { UserModel } from 'domain/models/common'
+export type Image = {
+  src: string
+}
 
-export type Model = Pick<UserModel, 'username' | 'name' | 'bio' | 'avatar'>
+export type Model = {
+  name: string
+  bio: string
+  username: string
+  avatar: Image
+}

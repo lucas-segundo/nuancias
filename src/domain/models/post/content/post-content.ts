@@ -1,18 +1,27 @@
-import { ImageModel, PostModel, TagModel, UserModel } from '../../common'
+export type Image = {
+  src: string
+}
 
-export type Post = Pick<
-  PostModel,
-  'id' | 'title' | 'preview' | 'content' | 'publishedAt'
->
+export type Writer = {
+  name: string
+  bio: string
+  username: string
+  avatar: Image
+}
 
-export type Writer = Pick<UserModel, 'name' | 'username' | 'bio' | 'avatar'>
+export type Tag = {
+  id: string
+  title: string
+  slug: string
+}
 
-export type Tag = Pick<TagModel, 'id' | 'title' | 'slug'>
-
-export type Image = Pick<ImageModel, 'src'>
-
-export type Model = Post & {
+export type Model = {
+  id: string
+  title: string
+  preview: string
+  content: string
+  publishedAt: string
+  image: Image
   writer: Writer
-  image?: Image
   tags: Tag[]
 }

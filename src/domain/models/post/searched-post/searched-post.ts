@@ -1,8 +1,10 @@
-import { PostModel, UserModel } from '../../common'
+export type Writer = {
+  username: string
+}
 
-export type Post = Pick<PostModel, 'id' | 'title' | 'slug'>
-export type Writer = Pick<UserModel, 'username'>
-
-export type Model = Post & {
+export type Model = {
+  id: string
+  title: string
+  slug: string
   writer: Writer
 }

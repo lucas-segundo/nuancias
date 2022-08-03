@@ -1,7 +1,28 @@
-import { PostModel, TagModel } from 'domain/models/common'
+export type Image = {
+  src: string
+}
 
-export type Post = Pick<
-  PostModel,
-  'id' | 'title' | 'preview' | 'slug' | 'publishedAt' | 'image'
->
-export type Model = TagModel<Post>
+export type Writer = {
+  id: string
+  name: string
+  bio: string
+  username: string
+  avatar: Image
+}
+
+export type Post = {
+  id: string
+  title: string
+  slug: string
+  preview: string
+  publishedAt: string
+  image: Image
+  writer: Writer
+}
+
+export type Model = {
+  id: string
+  title: string
+  slug: string
+  posts: Post[]
+}
