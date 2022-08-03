@@ -82,7 +82,9 @@ export class RemoteLoadTagDetails
       IMAGE_PLACEHOLDER.POST
     )
 
-    if (post.id && postAttr) {
+    const writer = this.mapValidUser(postAttr?.user?.data)
+
+    if (post.id && postAttr && writer) {
       const preview = this.makePreview(postAttr.content)
       const { title, slug, publishedAt } = postAttr
 
@@ -95,7 +97,30 @@ export class RemoteLoadTagDetails
         image: {
           src: postUrl,
         },
+        writer,
       }
     }
+  }
+
+  private mapValidUser(
+    user: RemoteTagDetails.UserData
+  ): TagDetailsModel.Writer | undefined {
+    const userAttr = user?.attributes
+
+    const avatarUrl = this.getImageFormat(
+      userAttr?.avatar.data?.attributes?.formats,
+      IMAGE_PLACEHOLDER.AVATAR
+    )
+
+    if (userAttr && user.id)
+      return {
+        id: user.id,
+        name: userAttr.name,
+        username: userAttr.username,
+        bio: userAttr.biography,
+        avatar: {
+          src: avatarUrl,
+        },
+      }
   }
 }
