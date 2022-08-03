@@ -69,7 +69,7 @@ describe('RemoteLoadTagDetails', () => {
     expect(response).toEqual(fakeModel)
   })
 
-  it('should throw UnexpectedError if a unknow error happen', async () => {
+  it('should throw error if a unknow error happen', async () => {
     const { sut, fakeAuthToken, fakeParams } = makeSut()
 
     graphqlClientMocked.query.mockResolvedValueOnce({
@@ -78,6 +78,18 @@ describe('RemoteLoadTagDetails', () => {
         types: ['clientError', 'serverError'],
       }),
     })
+
+    sut.setAuthToken(fakeAuthToken)
+    const response = sut.get(fakeParams)
+
+    await expect(response).rejects.toThrow(new UnexpectedError())
+  })
+
+  it('should throw error if have no valid data to returns', async () => {
+    const { sut, fakeAuthToken, fakeParams, fakeResponse } = makeSut()
+
+    graphqlClientMocked.query.mockResolvedValueOnce(fakeResponse)
+    jest.spyOn(sut, 'adaptResponseToModel').mockReturnValueOnce(undefined)
 
     sut.setAuthToken(fakeAuthToken)
     const response = sut.get(fakeParams)
