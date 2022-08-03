@@ -1056,6 +1056,7 @@ export type PostsFragFragment = {
     attributes?: {
       title: string
       slug: string
+      content: string
       publishedAt?: any | null
       image: {
         data?: {
@@ -1079,6 +1080,7 @@ export type TagFragFragment = {
           attributes?: {
             title: string
             slug: string
+            content: string
             publishedAt?: any | null
             image: {
               data?: {
@@ -1110,6 +1112,7 @@ export type GetTagPostsQuery = {
             attributes?: {
               title: string
               slug: string
+              content: string
               publishedAt?: any | null
               image: {
                 data?: {

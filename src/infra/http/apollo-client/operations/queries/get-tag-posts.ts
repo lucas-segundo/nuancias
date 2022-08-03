@@ -16,6 +16,7 @@ export const GET_TAG_POSTS = gql`
       attributes {
         title
         slug
+        content
         publishedAt
         image {
           ...ImageFrag
