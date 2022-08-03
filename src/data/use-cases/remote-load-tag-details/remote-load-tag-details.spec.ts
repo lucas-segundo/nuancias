@@ -3,6 +3,7 @@ import { RemoteTagDetails } from 'data/models'
 import { makeRemoteTagDetailsMock } from 'data/models/tag/remote-tag-details/mock'
 import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
+import { UnexpectedError } from 'domain/errors'
 import { LoadTagDetails } from 'domain/use-cases'
 import { RemoteLoadTagDetails } from './remote-load-tag-details'
 
@@ -66,5 +67,21 @@ describe('RemoteLoadTagDetails', () => {
     expect(fakeModel).not.toBeUndefined()
 
     expect(response).toEqual(fakeModel)
+  })
+
+  it('should throw UnexpectedError if a unknow error happen', async () => {
+    const { sut, fakeAuthToken, fakeParams } = makeSut()
+
+    graphqlClientMocked.query.mockResolvedValueOnce({
+      data: {},
+      statusCode: faker.internet.httpStatusCode({
+        types: ['clientError', 'serverError'],
+      }),
+    })
+
+    sut.setAuthToken(fakeAuthToken)
+    const response = sut.get(fakeParams)
+
+    await expect(response).rejects.toThrow(new UnexpectedError())
   })
 })
