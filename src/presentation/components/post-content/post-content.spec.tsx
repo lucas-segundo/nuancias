@@ -21,12 +21,4 @@ describe('<PostContent />', () => {
     expect(screen.getByAltText(/imagem principal/i)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /hello/i })).toBeInTheDocument()
   })
-
-  it('should render without image', () => {
-    const postData = makePostContentMock()
-    postData.image = undefined
-    makeSut(postData)
-
-    expect(screen.getByAltText(/imagem principal/i)).toBeInTheDocument()
-  })
 })

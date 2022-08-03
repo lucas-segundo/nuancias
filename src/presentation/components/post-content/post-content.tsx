@@ -23,7 +23,7 @@ export const PostContent = ({ postData }: PostContentProps) => {
       <figure className="relative h-80 md:h-[429px]">
         <Image
           className="rounded"
-          src={postData.image?.src || '/images/post-placeholder.png'}
+          src={postData.image.src}
           objectFit="cover"
           layout="fill"
           quality={100}

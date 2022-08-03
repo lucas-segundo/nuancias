@@ -6,7 +6,7 @@ import { renderPostTagsToListItems } from '../post-tag/helpers'
 import { makePtBRDate } from './helpers'
 
 export type PostCardProps = {
-  post: PostPreviewModel.Post
+  post: Omit<PostPreviewModel.Model, 'tags' | 'writer'>
   tags: PostPreviewModel.Tag[]
   writer: PostPreviewModel.Writer
   postImage: PostPreviewModel.Image
