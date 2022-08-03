@@ -1,4 +1,7 @@
 import { PostModel, TagModel } from 'domain/models/common'
 
-type Post = Pick<PostModel, 'id' | 'title' | 'preview' | 'slug' | 'publishedAt'>
+export type Post = Pick<
+  PostModel,
+  'id' | 'title' | 'preview' | 'slug' | 'publishedAt' | 'image'
+>
 export type Model = TagModel<Post>
