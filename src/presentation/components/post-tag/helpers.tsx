@@ -1,8 +1,8 @@
-import { TagModel } from 'domain/models'
+import { TagPreviewModel } from 'domain/models'
 import { PostTag } from './post-tag'
 
 type Params = {
-  tags: TagModel[]
+  tags: TagPreviewModel.Model[]
   cssClassName?: string
 }
 

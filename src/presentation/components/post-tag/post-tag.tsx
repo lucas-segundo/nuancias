@@ -1,7 +1,7 @@
-import { TagModel } from 'domain/models'
+import { TagPreviewModel } from 'domain/models'
 
 export type PostTagProps = {
-  tagData: TagModel
+  tagData: TagPreviewModel.Model
 }
 
 export const PostTag = ({ tagData }: PostTagProps) => {
