@@ -1193,6 +1193,26 @@ export type GetTagPostsQuery = {
   } | null
 }
 
+export type TagGetTagsFragFragment = {
+  data: Array<{
+    id?: string | null
+    attributes?: { title: string; slug: string } | null
+  }>
+}
+
+export type GetTagsQueryVariables = Exact<{
+  tagsLimit: Scalars['Int']
+}>
+
+export type GetTagsQuery = {
+  tags?: {
+    data: Array<{
+      id?: string | null
+      attributes?: { title: string; slug: string } | null
+    }>
+  } | null
+}
+
 export type UserAttributesFragment = {
   name: string
   username: string
