@@ -1,6 +1,5 @@
 import { IMAGE_PLACEHOLDER } from 'data/helpers'
 import { makeImageFormats } from 'data/models/common/image-formats/mock'
-import { makeRemoteTagMock } from 'data/models/tag/remote-tag/mock'
 import { AbstractRemotePost } from './remote-post'
 
 class Sut extends AbstractRemotePost {}
@@ -18,27 +17,6 @@ const makeSut = () => {
 }
 
 describe('AbstractRemotePost', () => {
-  it('should return tag mapped', () => {
-    const { sut } = makeSut()
-    const remoteTagMock = makeRemoteTagMock()
-    const tags = sut.adaptToTagModel([remoteTagMock])
-
-    const remoteTagMapped = {
-      id: remoteTagMock.id,
-      title: remoteTagMock.attributes?.title,
-      slug: remoteTagMock.attributes?.slug,
-    }
-
-    expect(tags).toStrictEqual([remoteTagMapped])
-  })
-
-  it('should return empty tag array with receive nothing in params', () => {
-    const { sut } = makeSut()
-    const tags = sut.adaptToTagModel()
-
-    expect(tags).toStrictEqual([])
-  })
-
   it('should return medium image if available', () => {
     const { sut, fakeImageFormats, placeholder } = makeSut()
     const image = sut.getImageFormat(fakeImageFormats, placeholder)
