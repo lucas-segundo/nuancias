@@ -1050,6 +1050,23 @@ export type ImageFragFragment = {
   } | null
 }
 
+export type UserFragFragment = {
+  data?: {
+    id?: string | null
+    attributes?: {
+      username: string
+      name: string
+      biography: string
+      avatar: {
+        data?: {
+          id?: string | null
+          attributes?: { formats?: any | null } | null
+        } | null
+      }
+    } | null
+  } | null
+}
+
 export type PostsFragFragment = {
   data: Array<{
     id?: string | null
@@ -1064,6 +1081,22 @@ export type PostsFragFragment = {
           attributes?: { formats?: any | null } | null
         } | null
       }
+      user?: {
+        data?: {
+          id?: string | null
+          attributes?: {
+            username: string
+            name: string
+            biography: string
+            avatar: {
+              data?: {
+                id?: string | null
+                attributes?: { formats?: any | null } | null
+              } | null
+            }
+          } | null
+        } | null
+      } | null
     } | null
   }>
 }
@@ -1088,6 +1121,22 @@ export type TagFragFragment = {
                 attributes?: { formats?: any | null } | null
               } | null
             }
+            user?: {
+              data?: {
+                id?: string | null
+                attributes?: {
+                  username: string
+                  name: string
+                  biography: string
+                  avatar: {
+                    data?: {
+                      id?: string | null
+                      attributes?: { formats?: any | null } | null
+                    } | null
+                  }
+                } | null
+              } | null
+            } | null
           } | null
         }>
       } | null
@@ -1120,6 +1169,22 @@ export type GetTagPostsQuery = {
                   attributes?: { formats?: any | null } | null
                 } | null
               }
+              user?: {
+                data?: {
+                  id?: string | null
+                  attributes?: {
+                    username: string
+                    name: string
+                    biography: string
+                    avatar: {
+                      data?: {
+                        id?: string | null
+                        attributes?: { formats?: any | null } | null
+                      } | null
+                    }
+                  } | null
+                } | null
+              } | null
             } | null
           }>
         } | null

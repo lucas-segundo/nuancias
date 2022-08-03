@@ -10,6 +10,20 @@ export const GET_TAG_POSTS = gql`
     }
   }
 
+  fragment UserFrag on UsersPermissionsUserEntityResponse {
+    data {
+      id
+      attributes {
+        username
+        name
+        biography
+        avatar {
+          ...ImageFrag
+        }
+      }
+    }
+  }
+
   fragment PostsFrag on PostRelationResponseCollection {
     data {
       id
@@ -20,6 +34,9 @@ export const GET_TAG_POSTS = gql`
         publishedAt
         image {
           ...ImageFrag
+        }
+        user {
+          ...UserFrag
         }
       }
     }
