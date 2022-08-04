@@ -24,4 +24,10 @@ describe('<GroupedTags />', () => {
 
     expect(screen.getAllByRole('link-to-tag').length).toBeGreaterThan(0)
   })
+
+  it('should render correctly if tags if empty', () => {
+    render(<GroupedTags />)
+
+    expect(screen.getByText(/Nenhuma Nuancia produzida/i)).toBeInTheDocument()
+  })
 })
