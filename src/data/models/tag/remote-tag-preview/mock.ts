@@ -8,3 +8,10 @@ export const makeRemoteTagMock = (): RemoteTagPreviewModel.Model => ({
     slug: faker.datatype.uuid(),
   },
 })
+
+export const makeRemoteTagPreviewMock =
+  (): RemoteTagPreviewModel.QueryResponse => ({
+    tags: {
+      data: [makeRemoteTagMock(), makeRemoteTagMock()],
+    },
+  })
