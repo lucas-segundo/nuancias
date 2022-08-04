@@ -7,16 +7,18 @@ import { makePtBRDate } from './helpers'
 
 export type PostCardProps = {
   post: Omit<PostPreviewModel.Model, 'tags' | 'writer'>
-  tags: PostPreviewModel.Tag[]
+  tags?: PostPreviewModel.Tag[]
   writer: PostPreviewModel.Writer
   postImage: PostPreviewModel.Image
 }
 
 export const PostCard = ({ post, writer, tags, postImage }: PostCardProps) => {
-  const tagsList = renderPostTagsToListItems({
-    tags: tags,
-    cssClassName: 'm-1',
-  })
+  const tagsList =
+    tags &&
+    renderPostTagsToListItems({
+      tags: tags,
+      cssClassName: 'm-1',
+    })
 
   return (
     <article data-cy="last-post" className="cursor-pointer">
