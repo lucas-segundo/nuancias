@@ -1,4 +1,6 @@
 import { TagPreviewModel } from 'domain/models'
+import Link from 'next/link'
+import { PagesRoutersEnum } from 'presentation/routers/pages'
 import { PostTag } from './post-tag'
 
 type Params = {
@@ -13,6 +15,10 @@ export const renderPostTagsToListItems = ({ tags, cssClassName }: Params) =>
       key={tag.id}
       className={cssClassName ? cssClassName : ''}
     >
-      <PostTag tagData={tag} />
+      <Link href={`/${PagesRoutersEnum.TAG}/${tag.slug}`}>
+        <a>
+          <PostTag tagData={tag} />
+        </a>
+      </Link>
     </li>
   ))
