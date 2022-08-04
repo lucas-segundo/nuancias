@@ -1,4 +1,4 @@
-import { makeRemoteTagMock } from 'data/models/tag/remote-tag/mock'
+import { makeRemoteTagMock } from 'data/models/tag/remote-tag-preview/mock'
 import { AbstractRemoteAdaptTag } from './remote-adapt-tag'
 
 class Sut extends AbstractRemoteAdaptTag {}
