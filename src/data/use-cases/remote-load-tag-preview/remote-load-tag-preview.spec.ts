@@ -5,14 +5,14 @@ import { GraphqlClient } from 'data/protocols/http'
 import { HttpResponse, StatusCodeEnum } from 'data/protocols/http/common'
 import { UnexpectedError } from 'domain/errors'
 import { LoadTagPreview } from 'domain/use-cases'
-import { RemoteTagPreview } from './remote-load-tag-preview'
+import { RemoteLoadTagPreview } from './remote-load-tag-preview'
 
 const graphqlClientMocked: jest.Mocked<GraphqlClient.Client> = {
   query: jest.fn(),
 }
 
 const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
-  const sut = new RemoteTagPreview(graphqlClientMocked, fakeQueryDocument)
+  const sut = new RemoteLoadTagPreview(graphqlClientMocked, fakeQueryDocument)
   const fakeResponse: HttpResponse<RemoteTagPreviewModel.QueryResponse> = {
     data: makeRemoteTagPreviewMock(),
     statusCode: StatusCodeEnum.OK,

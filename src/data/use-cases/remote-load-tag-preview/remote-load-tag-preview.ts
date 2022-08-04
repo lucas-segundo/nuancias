@@ -6,7 +6,7 @@ import { UnexpectedError } from 'domain/errors'
 import { TagPreviewModel } from 'domain/models'
 import { LoadTagPreview } from 'domain/use-cases'
 
-export class RemoteTagPreview
+export class RemoteLoadTagPreview
   extends AbstractRemotePost
   implements LoadTagPreview.Model
 {
