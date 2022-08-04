@@ -5,7 +5,7 @@ import {
 
 export type QueryVariables = GetTagPostsQueryVariables
 export type QueryResponse = GetTagPostsQuery
-export type TagData = NonNullable<QueryResponse['tag']>['data']
+export type TagData = NonNullable<QueryResponse['tags']>['data'][0]
 type PostsData = NonNullable<NonNullable<TagData>['attributes']>['posts']
 export type PostData = NonNullable<PostsData>['data'][0]
 export type Image = NonNullable<PostData['attributes']>['image']

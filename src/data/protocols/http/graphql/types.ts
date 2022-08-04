@@ -1102,7 +1102,7 @@ export type PostsFragFragment = {
 }
 
 export type TagFragFragment = {
-  data?: {
+  data: Array<{
     id?: string | null
     attributes?: {
       title: string
@@ -1141,16 +1141,16 @@ export type TagFragFragment = {
         }>
       } | null
     } | null
-  } | null
+  }>
 }
 
 export type GetTagPostsQueryVariables = Exact<{
-  tagId: Scalars['ID']
+  tagSlug: Scalars['String']
 }>
 
 export type GetTagPostsQuery = {
-  tag?: {
-    data?: {
+  tags?: {
+    data: Array<{
       id?: string | null
       attributes?: {
         title: string
@@ -1189,7 +1189,7 @@ export type GetTagPostsQuery = {
           }>
         } | null
       } | null
-    } | null
+    }>
   } | null
 }
 

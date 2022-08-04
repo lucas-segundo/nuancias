@@ -15,7 +15,7 @@ const makeSut = (fakeQueryDocument = faker.datatype.string()) => {
   const sut = new RemoteLoadTagDetails(graphqlClientMocked, fakeQueryDocument)
   const fakeAuthToken = faker.datatype.uuid()
   const fakeParams: LoadTagDetails.Params = {
-    id: faker.datatype.uuid(),
+    slug: faker.datatype.uuid(),
   }
   const fakeResponse: HttpResponse<RemoteTagDetails.QueryResponse> = {
     data: makeRemoteTagDetailsMock(),
@@ -44,7 +44,7 @@ describe('RemoteLoadTagDetails', () => {
     const graphqlParams: GraphqlClient.Params<RemoteTagDetails.QueryVariables> =
       {
         queryDocument: fakeQueryDocument,
-        variables: { tagId: fakeParams.id },
+        variables: { tagSlug: fakeParams.slug },
         config: {
           authToken: fakeAuthToken,
           cachePolicy: 'no-cache',

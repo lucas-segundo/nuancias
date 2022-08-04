@@ -1,7 +1,7 @@
 import { TagDetailsModel } from 'domain/models'
 
 export type Params = {
-  id: string
+  slug: string
 }
 
 export interface Model {

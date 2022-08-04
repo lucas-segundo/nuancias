@@ -42,7 +42,7 @@ export const GET_TAG_POSTS = gql`
     }
   }
 
-  fragment TagFrag on TagEntityResponse {
+  fragment TagFrag on TagEntityResponseCollection {
     data {
       id
       attributes {
@@ -55,8 +55,8 @@ export const GET_TAG_POSTS = gql`
     }
   }
 
-  query getTagPosts($tagId: ID!) {
-    tag(id: $tagId) {
+  query getTagPosts($tagSlug: String!) {
+    tags(filters: { slug: { eq: $tagSlug } }) {
       ...TagFrag
     }
   }

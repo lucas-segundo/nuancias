@@ -35,14 +35,16 @@ const makePost = (): RemoteTagDetails.PostData => ({
 })
 
 export const makeRemoteTagDetailsMock = (): RemoteTagDetails.QueryResponse => ({
-  tag: {
-    data: {
-      id: faker.datatype.uuid(),
-      attributes: {
-        title: faker.random.words(),
-        slug: faker.datatype.uuid(),
-        posts: { data: [makePost(), makePost()] },
+  tags: {
+    data: [
+      {
+        id: faker.datatype.uuid(),
+        attributes: {
+          title: faker.random.words(),
+          slug: faker.datatype.uuid(),
+          posts: { data: [makePost(), makePost()] },
+        },
       },
-    },
+    ],
   },
 })

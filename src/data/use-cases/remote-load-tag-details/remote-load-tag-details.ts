@@ -24,7 +24,7 @@ export class RemoteLoadTagDetails
       RemoteTagDetails.QueryResponse
     >({
       queryDocument: this.queryDocument,
-      variables: { tagId: params.id },
+      variables: { tagSlug: params.slug },
       config: {
         authToken: this._authToken,
         cachePolicy: 'no-cache',
@@ -43,7 +43,7 @@ export class RemoteLoadTagDetails
   adaptResponseToModel(
     data: RemoteTagDetails.QueryResponse
   ): TagDetailsModel.Model | undefined {
-    const tag = data.tag?.data
+    const tag = data.tags?.data[0]
 
     if (tag) return this.mapValidTag(tag)
   }
