@@ -5,5 +5,5 @@ export type Params = {
 }
 
 export interface Model {
-  getAll(params: Params): TagPreviewModel.Model[]
+  getAll(params: Params): Promise<TagPreviewModel.Model[] | []>
 }
