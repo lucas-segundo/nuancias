@@ -11,7 +11,7 @@ describe('Writer Page', () => {
     cy.getByDataCy('last-post').first().click()
   })
 
-  it.only('should load itself', () => {
+  it('should load itself', () => {
     cy.findByAltText(/usuário principal/).click()
   })
 })
