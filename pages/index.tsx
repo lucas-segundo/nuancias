@@ -1,4 +1,8 @@
-import { makeSeachPost, makeLoadPostPreview } from 'main/factories/use-cases'
+import {
+  makeSeachPost,
+  makeLoadPostPreview,
+  makeLoadTagPreview,
+} from 'main/factories/use-cases'
 import type { GetStaticProps, NextPage } from 'next'
 import { Home } from 'presentation/templates'
 import { HomeProps } from 'presentation/templates/home/home'
@@ -24,9 +28,15 @@ export const getStaticProps: GetStaticProps<
     },
   })
 
+  const loadTags = makeLoadTagPreview()
+
+  loadTags.setAuthToken(authToken)
+  const data = await loadTags.getAll({ tagsLimit: 5 })
+
   return {
     props: {
       posts,
+      tags: data,
     },
     revalidate: Number(process.env.STATIC_PAGE_REVALIDATE_IN_SECONDS),
   }

@@ -10,10 +10,7 @@ const renderPostItems = (posts: PostPreviewModel.Model[]) =>
 
 export const OtherPosts = ({ posts }: OtherPostsProps) => {
   return (
-    <section
-      data-cy="other-posts-section"
-      className="default-screen-margin mt-4"
-    >
+    <section data-cy="other-posts-section">
       <div className="space-y-1">
         <h1 className="text-xl lg:text-2xl font-bold">O que mais?</h1>
         <span className="bg-cyan-400 w-10 lg:w-20 h-0.5 block"></span>
