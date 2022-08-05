@@ -16,7 +16,7 @@ export const GroupedTags = (props: GroupedTagsProps) => {
   return (
     <div className="flex justify-center md:mx-8 mb-7 md:mb-0">
       <div>
-        <div className="border border-cyan-200 p-4 rounded">
+        <div className="border-t border-b border-cyan-200 p-4">
           <div className="mb-5">
             <h3 className="text-xl lg:text-2xl font-bold">Nuancias</h3>
             <div className="space-y-1">
