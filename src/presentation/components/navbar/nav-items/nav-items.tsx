@@ -16,29 +16,21 @@ const ListItem = (props: ListItemProps) => (
 )
 
 export type NavItemsProps = {
-  isClose: boolean
-  setIsClose: Dispatch<SetStateAction<boolean>>
+  isOpen: boolean
+  setIsOpen: Dispatch<SetStateAction<boolean>>
 }
 
 export const NavItems = (props: NavItemsProps) => {
-  const css = []
-
-  props.isClose && css.push('hidden')
-
   return (
     <div
       role="navbar-items"
-      hidden={props.isClose}
-      className={`bg-black px-6 w-2/4 h-screen md:h-auto fixed md:static top-0 left-0 md:visible ${css.join(
-        ' '
-      )}`}
+      hidden={!props.isOpen}
+      className="bg-black px-6 w-2/4 h-screen md:h-auto fixed md:static md:block top-0 left-0"
     >
-      <div
-        className="flex justify-end my-2 md:hidden"
-        aria-label="Fechar barra de navegação"
-      >
+      <div className="flex justify-end my-2 md:hidden">
         <IoMdClose
-          onClick={() => props.setIsClose(true)}
+          aria-label="Fechar barra de navegação"
+          onClick={() => props.setIsOpen(false)}
           size={22}
           className="text-gray-100"
         />

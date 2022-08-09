@@ -1,9 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import { SearchPosts } from 'domain/use-cases'
 import { Navbar } from './navbar'
-import { checkIsMobileScreen } from 'presentation/helpers'
-
-jest.mock('presentation/helpers')
+import userEvent from '@testing-library/user-event'
 
 const searchPostsMocked: jest.Mocked<SearchPosts> = {
   getAllByText: jest.fn(),
@@ -11,6 +9,9 @@ const searchPostsMocked: jest.Mocked<SearchPosts> = {
 
 const makeSut = () => {
   render(<Navbar searchPosts={searchPostsMocked} />)
+  const user = userEvent.setup()
+
+  return { user }
 }
 
 describe('<Navbar />', () => {
@@ -18,21 +19,13 @@ describe('<Navbar />', () => {
     makeSut()
   })
 
-  it('should not hide navegation items in desktop', () => {
-    const checkIsMobileScreenMocked = checkIsMobileScreen as jest.Mock
-    checkIsMobileScreenMocked.mockReturnValue(false)
+  it.only('should open and close navegation bar if is mobile', async () => {
+    const { user } = makeSut()
 
-    makeSut()
-
+    await user.click(screen.getByLabelText(/abrir barra/i))
     expect(screen.getByRole('navbar-items')).toBeVisible()
-  })
 
-  it('should hide navegation items in mobile', () => {
-    const checkIsMobileScreenMocked = checkIsMobileScreen as jest.Mock
-    checkIsMobileScreenMocked.mockReturnValue(true)
-
-    makeSut()
-
+    await user.click(screen.getByLabelText(/fechar barra/i))
     expect(screen.queryByRole('navbar-items')).toBeNull()
   })
 })
