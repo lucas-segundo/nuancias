@@ -1,17 +1,24 @@
 import Image from 'next/image'
+import Link from 'next/link'
+import { PagesRoutersEnum } from 'presentation/routers/pages'
 import { Dispatch, SetStateAction } from 'react'
 import { IoMdClose } from 'react-icons/io'
 
 type ListItemProps = {
   title: string
+  pageLink: string
 }
 
 const ListItem = (props: ListItemProps) => (
   <li>
-    <span>{props.title}</span>
-    <div className="md:hidden">
-      <span className="bg-cyan-400 w-10 lg:w-20 h-0.5 block"></span>
-    </div>
+    <Link href={props.pageLink}>
+      <a>
+        <span>{props.title}</span>
+        <div className="md:hidden">
+          <span className="bg-cyan-400 w-10 lg:w-20 h-0.5 block"></span>
+        </div>
+      </a>
+    </Link>
   </li>
 )
 
@@ -45,9 +52,9 @@ export const NavItems = (props: NavItemsProps) => {
         />
       </figure>
       <ul className="text-gray-100 font-bold mt-2 space-y-2 md:space-y-0 md:flex md:justify-end md:space-x-16">
-        <ListItem title="Home" />
-        <ListItem title="Sobre" />
-        <ListItem title="Contato" />
+        <ListItem title="Home" pageLink={PagesRoutersEnum.HOME} />
+        <ListItem title="Sobre" pageLink={'/' + PagesRoutersEnum.ABOUT} />
+        <ListItem title="Contato" pageLink={'/' + PagesRoutersEnum.CONTACTS} />
       </ul>
     </div>
   )
