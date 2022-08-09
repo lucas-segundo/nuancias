@@ -19,7 +19,7 @@ describe('<Navbar />', () => {
     makeSut()
   })
 
-  it.only('should open and close navegation bar if is mobile', async () => {
+  it('should open and close navegation bar if is mobile', async () => {
     const { user } = makeSut()
 
     await user.click(screen.getByLabelText(/abrir barra/i))
