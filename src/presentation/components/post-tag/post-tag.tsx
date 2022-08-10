@@ -6,7 +6,7 @@ export type PostTagProps = {
 
 export const PostTag = ({ tagData }: PostTagProps) => {
   return (
-    <span className="h-5 px-3 py-1 bg-gray-200 border rounded-md text-xs text-gray-500 font-semibold">
+    <span className="h-5 px-3 py-1 bg-gray-200 border rounded-md text-xs text-gray-900 font-semibold">
       {tagData.title}
     </span>
   )
