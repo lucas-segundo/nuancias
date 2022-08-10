@@ -50,7 +50,7 @@ export const AboutUs = (props: AboutUsProps) => {
               <strong>Nuancia</strong>. Ou seja, quer saber das nuancias de
               saúde? Acesse as histórias marcada com esse tipo. Simples assim.
             </p>
-            <h3>Mas tá, de onde veio essa palavra que da nome ao site?</h3>
+            <h2>Mas tá, de onde veio essa palavra que da nome ao site?</h2>
             <p>
               A palavra foi inspirada no termo francês <em>Nuance</em>, que
               significa variações sutis ou diferença de coisas do mesmo gênero.
