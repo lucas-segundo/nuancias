@@ -12,6 +12,6 @@ describe('Writer Page', () => {
   })
 
   it('should load itself', () => {
-    cy.findByAltText(/usuário principal/).click()
+    cy.findByAltText(/escritor principal/).click()
   })
 })

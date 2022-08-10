@@ -18,6 +18,6 @@ describe('<Post />', () => {
       />
     )
 
-    expect(screen.getByAltText(/usuário/)).toBeInTheDocument()
+    expect(screen.getByAltText(/escritor/)).toBeInTheDocument()
   })
 })

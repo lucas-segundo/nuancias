@@ -32,8 +32,9 @@ export const Navbar = ({ searchPosts }: NavbarProps) => {
               <Image
                 className="cursor-pointer"
                 src={`/images/logo-black.jpg`}
-                width={30}
-                height={47}
+                width={32}
+                height={53}
+                layout="fixed"
                 alt="Logo Nuancias"
               />
             </a>

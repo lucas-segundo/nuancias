@@ -22,7 +22,8 @@ export const PostListItem = ({ post }: PostListItemProps) => {
             src={post.writer.avatar.src}
             width={20}
             height={20}
-            alt={'Imagem do usuário'}
+            objectFit="cover"
+            alt={'Imagem do escritor'}
           />
 
           <span className="ml-2 text-xs font-semibold">{post.writer.name}</span>

@@ -18,7 +18,7 @@ export const WriterCard = ({ writer }: WriterCardProps) => {
             width={40}
             height={40}
             objectFit="cover"
-            alt="Imagem do usuário principal"
+            alt="Imagem do escritor principal"
           />
         </figure>
         <div className="flex flex-col">

@@ -13,7 +13,7 @@ describe('<PostListItem />', () => {
     const fakePost = makePostPreviewMock()
     makeSut(fakePost)
 
-    expect(screen.getByAltText(/Imagem do usuário/i)).toBeInTheDocument()
+    expect(screen.getByAltText(/Imagem do escritor/i)).toBeInTheDocument()
     expect(screen.getByText(fakePost.writer.name)).toBeInTheDocument()
     expect(screen.getByText(fakePost.title)).toBeInTheDocument()
     expect(

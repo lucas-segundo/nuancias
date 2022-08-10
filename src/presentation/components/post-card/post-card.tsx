@@ -41,10 +41,11 @@ export const PostCard = ({ post, writer, tags, postImage }: PostCardProps) => {
         <a aria-label="Link para o escritor" className="flex items-center my-2">
           <Image
             src={writer.avatar.src}
-            width={20}
-            height={20}
+            width={30}
+            height={30}
             className="rounded-full"
-            alt="Imagem do usuário"
+            objectFit="cover"
+            alt="Imagem do escritor"
           />
           <div className="space-x-1 text-xs">
             <span className="font-semibold ml-2">{writer.name}</span>

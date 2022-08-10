@@ -6,7 +6,7 @@ describe('Post Page', () => {
 
     cy.getByDataCy('last-post').first().click()
 
-    cy.findByAltText(/usuário/i).should('exist')
+    cy.findByAltText(/escritor/i).should('exist')
     cy.findByAltText(/história/i).should('exist')
     cy.get('#article-content').should('exist')
   })

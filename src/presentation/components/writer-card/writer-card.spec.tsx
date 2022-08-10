@@ -17,7 +17,7 @@ describe('<WriterCard />', () => {
       'href',
       makeWriterLink(userData.username)
     )
-    expect(screen.getByAltText(/usuário principal/i)).toBeInTheDocument()
+    expect(screen.getByAltText(/escritor principal/i)).toBeInTheDocument()
     expect(screen.getByText(userData.name)).toBeInTheDocument()
     expect(screen.getByText(userData.bio)).toBeInTheDocument()
   })
