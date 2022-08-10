@@ -17,7 +17,7 @@ export const PostItem = ({ post, isLoading }: PostItemProps) => {
       {!isLoading ? (
         <Link href={`@${post?.writer.username}/${post?.slug}`}>
           <a>
-            <h4 className="font-medium">{post?.title}</h4>
+            <h3 className="font-medium">{post?.title}</h3>
           </a>
         </Link>
       ) : (

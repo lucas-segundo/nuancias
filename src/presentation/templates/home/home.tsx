@@ -24,12 +24,12 @@ export const Home = (props: HomeProps) => {
       <Base searchPosts={props.searchPosts}>
         <Hero />
         <LastPosts posts={props.posts?.slice(0, 6)} />
-        <div className="grid grid-cols-1 md:grid-cols-2 default-screen-margin mt-7">
+        <section className="grid grid-cols-1 md:grid-cols-2 default-screen-margin mt-7">
           <div className="order-last md:order-first">
             <OtherPosts posts={props.posts?.slice(6)} />
           </div>
           <GroupedTags tags={props.tags} />
-        </div>
+        </section>
       </Base>
     </>
   )

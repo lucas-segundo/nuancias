@@ -18,7 +18,7 @@ export const GroupedTags = (props: GroupedTagsProps) => {
       <div>
         <div className="border-t border-b border-cyan-200 p-4">
           <div className="mb-5">
-            <h3 className="text-xl lg:text-2xl font-bold">Nuancias</h3>
+            <h1 className="text-xl lg:text-2xl font-bold">Nuancias</h1>
             <div className="space-y-1">
               <span className="bg-cyan-400 w-10 lg:w-20 h-0.5 block"></span>
               <span className="bg-fuchsia-400 w-5 lg:w-10 h-0.5 block"></span>

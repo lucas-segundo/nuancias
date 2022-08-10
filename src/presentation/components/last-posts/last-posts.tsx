@@ -21,7 +21,7 @@ export const LastPosts = ({ posts }: LastPostsProps) => {
   return (
     <section className="default-screen-margin">
       <div className="my-7">
-        <h1 className="text-2xl lg:text-4xl font-bold">Últimas Histórias</h1>
+        <h2 className="text-2xl lg:text-4xl font-bold">Últimas Histórias</h2>
         <div className="space-y-1">
           <span className="bg-cyan-400 w-10 lg:w-20 h-0.5 block"></span>
           <span className="bg-fuchsia-400 w-5 lg:w-10 h-0.5 block"></span>

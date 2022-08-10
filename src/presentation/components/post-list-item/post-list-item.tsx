@@ -28,7 +28,7 @@ export const PostListItem = ({ post }: PostListItemProps) => {
           <span className="ml-2 text-xs font-semibold">{post.writer.name}</span>
         </a>
         <a>
-          <h4 className="font-bold text-sm md:text-base">{post.title}</h4>
+          <h1 className="font-bold text-sm md:text-base">{post.title}</h1>
         </a>
         <ul className="flex flex-wrap mb-1">{tagsList}</ul>
         <span className="text-xs text-gray-600">
