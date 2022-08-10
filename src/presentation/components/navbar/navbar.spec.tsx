@@ -23,9 +23,9 @@ describe('<Navbar />', () => {
     const { user } = makeSut()
 
     await user.click(screen.getByLabelText(/abrir barra/i))
-    expect(screen.getByRole('navbar-items')).toBeVisible()
+    expect(screen.getByTestId('navbar-items')).not.toHaveAttribute('hidden')
 
     await user.click(screen.getByLabelText(/fechar barra/i))
-    expect(screen.queryByRole('navbar-items')).toBeNull()
+    expect(screen.queryByTestId('navbar-items')).toHaveAttribute('hidden')
   })
 })

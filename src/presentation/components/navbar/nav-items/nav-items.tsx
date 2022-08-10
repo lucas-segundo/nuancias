@@ -30,7 +30,7 @@ export type NavItemsProps = {
 export const NavItems = (props: NavItemsProps) => {
   return (
     <div
-      role="navbar-items"
+      data-testid="navbar-items"
       hidden={!props.isOpen}
       className="bg-black px-6 w-2/4 h-screen md:h-auto fixed md:static md:block top-0 left-0"
     >
