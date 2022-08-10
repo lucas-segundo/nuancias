@@ -6,6 +6,6 @@ describe('<Footer />', () => {
   it('should render the heading', () => {
     render(<Footer />)
 
-    expect(screen.getByRole('footer')).toBeInTheDocument()
+    expect(screen.getByLabelText(/rodapé da página/i)).toBeInTheDocument()
   })
 })
