@@ -23,7 +23,7 @@ export const PostCard = ({ post, writer, tags, postImage }: PostCardProps) => {
   return (
     <article data-cy="last-post" className="cursor-pointer">
       <Link href={makePostLink(writer.username, post.slug)}>
-        <a role="link-to-post">
+        <a aria-label="Link para história">
           <figure>
             <Image
               className="rounded"
@@ -38,7 +38,7 @@ export const PostCard = ({ post, writer, tags, postImage }: PostCardProps) => {
         </a>
       </Link>
       <Link href={makeWriterLink(writer.username)}>
-        <a role="link-to-writer" className="flex items-center my-2">
+        <a aria-label="Link para o escritor" className="flex items-center my-2">
           <Image
             src={writer.avatar.src}
             width={20}

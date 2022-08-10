@@ -27,7 +27,7 @@ describe('<PostCard />', () => {
     const dateFormated = makePtBRDate(post.publishedAt)
     expect(screen.getByText(dateFormated)).toBeInTheDocument()
 
-    const linksToPost = screen.getAllByRole('link-to-post')
+    const linksToPost = screen.getAllByLabelText(/link para história/i)
     linksToPost.forEach((link) => {
       expect(link).toHaveAttribute(
         'href',
@@ -35,7 +35,7 @@ describe('<PostCard />', () => {
       )
     })
 
-    const linksToWriter = screen.getAllByRole('link-to-writer')
+    const linksToWriter = screen.getAllByLabelText(/link para o escritor/i)
     linksToWriter.forEach((link) => {
       expect(link).toHaveAttribute('href', makeWriterLink(post.writer.username))
     })
