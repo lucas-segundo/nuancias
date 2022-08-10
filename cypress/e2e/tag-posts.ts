@@ -8,7 +8,7 @@ describe('Writer Page', () => {
   it('should load the tag articles from home', () => {
     cy.getByDataCy('last-post')
       .first()
-      .findAllByRole('link-to-tag')
+      .findAllByLabelText(/link para a categória/i)
       .first()
       .click()
     cy.findAllByRole('article').should('exist')
@@ -17,7 +17,9 @@ describe('Writer Page', () => {
   it('should load the tag articles from post content', () => {
     cy.getByDataCy('last-post').first().click()
     cy.get('#article-content').should('exist')
-    cy.findAllByRole('link-to-tag').first().click()
+    cy.findAllByLabelText(/link para a categória/i)
+      .first()
+      .click()
     cy.findAllByRole('article').should('exist')
   })
 })

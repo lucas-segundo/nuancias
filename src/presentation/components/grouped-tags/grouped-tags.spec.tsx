@@ -22,7 +22,9 @@ describe('<GroupedTags />', () => {
     const { tags } = makeSut()
     render(<GroupedTags tags={tags} />)
 
-    expect(screen.getAllByRole('link-to-tag').length).toBeGreaterThan(0)
+    expect(
+      screen.getAllByLabelText(/link para a categória/i).length
+    ).toBeGreaterThan(0)
   })
 
   it('should render correctly if tags if empty', () => {

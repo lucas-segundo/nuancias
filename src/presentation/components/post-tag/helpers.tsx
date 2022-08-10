@@ -16,7 +16,7 @@ export const renderPostTagsToListItems = ({ tags, cssClassName }: Params) =>
       className={cssClassName ? cssClassName : ''}
     >
       <Link href={`/${PagesRoutersEnum.TAG}/${tag.slug}`}>
-        <a role="link-to-tag">
+        <a aria-label="Link para a categória">
           <PostTag tagData={tag} />
         </a>
       </Link>
