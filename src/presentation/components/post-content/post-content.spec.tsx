@@ -17,7 +17,9 @@ describe('<PostContent />', () => {
     expect(
       screen.getByText(makePtBRDate(postData.publishedAt))
     ).toBeInTheDocument()
-    expect(screen.getAllByRole('tag-item').length).toBeGreaterThan(0)
+    expect(
+      screen.getAllByLabelText(/item de uma categória/i).length
+    ).toBeGreaterThan(0)
     expect(screen.getByAltText(/imagem principal/i)).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /hello/i })).toBeInTheDocument()
   })
