@@ -17,7 +17,7 @@ export const Navbar = ({ searchPosts }: NavbarProps) => {
   return (
     <nav className="h-16 bg-black sticky top-0 z-50">
       <div className="flex justify-center md:justify-between items-center h-full default-screen-margin">
-        <div
+        <button
           aria-label="Abrir barra de navegação"
           onClick={() => setIsOpen(true)}
           className="space-y-2 rounded shadow mr-4 md:hidden"
@@ -25,7 +25,7 @@ export const Navbar = ({ searchPosts }: NavbarProps) => {
           <span className="block w-6 h-0.5 bg-gray-100"></span>
           <span className="block w-6 h-0.5 bg-gray-100"></span>
           <span className="block w-6 h-0.5 bg-gray-100"></span>
-        </div>
+        </button>
         <div className="flex items-center">
           <Link href={PagesRoutersEnum.HOME}>
             <a>
