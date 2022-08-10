@@ -29,7 +29,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const authToken = process.env.API_JWT_TOKEN || ''
 
   loadPagePaths.setAuthToken(authToken)
-  const data = await loadPagePaths.getAll({ limit: 5 })
+  const data = await loadPagePaths.getAll({ limit: 100 })
 
   const paths = data.map((data) => ({
     params: {
