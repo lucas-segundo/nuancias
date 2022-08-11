@@ -4,11 +4,13 @@ const makeSut = () => {
   const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
   const expectPostPage = () => cy.getByDataCy('post-page').should('exist')
   const expectWriterPage = () => cy.getByDataCy('writer-page').should('exist')
+  const expectTagPage = () => cy.getByDataCy('tag-page').should('exist')
 
   return {
     findSearchInput,
     expectPostPage,
     expectWriterPage,
+    expectTagPage,
   }
 }
 
@@ -48,6 +50,13 @@ describe('Home page', () => {
     expectWriterPage()
   })
 
+  it('should go to tag page from last posts section', () => {
+    const { expectTagPage } = makeSut()
+
+    cy.getByDataCy('last-post').getByDataCy('link-to-tag').first().click()
+    expectTagPage()
+  })
+
   it('should go to article page from other articles', () => {
     const { expectPostPage } = makeSut()
 
@@ -63,6 +72,16 @@ describe('Home page', () => {
       .first()
       .click()
     expectWriterPage()
+  })
+
+  it('should go to tag page from other articles', () => {
+    const { expectTagPage } = makeSut()
+
+    cy.getByDataCy('other-posts-section')
+      .getByDataCy('link-to-tag')
+      .first()
+      .click()
+    expectTagPage()
   })
 
   it('should privacy policy modal be hidden after clicking ok', () => {

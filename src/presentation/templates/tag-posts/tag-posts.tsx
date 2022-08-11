@@ -42,7 +42,10 @@ export const TagPosts = (props: TagPostsProps) => {
         }}
       />
       <Base searchPosts={props.searchPosts}>
-        <div className="default-screen-margin mt-10 mb-80">
+        <section
+          data-cy="tag-page"
+          className="default-screen-margin mt-10 mb-80"
+        >
           <div className="my-7">
             <TagCard tag={props.tag} />
             <h1 className="text-xl lg:text-2xl font-bold">Histórias</h1>
@@ -54,7 +57,7 @@ export const TagPosts = (props: TagPostsProps) => {
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
             {renderPostCards(props.tag.posts)}
           </div>
-        </div>
+        </section>
       </Base>
     </>
   )
