@@ -2,8 +2,6 @@
 import { NextSeo } from 'next-seo'
 import { OpenGraph } from 'next-seo/lib/types'
 import Head from 'next/head'
-import { Adsense } from '../adsense/adsense'
-import { GA_TRACKING_ID } from './gtag'
 
 export type MetaProps = {
   title?: string
@@ -18,7 +16,6 @@ export const Meta = ({ title, description, noIndex, openGraph }: MetaProps) => {
   return (
     <>
       <Head>
-        <Adsense />
         <meta data-testid="meta-utf" charSet="UTF-8" key="charset" />
         <meta
           name="viewport"
@@ -101,23 +98,6 @@ export const Meta = ({ title, description, noIndex, openGraph }: MetaProps) => {
         canonical={'https://www.nuancias.com.br/'}
         noindex={noIndex}
         openGraph={openGraphConfig}
-      />
-      {/* Global Site Tag (gtag.js) - Google Analytics */}
-      <script
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
       />
     </>
   )
