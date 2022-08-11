@@ -10,6 +10,7 @@ const makePostPageTagMock = (): PostContentModel.Tag => ({
 export const makePostContentMock = (): PostContentModel.Model => ({
   id: faker.datatype.uuid(),
   title: faker.random.words(),
+  slug: faker.datatype.uuid(),
   preview: faker.random.words(),
   image: {
     src: faker.image.business(1000, 1000),

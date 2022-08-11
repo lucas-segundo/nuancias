@@ -69,11 +69,12 @@ export class RemotePostContent
     if (post.id && postAttr && userAttr && tags.length) {
       const preview = this.makePreview(postAttr.content)
 
-      const { title, content, publishedAt } = postAttr
+      const { title, content, publishedAt, slug } = postAttr
       const { name, username, biography } = userAttr
       return {
         id: post.id,
         title,
+        slug,
         preview,
         content,
         publishedAt,

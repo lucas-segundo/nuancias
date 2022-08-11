@@ -12,6 +12,7 @@ export const GET_POST_BY_SLUG = gql`
         id
         attributes {
           title
+          slug
           content
           publishedAt
           image {

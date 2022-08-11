@@ -915,6 +915,7 @@ export type GetPostBySlugQuery = {
       id?: string | null
       attributes?: {
         title: string
+        slug: string
         content: string
         publishedAt?: any | null
         image: {
