@@ -22,6 +22,7 @@ const makePost = (): RemotePostContentModel.PostData => ({
   id: faker.datatype.uuid(),
   attributes: {
     title: faker.random.word(),
+    slug: faker.datatype.uuid(),
     content: faker.datatype.string(),
     image: makeImage(),
     publishedAt: faker.datatype.datetime(),
