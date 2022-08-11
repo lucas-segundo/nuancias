@@ -11,6 +11,7 @@ import {
   GroupedTags,
   GroupedTagsProps,
 } from 'presentation/components/grouped-tags/grouped-tags'
+import { LogoJsonLd } from 'next-seo'
 
 export type HomeProps = NavbarProps & LastPostsProps & GroupedTagsProps
 
@@ -20,6 +21,12 @@ export const Home = (props: HomeProps) => {
       <Meta
         title="Nuancias - Histórias das Intensidades do Mundo."
         description="Nuancias é uma plataforma de publicação sobre histórias, com cada uma com a intenção de mostrar a tonalidade de diferentes conhecimentos e aprendizados."
+      />
+      <LogoJsonLd
+        url={process.env.NEXT_PUBLIC_SITE_URL as string}
+        logo={
+          process.env.NEXT_PUBLIC_SITE_URL + '/images/meta-tag-image-logo.jpg'
+        }
       />
       <Base searchPosts={props.searchPosts}>
         <Hero />
