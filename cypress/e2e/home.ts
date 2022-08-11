@@ -2,11 +2,9 @@
 
 const makeSut = () => {
   const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
-  const getSeachedPosts = () => cy.getByDataCy('searched-article')
 
   return {
     findSearchInput,
-    getSeachedPosts,
   }
 }
 
@@ -16,21 +14,20 @@ describe('Home page', () => {
   })
 
   it('should show loading on search posts', () => {
-    const { findSearchInput, getSeachedPosts } = makeSut()
+    const { findSearchInput } = makeSut()
 
     findSearchInput().type('lorem')
-    getSeachedPosts().first().should('have.attr', 'aria-busy')
+    cy.getByDataCy('searched-article').first().should('have.attr', 'aria-busy')
   })
 
   it('should search posts', () => {
-    const { findSearchInput, getSeachedPosts } = makeSut()
+    const { findSearchInput } = makeSut()
     cy.intercept('/graphql').as('fetchSearchPosts')
 
     findSearchInput().type('lorem')
     cy.wait('@fetchSearchPosts')
 
-    getSeachedPosts().first().should('not.have.attr', 'aria-busy')
-    getSeachedPosts().should('have.length.above', 1)
+    cy.getByDataCy('link-to-searched-article').should('have.length.above', 1)
   })
 
   it('should load the articles in last posts', () => {

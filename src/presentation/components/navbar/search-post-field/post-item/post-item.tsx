@@ -16,7 +16,7 @@ export const PostItem = ({ post, isLoading }: PostItemProps) => {
     >
       {!isLoading ? (
         <Link href={`@${post?.writer.username}/${post?.slug}`}>
-          <a>
+          <a data-cy="link-to-searched-article">
             <h3 className="font-medium">{post?.title}</h3>
           </a>
         </Link>
