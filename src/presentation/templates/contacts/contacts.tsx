@@ -11,18 +11,19 @@ import {
 export type ContactsProps = NavbarProps
 
 export const Contacts = (props: ContactsProps) => {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   return (
     <>
       <Meta
         title="Nuancias - Contatos"
         description="Veja as melhores formas de falar conosco."
         openGraph={{
-          url: '/' + PagesRoutersEnum.CONTACTS,
+          url: siteUrl + '/' + PagesRoutersEnum.CONTACTS,
           locale: 'pt-BR',
           site_name: 'Nuancias',
           images: [
             {
-              url: '/images/meta-tag-image-logo.jpg',
+              url: siteUrl + '/images/meta-tag-image-logo.jpg',
               width: 1200,
               height: 630,
               alt: 'Logo Nuancias',

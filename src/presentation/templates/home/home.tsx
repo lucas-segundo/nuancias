@@ -16,18 +16,20 @@ import { LogoJsonLd } from 'next-seo'
 export type HomeProps = NavbarProps & LastPostsProps & GroupedTagsProps
 
 export const Home = (props: HomeProps) => {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+
   return (
     <>
       <Meta
         title="Nuancias - Histórias das Intensidades do Mundo."
         description="Nuancias é uma plataforma de publicação sobre histórias, com cada uma com a intenção de mostrar a tonalidade de diferentes conhecimentos e aprendizados."
         openGraph={{
-          url: '/',
+          url: siteUrl + '/',
           locale: 'pt-BR',
           site_name: 'Nuancias',
           images: [
             {
-              url: '/images/meta-tag-image-logo.jpg',
+              url: siteUrl + '/images/meta-tag-image-logo.jpg',
               width: 1200,
               height: 630,
               alt: 'Logo Nuancias',
@@ -36,8 +38,8 @@ export const Home = (props: HomeProps) => {
         }}
       />
       <LogoJsonLd
-        url={process.env.NEXT_PUBLIC_SITE_URL as string}
-        logo="/images/meta-tag-image-logo.jpg"
+        url={siteUrl as string}
+        logo={siteUrl + '/images/meta-tag-image-logo.jpg'}
       />
       <Base searchPosts={props.searchPosts}>
         <Hero />

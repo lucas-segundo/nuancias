@@ -22,18 +22,19 @@ const renderPostCards = (posts: TagDetailsModel.Post[]) => {
 }
 
 export const TagPosts = (props: TagPostsProps) => {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   return (
     <>
       <Meta
         title={`Nuancias - ${props.tag.title}`}
         description="Veja as histórias relacionado a essa nuancia."
         openGraph={{
-          url: '/' + props.tag.slug,
+          url: siteUrl + '/' + props.tag.slug,
           locale: 'pt-BR',
           site_name: 'Nuancias',
           images: [
             {
-              url: '/images/meta-tag-image-logo.jpg',
+              url: siteUrl + '/images/meta-tag-image-logo.jpg',
               width: 1200,
               height: 630,
               alt: 'Logo Nuancias',

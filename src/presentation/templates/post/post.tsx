@@ -13,11 +13,10 @@ import { makePostLink, makeWriterLink } from 'presentation/routers/helpers'
 export type PostProps = NavbarProps & WriterCardProps & PostContentProps
 
 export const Post = (props: PostProps) => {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   const postLink =
-    process.env.NEXT_PUBLIC_SITE_URL +
-    makePostLink(props.writer.username, props.postData.slug)
-  const writerLink =
-    process.env.NEXT_PUBLIC_SITE_URL + makeWriterLink(props.writer.username)
+    siteUrl + makePostLink(props.writer.username, props.postData.slug)
+  const writerLink = siteUrl + makeWriterLink(props.writer.username)
 
   return (
     <>
@@ -59,9 +58,7 @@ export const Post = (props: PostProps) => {
           },
         ]}
         publisherName="Nuancias"
-        publisherLogo={
-          process.env.NEXT_PUBLIC_SITE_URL + '/images/meta-tag-image-logo.jpg'
-        }
+        publisherLogo={siteUrl + '/images/meta-tag-image-logo.jpg'}
       />
       <Base searchPosts={props.searchPosts}>
         <section

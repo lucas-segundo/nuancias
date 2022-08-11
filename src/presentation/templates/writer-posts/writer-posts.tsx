@@ -23,13 +23,14 @@ const renderPostCards = (writer: WriterDetailsModel.Model) => {
 }
 
 export const WriterPosts = (props: WriterPostsProps) => {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
   return (
     <>
       <Meta
         title={`Nuancias - ${props.writer.name}`}
         description="Veja as histórias relacionadas ao escritor."
         openGraph={{
-          url: '/@' + props.writer.username,
+          url: siteUrl + '/@' + props.writer.username,
           locale: 'pt-BR',
           site_name: 'Nuancias',
           images: [

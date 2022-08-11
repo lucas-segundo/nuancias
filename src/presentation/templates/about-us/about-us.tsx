@@ -13,12 +13,14 @@ export const AboutUs = (props: AboutUsProps) => {
         description="Fala aí, tudo bem? Me chamo Lucas Segundo, fundador do Nuancias. Estou aqui para falar pessoalmente do que
         se trata esse site."
         openGraph={{
-          url: '/' + PagesRoutersEnum.ABOUT,
+          url: process.env.NEXT_PUBLIC_SITE_URL + '/' + PagesRoutersEnum.ABOUT,
           locale: 'pt-BR',
           site_name: 'Nuancias',
           images: [
             {
-              url: '/images/meta-tag-image-logo.jpg',
+              url:
+                process.env.NEXT_PUBLIC_SITE_URL +
+                '/images/meta-tag-image-logo.jpg',
               width: 1200,
               height: 630,
               alt: 'Logo Nuancias',
