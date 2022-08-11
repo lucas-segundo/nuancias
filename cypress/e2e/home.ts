@@ -2,9 +2,13 @@
 
 const makeSut = () => {
   const findSearchInput = () => cy.findByPlaceholderText(/pesquisar/i)
+  const expectPostPage = () => cy.getByDataCy('post-page').should('exist')
+  const expectWriterPage = () => cy.getByDataCy('writer-page').should('exist')
 
   return {
     findSearchInput,
+    expectPostPage,
+    expectWriterPage,
   }
 }
 
@@ -30,24 +34,35 @@ describe('Home page', () => {
     cy.getByDataCy('link-to-searched-article').should('have.length.above', 1)
   })
 
-  it('should load the articles in last posts', () => {
-    cy.getByDataCy('last-post').should('have.length.above', 1)
-  })
+  it('should go to article page from last posts section', () => {
+    const { expectPostPage } = makeSut()
 
-  it('should go to article page by last posts', () => {
     cy.getByDataCy('last-post').first().click()
-    cy.url().should('include', '@')
+    expectPostPage()
   })
 
-  it('should load the articles in other articles', () => {
-    cy.getByDataCy('other-posts-section')
-      .get('article')
-      .should('have.length.above', 1)
+  it('should go to writer page from last posts section', () => {
+    const { expectWriterPage } = makeSut()
+
+    cy.getByDataCy('last-post').getByDataCy('link-to-writer').first().click()
+    expectWriterPage()
   })
 
-  it('should go to article page by other articles', () => {
+  it('should go to article page from other articles', () => {
+    const { expectPostPage } = makeSut()
+
     cy.getByDataCy('other-posts-section').get('article').first().click()
-    cy.url().should('include', '@')
+    expectPostPage()
+  })
+
+  it('should go to writer page from other articles', () => {
+    const { expectWriterPage } = makeSut()
+
+    cy.getByDataCy('other-posts-section')
+      .getByDataCy('link-to-writer')
+      .first()
+      .click()
+    expectWriterPage()
   })
 
   it('should privacy policy modal be hidden after clicking ok', () => {

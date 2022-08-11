@@ -45,7 +45,7 @@ export const PostListItem = ({ post }: PostListItemProps) => {
         </span>
       </div>
       <Link href={makePostLink(post.writer.username, post.slug)}>
-        <a>
+        <a data-cy="link-to-writer">
           <figure className="flex items-center ml-4 w-24">
             <Image
               src={post.image.src}

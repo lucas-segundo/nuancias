@@ -64,10 +64,13 @@ export const Post = (props: PostProps) => {
         }
       />
       <Base searchPosts={props.searchPosts}>
-        <div className="default-screen-margin-post mt-10 mb-80">
+        <section
+          data-cy="post-page"
+          className="default-screen-margin-post mt-10 mb-80"
+        >
           <WriterCard writer={props.writer} />
           <PostContent postData={props.postData} />
-        </div>
+        </section>
       </Base>
     </>
   )

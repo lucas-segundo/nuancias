@@ -43,7 +43,10 @@ export const WriterPosts = (props: WriterPostsProps) => {
         }}
       />
       <Base searchPosts={props.searchPosts}>
-        <div className="default-screen-margin mt-10 mb-80">
+        <section
+          data-cy="writer-page"
+          className="default-screen-margin mt-10 mb-80"
+        >
           <WriterCard writer={props.writer} />
           <div className="my-7">
             <h1 className="text-xl lg:text-2xl font-bold">Histórias</h1>
@@ -55,7 +58,7 @@ export const WriterPosts = (props: WriterPostsProps) => {
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3">
             {renderPostCards(props.writer)}
           </div>
-        </div>
+        </section>
       </Base>
     </>
   )
