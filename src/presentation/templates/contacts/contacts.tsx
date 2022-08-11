@@ -1,6 +1,7 @@
 import { NavbarProps } from 'presentation/components'
 import { Meta } from 'presentation/components/elements'
 import { Base } from 'presentation/layouts'
+import { PagesRoutersEnum } from 'presentation/routers/pages'
 import {
   AiFillLinkedin,
   AiOutlineInstagram,
@@ -15,6 +16,19 @@ export const Contacts = (props: ContactsProps) => {
       <Meta
         title="Nuancias - Contatos"
         description="Veja as melhores formas de falar conosco."
+        openGraph={{
+          url: '/' + PagesRoutersEnum.CONTACTS,
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          images: [
+            {
+              url: '/images/meta-tag-image-logo.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Logo Nuancias',
+            },
+          ],
+        }}
       />
       <Base searchPosts={props.searchPosts}>
         <div className="default-screen-margin border mt-10 rounded p-6">

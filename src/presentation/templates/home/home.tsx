@@ -21,12 +21,23 @@ export const Home = (props: HomeProps) => {
       <Meta
         title="Nuancias - Histórias das Intensidades do Mundo."
         description="Nuancias é uma plataforma de publicação sobre histórias, com cada uma com a intenção de mostrar a tonalidade de diferentes conhecimentos e aprendizados."
+        openGraph={{
+          url: '/',
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          images: [
+            {
+              url: '/images/meta-tag-image-logo.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Logo Nuancias',
+            },
+          ],
+        }}
       />
       <LogoJsonLd
         url={process.env.NEXT_PUBLIC_SITE_URL as string}
-        logo={
-          process.env.NEXT_PUBLIC_SITE_URL + '/images/meta-tag-image-logo.jpg'
-        }
+        logo="/images/meta-tag-image-logo.jpg"
       />
       <Base searchPosts={props.searchPosts}>
         <Hero />

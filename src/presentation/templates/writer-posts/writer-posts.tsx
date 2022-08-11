@@ -28,6 +28,19 @@ export const WriterPosts = (props: WriterPostsProps) => {
       <Meta
         title={`Nuancias - ${props.writer.name}`}
         description="Veja as histórias relacionadas ao escritor."
+        openGraph={{
+          url: '/@' + props.writer.username,
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          images: [
+            {
+              url: props.writer.avatar.src,
+              width: 1200,
+              height: 630,
+              alt: 'Imagem do escritor',
+            },
+          ],
+        }}
       />
       <Base searchPosts={props.searchPosts}>
         <div className="default-screen-margin mt-10 mb-80">

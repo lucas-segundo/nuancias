@@ -2,6 +2,7 @@ import Image from 'next/image'
 import { NavbarProps } from 'presentation/components'
 import { Meta } from 'presentation/components/elements'
 import { Base } from 'presentation/layouts'
+import { PagesRoutersEnum } from 'presentation/routers/pages'
 
 export type AboutUsProps = NavbarProps
 export const AboutUs = (props: AboutUsProps) => {
@@ -11,6 +12,19 @@ export const AboutUs = (props: AboutUsProps) => {
         title="Nuancias - Sobre"
         description="Fala aí, tudo bem? Me chamo Lucas Segundo, fundador do Nuancias. Estou aqui para falar pessoalmente do que
         se trata esse site."
+        openGraph={{
+          url: '/' + PagesRoutersEnum.ABOUT,
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          images: [
+            {
+              url: '/images/meta-tag-image-logo.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Logo Nuancias',
+            },
+          ],
+        }}
       />
       <Base searchPosts={props.searchPosts}>
         <article
@@ -20,7 +34,7 @@ export const AboutUs = (props: AboutUsProps) => {
           <figure className="md:order-last mx-auto">
             <Image
               className="rounded"
-              src={'/images/founder.jpg'}
+              src="/images/founder.jpg"
               width={500}
               height={500}
               alt="Imagem do Fundador"

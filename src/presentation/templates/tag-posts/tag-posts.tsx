@@ -27,6 +27,19 @@ export const TagPosts = (props: TagPostsProps) => {
       <Meta
         title={`Nuancias - ${props.tag.title}`}
         description="Veja as histórias relacionado a essa nuancia."
+        openGraph={{
+          url: '/' + props.tag.slug,
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          images: [
+            {
+              url: '/images/meta-tag-image-logo.jpg',
+              width: 1200,
+              height: 630,
+              alt: 'Logo Nuancias',
+            },
+          ],
+        }}
       />
       <Base searchPosts={props.searchPosts}>
         <div className="default-screen-margin mt-10 mb-80">

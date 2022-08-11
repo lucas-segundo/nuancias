@@ -13,17 +13,39 @@ import { makePostLink, makeWriterLink } from 'presentation/routers/helpers'
 export type PostProps = NavbarProps & WriterCardProps & PostContentProps
 
 export const Post = (props: PostProps) => {
+  const postLink =
+    process.env.NEXT_PUBLIC_SITE_URL +
+    makePostLink(props.writer.username, props.postData.slug)
+  const writerLink =
+    process.env.NEXT_PUBLIC_SITE_URL + makeWriterLink(props.writer.username)
+
   return (
     <>
       <Meta
         title={`${props.postData.title} - por ${props.writer.name} - Nuancias`}
         description={props.postData.preview}
+        openGraph={{
+          url: postLink,
+          locale: 'pt-BR',
+          site_name: 'Nuancias',
+          type: 'article',
+          article: {
+            publishedTime: props.postData.publishedAt,
+            authors: [writerLink],
+            tags: props.postData.tags.map((tag) => tag.title),
+          },
+          images: [
+            {
+              url: props.postData.image.src,
+              width: 1200,
+              height: 630,
+              alt: 'Image da história',
+            },
+          ],
+        }}
       />
       <ArticleJsonLd
-        url={
-          process.env.NEXT_PUBLIC_SITE_URL +
-          makePostLink(props.writer.username, props.postData.slug)
-        }
+        url={postLink}
         title={props.postData.title}
         description={props.postData.preview}
         images={[props.postData.image.src]}
