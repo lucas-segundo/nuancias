@@ -3,7 +3,10 @@
 describe('Writer Page', () => {
   beforeEach(() => {
     cy.visit('/')
-    cy.getByDataCy('last-post').first().findByRole('link-to-writer').click()
+    cy.getByDataCy('last-post')
+      .first()
+      .findByLabelText(/link para o escritor/i)
+      .click()
     cy.getByDataCy('last-post').should('have.length.above', 1)
   })
 
