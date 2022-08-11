@@ -1,5 +1,6 @@
 /* eslint-disable react/no-danger */
 import { NextSeo } from 'next-seo'
+import { OpenGraph } from 'next-seo/lib/types'
 import Head from 'next/head'
 import { Adsense } from '../adsense/adsense'
 import { GA_TRACKING_ID } from './gtag'
@@ -7,11 +8,13 @@ import { GA_TRACKING_ID } from './gtag'
 export type MetaProps = {
   title?: string
   description?: string
-  canonical?: string
   noIndex?: boolean
+  openGraph?: Omit<OpenGraph, 'title' | 'description'>
 }
 
-export const Meta = ({ title, description, noIndex }: MetaProps) => {
+export const Meta = ({ title, description, noIndex, openGraph }: MetaProps) => {
+  const openGraphConfig = { title, description, ...openGraph }
+
   return (
     <>
       <Head>
@@ -97,21 +100,7 @@ export const Meta = ({ title, description, noIndex }: MetaProps) => {
         description={description}
         canonical={'https://www.nuancias.com.br/'}
         noindex={noIndex}
-        openGraph={{
-          title,
-          description,
-          url: 'https://www.nuancias.com.br/',
-          locale: 'pt-BR',
-          site_name: 'Nuancias',
-          images: [
-            {
-              url: '/images/meta-tag-image-logo.jpg',
-              width: 1200,
-              height: 630,
-              alt: 'Logo Nuancias',
-            },
-          ],
-        }}
+        openGraph={openGraphConfig}
       />
       {/* Global Site Tag (gtag.js) - Google Analytics */}
       <script
