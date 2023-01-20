@@ -65,3 +65,5 @@ npm run dev or yarn dev
 - [NextJS](https://nextjs.org/) - The web framework used
 - [TypeScript](https://www.typescriptlang.org/) - Language used
 - [Jest](https://jestjs.io/) - Testing Framework
+- [Cypress](https://www.cypress.io/) - Testing E2E Framework
+- [Tailwind](https://tailwindcss.com/) - CSS Framework
